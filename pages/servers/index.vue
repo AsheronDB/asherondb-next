@@ -3,12 +3,15 @@
     <header class="p-4">
       <h2 class="font-bold">Server Tracker</h2>
     </header>
-    
 
     <div>
       <UTable :columns :rows="servers">
+        <template #name-data="{ row }">
+          <nuxt-link :to="'/servers/' + row.guid">{{ row.name }}</nuxt-link>
+        </template>
         <template #status-data="{ row }">
-          {{ row.status.online }}
+          <span class="text-xl">{{ row.status.online ? "✅" : "❌" }}</span>
+        
         </template>
         <template #address-data="{ row }">
           {{ row.address.host }}:{{ row.address.port }}
@@ -19,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { orderBy } from "lodash-es"
+import { orderBy } from "lodash-es";
 
 const columns = [
   {
@@ -39,5 +42,6 @@ const { data } = useFetch("https://servers.treestats.net/api/servers/", {
   key: "servers",
 });
 
-const servers = computed(() => orderBy(data.value, ['name']));
+const servers = computed(() => orderBy(data.value, ["name"]));
+
 </script>
