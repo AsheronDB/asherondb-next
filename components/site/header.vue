@@ -6,7 +6,7 @@
         <h1 class="font-bold"><nuxt-link to="/">AsheronDB</nuxt-link></h1>
       </div>
 
-      <div class="flex-0 hidden items-center lg:flex">
+      <div class="flex-0 items-center">
         <nuxt-link to="/servers">Server Tracker</nuxt-link>
       </div>
       <div  class="ml-auto flex flex-1 justify-end"></div>
