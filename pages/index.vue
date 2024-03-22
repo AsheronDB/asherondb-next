@@ -1,3 +1,3 @@
 <template>
-  <div>AsheronDB</div>
+  <div><h1>AsheronDB</h1></div>
 </template>

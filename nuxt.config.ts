@@ -9,7 +9,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-
   vite: {
     build: {
       minify: "terser",
