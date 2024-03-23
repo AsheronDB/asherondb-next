@@ -11,7 +11,7 @@
       <div class="flex flex-1  space-x-6">
         <div class="flex-0">
           <UButtonGroup size="md" orientation="horizontal">
-            <template v-for="item in nav">
+            <template v-for="item in primaryNav">
               <UDropdown
                 :items="item.children"
                 :popper="{ placement: 'bottom' }"
@@ -52,24 +52,6 @@
 </template>
 
 <script setup lang="ts">
-const nav = [
-  {
-    label: "Servers",
-    path: "/servers",
-  },
-  {
-    label: "Tools",
-    path: "/tools",
-    disabled: true,
-    children: [
-      [
-        {
-          label: "Dereth Time Calculator",
-          disabled: true,
-          
-        },
-      ],
-    ],
-  },
-];
+const store = useStore();
+const { primaryNav } = storeToRefs(store);
 </script>
