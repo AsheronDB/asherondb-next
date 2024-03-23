@@ -6,7 +6,4 @@
 const route = useRoute();
 console.log(route);
 
-definePageMeta({
-  title: "Creatures",
-});
 </script>

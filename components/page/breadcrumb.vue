@@ -7,15 +7,17 @@
 <script setup lang="ts">
 const route = useRoute();
 
+console.log('BREADCRUMB setup')
+
 const linksRoot = [
   {
-    label: "Home",
+
     icon: "i-heroicons-home",
     to: "/",
   }
 ];
 
-const pages = route.matched.map((match) => ({
+const pages = route.matched.filter(match => match.meta.title).map((match) => ({
   label: match.meta.title,
   to: match.path,
 }));

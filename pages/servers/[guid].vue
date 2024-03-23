@@ -1,21 +1,11 @@
 <template>
-  <div class="p-4">
-    <header class="pb-4">
-      <h2 class="font-bold">
-        Server Tracker
-      </h2>
-    </header>
+  <div>
+    <PageBreadcrumb :key="pageTitle" />
+    <PageHeader />
 
-    <div>
-      <h3 class="font-bold">
-        Server: {{ server.server }}
-      </h3>
-
+    <div v-if="data" class="p-4">
       <ul>
-        <li
-          v-for="status in server.statuses"
-          :key="status.created_at"
-        >
+        <li v-for="status in data.statuses" :key="status.created_at">
           {{ status }}
         </li>
       </ul>
@@ -25,11 +15,36 @@
 
 <script setup lang="ts">
 const route = useRoute();
+const pageTitle = ref(null);
 
-const { data: server } = useFetch(`https://servers.treestats.net/api/statuses/${route.params.guid}`, {
-  key: `server-${route.params.guid}`,
+const { data, error } = useFetch(
+  `https://servers.treestats.net/api/statuses/10`,
+  {
+    key: `server-${route.params.guid}`,
+  }
+);
+
+console.log(data);
+
+console.log(error)
+if (data.value) {
+  pageTitle.value = data.value.server;
+}
+// if ( data.value ) route.meta.title = data.value.server
+
+// const serverName = computed(() => server.value && server.value.server ? server.value.server : '');
+
+useHead({
+  title: () => pageTitle.value,
 });
 
-// const serverName = computed(() => statuses.value[0].name);
-
+onMounted(() => {
+  console.log('on mounted')
+  console.log(pageTitle.value)
+  if (data.value) {
+    pageTitle.value = data.value.server;
+    route.meta.title = pageTitle.value;
+    route.matched[route.matched.length - 1].meta.title = pageTitle.value;
+  }
+});
 </script>

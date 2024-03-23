@@ -10,7 +10,7 @@
 
       <div class="flex flex-1 space-x-6">
         <div class="flex-0">
-          <UButtonGroup size="md" orientation="horizontal">
+          <UButtonGroup size="md">
             <template v-for="item in primaryNav">
               <UDropdown
                 :items="item.children"

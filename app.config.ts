@@ -8,103 +8,11 @@ export default defineAppConfig({
 
     buttonGroup: {
       wrapper: {
-        horizontal: 'inline-flex border-2 border-t-[#bea96a] border-r-[#795026] border-b-[#9d7a44] border-l-[#aa8b52] space-x-0',
+        horizontal: 'inline-flex border-2 border-t-primary-200 border-r-primary-800 border-b-primary-700 border-l-primary-500 space-x-0',
         vertical: 'inline-flex flex-col space-y-1',
       },
-      rounded: '',
-      shadow: '',
-      orientation: {
-        'rounded-none': {
-          horizontal: {
-            start: 'rounded-s-none',
-            end: 'rounded-e-none',
-          },
-          vertical: {
-            start: 'rounded-t-none',
-            end: 'rounded-b-none',
-          },
-        },
-        'rounded-sm': {
-          horizontal: {
-            start: 'rounded-s-sm',
-            end: 'rounded-e-sm',
-          },
-          vertical: {
-            start: 'rounded-t-sm',
-            end: 'rounded-b-sm',
-          },
-        },
-        rounded: {
-          horizontal: {
-            start: 'rounded-s',
-            end: 'rounded-e',
-          },
-          vertical: {
-            start: 'rounded-t',
-            end: 'rounded-b',
-          },
-        },
-        'rounded-md': {
-          horizontal: {
-            start: 'rounded-s-md',
-            end: 'rounded-e-md',
-          },
-          vertical: {
-            start: 'rounded-t-md',
-            end: 'rounded-b-md',
-          },
-        },
-        'rounded-lg': {
-          horizontal: {
-            start: 'rounded-s-lg',
-            end: 'rounded-e-lg',
-          },
-          vertical: {
-            start: 'rounded-t-lg',
-            end: 'rounded-b-lg',
-          },
-        },
-        'rounded-xl': {
-          horizontal: {
-            start: 'rounded-s-xl',
-            end: 'rounded-e-xl',
-          },
-          vertical: {
-            start: 'rounded-t-xl',
-            end: 'rounded-b-xl',
-          },
-        },
-        'rounded-2xl': {
-          horizontal: {
-            start: 'rounded-s-2xl',
-            end: 'rounded-e-2xl',
-          },
-          vertical: {
-            start: 'rounded-t-2xl',
-            end: 'rounded-b-2xl',
-          },
-        },
-        'rounded-3xl': {
-          horizontal: {
-            start: 'rounded-s-3xl',
-            end: 'rounded-e-3xl',
-          },
-          vertical: {
-            start: 'rounded-t-3xl',
-            end: 'rounded-b-3xl',
-          },
-        },
-        'rounded-full': {
-          horizontal: {
-            start: 'rounded-s-full',
-            end: 'rounded-e-full',
-          },
-          vertical: {
-            start: 'rounded-t-full',
-            end: 'rounded-b-full',
-          },
-        },
-      },
+      rounded: 'rounded-none',
+      shadow: 'shadow-none',
     },
 
     button: {
@@ -209,9 +117,9 @@ export default defineAppConfig({
 
     breadcrumb: {
       wrapper: "relative",
-      ol: "flex items-center gap-x-1.5",
-      li: "flex items-center gap-x-1.5 text-gray-500 dark:text-gray-400 text-sm leading-6 min-w-0",
-      base: "flex items-center gap-x-1.5 group font-semibold min-w-0",
+      ol: "flex items-center gap-x-1",
+      li: "flex items-center gap-x-1 text-gray-500 dark:text-gray-400 text-sm leading-6 min-w-0",
+      base: "flex items-center gap-x-1 group font-serif font-normal min-w-0",
       label: "block truncate",
       icon: {
         base: "flex-shrink-0 w-5 h-5",

@@ -1,7 +1,9 @@
 <template>
   <div>
     <PageBreadcrumb />
-    <PageHeader />
+    <PageHeader>
+      <template #deck>Last updated {{ lastUpdated }} ago</template>
+    </PageHeader>
 
     <div class="px-2">
       <UTable :columns :rows="servers">
@@ -23,6 +25,7 @@
 
 <script setup lang="ts">
 import { orderBy } from "lodash-es";
+import { format, formatDistanceToNowStrict } from 'date-fns';
 
 const columns = [
   {
@@ -48,7 +51,5 @@ const servers = computed(() =>
   data.value ? orderBy(data.value.servers, ["name"], ["asc"]) : []
 );
 
-definePageMeta({
-  title: 'Server Tracker'
-})
+const lastUpdated = computed(() => data.value && data.value.last_checked ? formatDistanceToNowStrict(data.value.last_checked) : 'unknown');
 </script>
