@@ -1,18 +1,24 @@
 <template>
   <div class="p-4">
     <header class="pb-4">
-      <h2 class="font-bold">Server Tracker</h2>
+      <h2 class="font-bold">
+        Server Tracker
+      </h2>
     </header>
 
     <div>
+      <h3 class="font-bold">
+        Server: {{ server.server }}
+      </h3>
 
-      <h3 class="font-bold">Server: {{  server.server }}</h3>
-    
       <ul>
-        <li v-for="status in server.statuses">
-        {{ status }}</li>
+        <li
+          v-for="status in server.statuses"
+          :key="status.created_at"
+        >
+          {{ status }}
+        </li>
       </ul>
-
     </div>
   </div>
 </template>
