@@ -42,6 +42,6 @@ const { data } = useFetch("https://servers.treestats.net/api/servers/", {
   key: "servers",
 });
 
-const servers = computed(() => orderBy(data.value, ["name"]));
+const servers = computed(() => orderBy(data.value.servers, ["name"]));
 
 </script>

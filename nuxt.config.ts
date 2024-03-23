@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css"],
+  colorMode: {
+    preference: "light",
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
