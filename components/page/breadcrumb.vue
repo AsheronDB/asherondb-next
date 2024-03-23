@@ -5,17 +5,20 @@
 </template>
 
 <script setup lang="ts">
-
-const props = defineProps(['pageTitle']);
-const { pageTitle } = toRefs(props);
 const route = useRoute();
 
-const links = [{
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/'
-}, {
-  label: pageTitle.value,
-  to: route.path
-}]
+const linksRoot = [
+  {
+    label: "Home",
+    icon: "i-heroicons-home",
+    to: "/",
+  }
+];
+
+const pages = route.matched.map((match) => ({
+  label: match.meta.title,
+  to: match.path,
+}));
+
+const links = computed(() => [...linksRoot, ...pages]);
 </script>

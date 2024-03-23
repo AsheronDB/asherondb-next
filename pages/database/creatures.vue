@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">Default route</div>
+  <div class="p-4">Creatures</div>
 </template>
 
 <script setup lang="ts">

@@ -7,13 +7,11 @@ export const useStore = defineStore("store", () => {
     {
       label: "Database",
       to: "/database",
-      disabled: true,
       children: [
         [
           {
             label: "Creatures",
             to: "/database/creatures",
-            disabled: true,
           },
           {
             label: "NPCs",

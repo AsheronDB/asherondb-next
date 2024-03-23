@@ -1,12 +1,16 @@
 <template>
-  <div class="p-4">Default route</div>
+  <div>
+    <PageBreadcrumb />
+    <PageHeader />
+    <NuxtPage />
+  </div>
 </template>
 
 <script setup lang="ts">
+
 const route = useRoute();
-console.log(route);
 
 definePageMeta({
-  title: "Creatures",
+  title: "Database",
 });
 </script>

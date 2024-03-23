@@ -1,7 +1,7 @@
 <template>
   <div>
-    <PageBreadcrumb :page-title="pageTitle" />
-    <PageHeader>{{ pageTitle }}</PageHeader>
+    <PageBreadcrumb />
+    <PageHeader />
 
     <div class="px-2">
       <UTable :columns :rows="servers">
@@ -23,8 +23,6 @@
 
 <script setup lang="ts">
 import { orderBy } from "lodash-es";
-
-const pageTitle = ref("Server Tracker");
 
 const columns = [
   {
@@ -49,4 +47,8 @@ const { data } = useFetch("https://servers.treestats.net/api/servers/", {
 const servers = computed(() =>
   data.value ? orderBy(data.value.servers, ["name"], ["asc"]) : []
 );
+
+definePageMeta({
+  title: 'Server Tracker'
+})
 </script>
