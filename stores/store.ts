@@ -5,17 +5,47 @@ import { useRuntimeConfig } from "#app";
 export const useStore = defineStore("store", () => {
   const primaryNav = ref([
     {
+      label: "Database",
+      to: "/database",
+      disabled: true,
+      children: [
+        [
+          {
+            label: "Creatures",
+            to: "/database/creatures",
+            disabled: true,
+          },
+          {
+            label: "NPCs",
+            to: "/database/npcs",
+            disabled: true,
+          },
+          {
+            label: "Armor",
+            to: "/database/armor",
+            disabled: true,
+          },
+          {
+            label: "Weapons",
+            to: "/database/weapons",
+            disabled: true,
+          },
+        ],
+      ],
+    },
+    {
       label: "Servers",
-      path: "/servers",
+      to: "/servers",
     },
     {
       label: "Tools",
-      path: "/tools",
+      to: "/tools",
       disabled: true,
       children: [
         [
           {
             label: "Dereth Time Calculator",
+            to: "/tools/time",
             disabled: true,
           },
         ],

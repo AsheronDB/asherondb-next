@@ -22,12 +22,13 @@
                   color="white"
                   :label="item.label"
                   :disabled="item.disabled"
+                
                   trailing-icon="i-heroicons-chevron-down-20-solid" />
               </UDropdown>
               <UButton
                 :label="item.label"
-                color="white"
-                :to="item.path"
+                color="red"
+                :to="item.to"
                 :disabled="item.disabled"
                 v-else />
             </template>
