@@ -1,17 +1,23 @@
 <template>
   <div>
     <header class="p-4">
-      <h2 class="font-bold">Server Tracker</h2>
+      <h2 class="font-bold">
+        Server Tracker
+      </h2>
     </header>
 
     <div>
-      <UTable :columns :rows="servers">
+      <UTable
+        :columns
+        :rows="servers"
+      >
         <template #name-data="{ row }">
-          <nuxt-link :to="'/servers/' + row.guid">{{ row.name }}</nuxt-link>
+          <nuxt-link :to="'/servers/' + row.guid">
+            {{ row.name }}
+          </nuxt-link>
         </template>
         <template #status-data="{ row }">
           <span class="text-xl">{{ row.status.online ? "✅" : "❌" }}</span>
-        
         </template>
         <template #address-data="{ row }">
           {{ row.address.host }}:{{ row.address.port }}
