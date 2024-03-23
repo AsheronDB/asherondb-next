@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 px-6 py-6 z-50 border-b-2 border-[#131313] bg-[#6e2b26] text-white">
+    class="flex-0 sticky top-0 px-6 py-6 z-50 border-b-2 border-[#131313] bg-[#6e2b26] text-white">
     <div class="flex w-full rounded-lg space-x-6">
       <div class=" flex flex-0 items-center">
         <h1 class="font-bold">
@@ -53,11 +53,6 @@
 
 <script setup lang="ts">
 const nav = [
-  {
-    label: "Database",
-    path: "/database",
-    disabled: true
-  },
   {
     label: "Servers",
     path: "/servers",

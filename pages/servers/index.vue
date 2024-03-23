@@ -1,12 +1,9 @@
 <template>
   <div>
-    <header class="p-4">
-      <h2 class="font-bold">
-        Server Tracker
-      </h2>
-    </header>
+    <PageBreadcrumb :page-title="pageTitle" />
+    <PageHeader>{{  pageTitle  }}</PageHeader>
 
-    <div>
+    <div class="px-2">
       <UTable
         :columns
         :rows="servers"
@@ -29,6 +26,8 @@
 
 <script setup lang="ts">
 import { orderBy } from "lodash-es";
+
+const pageTitle = ref("Server Tracker");
 
 const columns = [
   {

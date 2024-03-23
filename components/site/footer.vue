@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-[#171717] p-4">
-    © AsheronDB, 2024-2025. Game assets © Warner Bros. Entertainment Inc.
+  <footer class="bg-gray-800 p-4 flex-0">
+    <p class="text-sm text-gray-500 font-bold">© AsheronDB, 2024-2025. Game assets © Warner Bros. Entertainment Inc.</p>
   </footer>
 </template>
