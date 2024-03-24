@@ -177,10 +177,12 @@ export default defineAppConfig({
       default: {
         size: 'sm',
         activeButton: {
-          color: 'primary',
+          color: 'acblue',
+          class: "font-sans"
         },
         inactiveButton: {
           color: 'acred',
+          class: "font-sans"
         },
         firstButton: {
           color: 'acred',
