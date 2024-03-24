@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex-0 sticky top-0 px-6 py-4 pt-8 z-50 border-b-2 shadow-lg border-[#131313] bg-[#642625] text-white bg-repeat-x bg-[url('~/assets/img/header-bg.png')]">
+    class="flex-0 sticky top-0 px-6 py-4 pt-8 z-50 border-b shadow-lg border-[#131313] bg-[#642625] text-white bg-repeat-x bg-[url('~/assets/img/header-bg.png')]">
     <div class="flex w-full rounded-lg space-x-6">
       <div class="flex flex-0 items-center">
         <h1 class="font-bold h-full hidden lg:block">

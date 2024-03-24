@@ -58,9 +58,9 @@ export default defineAppConfig({
       color: {
         white: {
           solid:
-            "shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
+            "text-white",
           ghost:
-            "text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-900 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
+            "text-white",
         },
         gray: {
           solid:
@@ -106,18 +106,7 @@ export default defineAppConfig({
     },
 
     dropdown: {
-      wrapper: "relative inline-flex text-left rtl:text-right",
-      container: "z-20 group",
-      trigger: "inline-flex w-full",
-      width: "w-48",
-      height: "",
       background: "bg-actan-400",
-      shadow: "shadow-lg",
-      rounded: "rounded-md",
-      ring: "",
-      base: "relative focus:outline-none overflow-y-auto scroll-py-1",
-      divide: "divide-y divide-gray-200 dark:divide-gray-700",
-      padding: "p-1",
       item: {
         base: "group flex items-center gap-1.5 w-full font-serif",
         rounded: "rounded-md",
@@ -138,7 +127,6 @@ export default defineAppConfig({
         label: "truncate",
         shortcuts: "hidden md:inline-flex flex-shrink-0 gap-0.5 ms-auto",
       },
-
     },
 
     table: {
@@ -179,6 +167,76 @@ export default defineAppConfig({
       default: {
         divider:
           "i-heroicons-chevron-right-20-solid rtl:i-heroicons-chevron-left-20-solid",
+      },
+    },
+
+    pagination: {
+      wrapper: 'flex items-center -space-x-px',
+      base: '',
+      rounded: 'first:rounded-s-md last:rounded-e-md',
+      default: {
+        size: 'sm',
+        activeButton: {
+          color: 'primary',
+        },
+        inactiveButton: {
+          color: 'acred',
+        },
+        firstButton: {
+          color: 'acred',
+          class: 'rtl:[&_span:first-child]:rotate-180',
+          icon: 'i-heroicons-chevron-double-left-20-solid',
+        },
+        lastButton: {
+          color: 'acred',
+          class: 'rtl:[&_span:last-child]:rotate-180',
+          icon: 'i-heroicons-chevron-double-right-20-solid',
+        },
+        prevButton: {
+          color: 'acred',
+          class: 'rtl:[&_span:first-child]:rotate-180',
+          icon: 'i-heroicons-chevron-left-20-solid',
+        },
+        nextButton: {
+          color: 'acred',
+          class: 'rtl:[&_span:last-child]:rotate-180',
+          icon: 'i-heroicons-chevron-right-20-solid',
+        },
+      },
+    },
+
+    tabs: {
+      wrapper: "relative space-y-2",
+      container: "relative w-full",
+      base: "focus:outline-none",
+      list: {
+        base: "relative",
+        background: "",
+        rounded: "rounded-lg",
+        shadow: "",
+        padding: "p-1",
+        height: "h-10",
+        width: "w-full",
+        marker: {
+          wrapper:
+            "absolute top-[4px] left-[4px] duration-200 ease-out focus:outline-none",
+          base: "w-full h-full",
+          background: "bg-acred-400",
+          rounded: "rounded-md",
+          shadow: "shadow-sm",
+        },
+        tab: {
+          base: "relative inline-flex items-center justify-center flex-shrink-0 w-auto ui-focus-visible:outline-0 ui-focus-visible:ring-2 ui-focus-visible:ring-primary-500 dark:ui-focus-visible:ring-primary-400 ui-not-focus-visible:outline-none focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors duration-200 ease-out",
+          background: "bg-gray-700",
+          active: "text-gray-900 dark:text-white",
+          inactive: "text-gray-500 dark:text-gray-400",
+          height: "h-8",
+          padding: "px-3",
+          size: "text-sm",
+          font: "font-medium",
+          rounded: "rounded-md",
+          shadow: "",
+        },
       },
     },
   },

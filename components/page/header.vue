@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-gray-800 px-6 py-6 space-y-3">
+  <header class="bg-gray-800 px-6 py-6 space-y-3 border-b border-gray-950">
     <!-- <p class="text-md font-serif leading-none text-gray-400" v-if="$slots.kicker">
         <slot name="kicker"></slot>
       </p> -->
