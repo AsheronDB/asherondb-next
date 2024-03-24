@@ -15,7 +15,7 @@
       </UTable>
     
       <div class="bg-gray-800/50 p-4">
-        <UPagination v-model="page" :page-count="5" :total="totalPages" />
+        <UPagination v-model="page" :page-count="perPage" :total="totalPages" />
       </div>
       
 
@@ -32,29 +32,28 @@ const page = ref(1);
 const perPage = ref(10);
 
 
-// const countSql = computed(
-//   () =>
-//     `SELECT+COUNT%28class_Id%29+as+total+FROM+weenie+where+type+%3D+10`
-// );
+const countSql = computed(
+  () =>
+    `SELECT COUNT(class_Id) as total FROM weenie where type = 10`
+);
 
-// const { data: count, error: countError } = await useFetch(
-//   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
-//   {
-//     key: "creatures-total",
-//     query: {
-//       countSql,
-//     },
-//   }
-// );
+const { data: count } = await useFetch(
+  `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
+  {
+    key: "creatures-total",
+    query: {
+      sql: countSql,
+    },
+  }
+);
 
-// console.log(countError)
-// console.log(count);
+totalPages.value = Number(count.value[0].total, 10)
+
 
 const sql = computed(
   () =>
-    `select class_Id as wcid, class_Name as name from weenie where type = 10 LIMIT ${
-      (page.value - 1) * perPage.value
-    }, ${perPage.value}`
+    `select class_Id as wcid, class_Name as name from weenie where type = 10 LIMIT ${perPage.value} OFFSET ${(Number(page.value) - 1) * perPage.value
+    }`
 );
 
 const { data: creatures, error } = await useFetch(
