@@ -68,7 +68,7 @@ const links = [
 
 const sql = computed(
   () =>
-    `SELECT class_Id as wcid, class_Name as name FROM weenie WHERE class_Id = ${route.params.wcid} LIMIT 1`
+    `SELECT w.class_Id as wcid, w_string_name.value as name FROM weenie as w LEFT JOIN weenie_properties_string AS w_string_name ON w.class_Id = w_string_name.object_Id AND w_string_name.type = 1 where w.type = 10 and w.class_Id = ${route.params.wcid} LIMIT 1`
 );
 
 const { data, error } = await useFetch(

@@ -52,7 +52,7 @@ totalPages.value = Number(count.value[0].total, 10)
 
 const sql = computed(
   () =>
-    `select class_Id as wcid, class_Name as name from weenie where type = 10 LIMIT ${perPage.value} OFFSET ${(Number(page.value) - 1) * perPage.value
+    `SELECT w.class_Id as wcid, w_string_name.value as name FROM weenie as w LEFT JOIN weenie_properties_string AS w_string_name ON w.class_Id = w_string_name.object_Id AND w_string_name.type = 1 where w.type = 10 LIMIT ${perPage.value} OFFSET ${(Number(page.value) - 1) * perPage.value
     }`
 );
 
