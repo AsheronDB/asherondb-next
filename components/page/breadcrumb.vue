@@ -7,20 +7,22 @@
 <script setup lang="ts">
 const route = useRoute();
 
-console.log('BREADCRUMB setup')
+console.log("BREADCRUMB setup");
 
-const linksRoot = [
-  {
+// const linksRoot = [
+//   {
 
-    icon: "i-heroicons-home",
-    to: "/",
-  }
-];
+//     icon: "i-heroicons-home",
+//     to: "/",
+//   }
+// ];
 
-const pages = route.matched.filter(match => match.meta.title).map((match) => ({
-  label: match.meta.title,
-  to: match.path,
-}));
+// const pages = route.matched.filter(match => match.meta.title).map((match) => ({
+//   label: match.meta.title,
+//   to: match.path,
+// }));
 
-const links = computed(() => [...linksRoot, ...pages]);
+// const links = computed(() => [...linksRoot, ...pages]);
+
+const links = useBreadcrumbItems();
 </script>

@@ -48,6 +48,8 @@ onMounted(() => {
     pageTitle.value = data.value.server;
     route.meta.title = data.value.server;
     route.matched[route.matched.length - 1].meta.title = data.value.server;
+
   }
 });
+
 </script>

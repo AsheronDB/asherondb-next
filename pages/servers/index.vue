@@ -52,4 +52,8 @@ const servers = computed(() =>
 );
 
 const lastUpdated = computed(() => data.value && data.value.last_checked ? formatDistanceToNowStrict(data.value.last_checked) : 'unknown');
+
+definePageMeta({
+  title: "Server Tracker",
+});
 </script>
