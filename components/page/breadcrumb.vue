@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-red-950/40 px-6 py-3">
+  <div class="bg-acred-700 px-6 py-3">
     <UBreadcrumb divider="i-heroicons-chevron-right-20-solid" :links="links" />
   </div>
 </template>

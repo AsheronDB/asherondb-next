@@ -9,7 +9,7 @@
       <nuxt-link :to="parentMatch.path">{{ parentMatch.title }}</nuxt-link>
     </p>
 
-    <h2 class="text-2xl font-serif leading-none text-primary-200">
+    <h2 class="text-2xl font-serif leading-none text-primary-500">
       {{ route.meta.title }}
     </h2>
     <p class="text-md font-serif text-gray-400" v-if="$slots.deck">

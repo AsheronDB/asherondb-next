@@ -8,7 +8,7 @@
     <div class="px-2">
       <UTable :columns :rows="servers">
         <template #name-data="{ row }">
-          <nuxt-link :to="'/servers/' + row.guid">
+          <nuxt-link :to="'/servers/' + row.name">
             <p class="font-bold">{{ row.name }}</p>
           </nuxt-link>
         </template>
@@ -43,7 +43,7 @@ const columns = [
     label: "Address",
   },
 ];
-const { data } = useFetch("https://servers.treestats.net/api/servers/", {
+const { data } = await useFetch("https://servers.treestats.net/api/servers/", {
   key: "servers",
 });
 

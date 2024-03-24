@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex-0 sticky top-0 px-6 py-6 z-50 border-b-2 border-[#131313] bg-[#6e2b26] text-white">
+    class="flex-0 sticky top-0 px-6 py-6 z-50 border-b-2 border-[#131313] bg-[#642625] text-white">
     <div class="flex w-full rounded-lg space-x-6">
       <div class="flex flex-0 items-center">
         <h1 class="font-bold h-full">
@@ -10,7 +10,7 @@
 
       <div class="flex flex-1 space-x-6">
         <div class="flex-0">
-          <UButtonGroup size="md">
+          <UButtonGroup size="md" orientation="horizontal">
             <template v-for="item in primaryNav">
               <UDropdown
                 :items="item.children"
@@ -19,14 +19,14 @@
                 :disabled="item.disabled"
                 v-if="item.children">
                 <UButton
-                  color="red"
+                  color="acred"
                   :label="item.label"
                   :disabled="item.disabled"
                   trailing-icon="i-heroicons-chevron-down-20-solid" />
               </UDropdown>
               <UButton
                 :label="item.label"
-                color="red"
+                color="acred"
                 :to="item.to"
                 :disabled="item.disabled"
                 v-else />

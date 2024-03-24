@@ -1,7 +1,7 @@
 <template>
   <div>
     <PageBreadcrumb :key="pageTitle" />
-    <PageHeader />
+    <PageHeader :key="pageTitle" />
 
     <div v-if="data" class="p-4">
       <ul>
@@ -17,18 +17,21 @@
 const route = useRoute();
 const pageTitle = ref(null);
 
-const { data, error } = useFetch(
-  `https://servers.treestats.net/api/statuses/10`,
+const { data, error } = await useFetch(
+  `https://servers.treestats.net/api/statuses/${route.params.server_name}`,
   {
-    key: `server-${route.params.guid}`,
+    key: `server-${route.params.server_name}`,
   }
 );
 
 console.log(data);
 
-console.log(error)
+console.log(error);
 if (data.value) {
+  console.log("");
   pageTitle.value = data.value.server;
+  route.meta.title = data.value.server;
+  route.matched[route.matched.length - 1].meta.title = data.value.server;
 }
 // if ( data.value ) route.meta.title = data.value.server
 
@@ -39,12 +42,12 @@ useHead({
 });
 
 onMounted(() => {
-  console.log('on mounted')
-  console.log(pageTitle.value)
+  console.log("on mounted");
+  console.log(pageTitle.value);
   if (data.value) {
     pageTitle.value = data.value.server;
-    route.meta.title = pageTitle.value;
-    route.matched[route.matched.length - 1].meta.title = pageTitle.value;
+    route.meta.title = data.value.server;
+    route.matched[route.matched.length - 1].meta.title = data.value.server;
   }
 });
 </script>
