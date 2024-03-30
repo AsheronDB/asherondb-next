@@ -8,7 +8,7 @@
 
       <UTable :columns :rows="creatures">
         <template #name-data="{ row }">
-          <nuxt-link :to="'/database/creatures/' + row.wcid">
+          <nuxt-link :to="'/database/npcs/creatures/' + row.wcid">
             <p class="font-bold">{{ row.name }}</p>
           </nuxt-link>
         </template>
