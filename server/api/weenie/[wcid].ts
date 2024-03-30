@@ -22,7 +22,7 @@ enum WeenieModelType {
 
 const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<WeenieModelType> => {
 	const w = new Weenie(classId);
-	await w.loadWeenieType(fetch: any);
+	await w.loadWeenieType(fetch);
 
 	if (w.IsMonster) {
 		return WeenieModelType.Monster;
@@ -69,7 +69,7 @@ export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<Wee
 		weenie = new Weenie(classId)
 	}
 
-	await weenie.load(fetch: any);
+	await weenie.load(fetch);
 
 	return weenie;
 }
