@@ -1,6 +1,5 @@
 // store/filters.js
 import { defineStore } from "pinia";
-import { useRuntimeConfig } from "#app";
 
 export const useStore = defineStore("store", () => {
   const primaryNav = ref([

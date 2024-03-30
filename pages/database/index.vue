@@ -2,7 +2,9 @@
   <div>
     <PageBreadcrumb />
     <PageHeader />
-    <div class="p-4">Database home</div>
+    <div class="p-4">
+      Database home
+    </div>
   </div>
 </template>
 

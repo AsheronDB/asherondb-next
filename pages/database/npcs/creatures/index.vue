@@ -3,22 +3,28 @@
     <PageBreadcrumb />
     <PageHeader />
 
-    
-    <div>  
 
-      <UTable :columns :rows="creatures">
+    <div>
+      <UTable
+        :columns
+        :rows="creatures"
+      >
         <template #name-data="{ row }">
           <nuxt-link :to="'/database/npcs/creatures/' + row.wcid">
-            <p class="font-bold">{{ row.name }}</p>
+            <p class="font-bold">
+              {{ row.name }}
+            </p>
           </nuxt-link>
         </template>
       </UTable>
-    
-      <div class="bg-gray-800/50 p-4">
-        <UPagination v-model="page" :page-count="perPage" :total="totalPages" />
-      </div>
-      
 
+      <div class="bg-gray-800/50 p-4">
+        <UPagination
+          v-model="page"
+          :page-count="perPage"
+          :total="totalPages"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +62,7 @@ const sql = computed(
     }`
 );
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { data: creatures, error } = await useFetch(
   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
   {
@@ -119,12 +126,12 @@ const columns = [
 //   },
 // ];
 
-const rows = [
-  {
-    id: "1234",
-    name: "Cow",
-  },
-];
+// const rows = [
+//   {
+//     id: "1234",
+//     name: "Cow",
+//   },
+// ];
 
 definePageMeta({
   title: "Creatures",
