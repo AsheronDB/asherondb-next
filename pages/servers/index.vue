@@ -2,18 +2,27 @@
   <div>
     <PageBreadcrumb />
     <PageHeader>
-      <template #deck>Last updated {{ lastUpdated }} ago</template>
+      <template #deck>
+        Last updated {{ lastUpdated }} ago
+      </template>
     </PageHeader>
 
     <div class="px-2">
-      <UTable :columns :rows="servers">
+      <UTable
+        :columns
+        :rows="servers"
+      >
         <template #name-data="{ row }">
           <nuxt-link :to="'/servers/' + row.name">
-            <p class="font-bold">{{ row.name }}</p>
+            <p class="font-bold">
+              {{ row.name }}
+            </p>
           </nuxt-link>
         </template>
         <template #status-data="{ row }">
-          <p class="text-xl text-center">{{ row.status.online ? "✅" : "❌" }}</p>
+          <p class="text-xl text-center">
+            {{ row.status.online ? "✅" : "❌" }}
+          </p>
         </template>
         <template #address-data="{ row }">
           {{ row.address.host }}:{{ row.address.port }}
@@ -25,7 +34,7 @@
 
 <script setup lang="ts">
 import { orderBy } from "lodash-es";
-import { format, formatDistanceToNowStrict } from 'date-fns';
+import { formatDistanceToNowStrict } from 'date-fns';
 
 const columns = [
   {

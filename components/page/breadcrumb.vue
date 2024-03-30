@@ -1,7 +1,10 @@
 <template>
   <div class="bg-acred-700 px-6 py-3 border-b border-gray-950">
-    <UBreadcrumb divider="i-heroicons-chevron-right-20-solid" :links="links" />
-    </div>
+    <UBreadcrumb
+      divider="i-heroicons-chevron-right-20-solid"
+      :links="links"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">

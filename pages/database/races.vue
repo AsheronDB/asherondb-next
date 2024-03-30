@@ -1,5 +1,5 @@
 <template>
-<div>Player Races</div>
+  <div>Player Races</div>
 </template>
 <script setup lang="ts">
 const route = useRoute();

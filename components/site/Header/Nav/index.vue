@@ -1,17 +1,25 @@
 <template>
-  <UButtonGroup size="md" orientation="horizontal">
-    <template v-for="navItem in primaryNav" :key="navItem.label">
+  <UButtonGroup
+    size="md"
+    orientation="horizontal"
+  >
+    <template
+      v-for="navItem in primaryNav"
+      :key="navItem.label"
+    >
       <UPopover
         v-if="navItem.children"
         :popper="{ placement: 'bottom-start' }"
         mode="hover"
-        :ui="popoverUI">
+        :ui="popoverUI"
+      >
         <UButton
           color="acred"
           :label="navItem.label"
           :disabled="navItem.disabled"
           size="md"
-          trailing-icon="i-heroicons-chevron-down-20-solid" />
+          trailing-icon="i-heroicons-chevron-down-20-solid"
+        />
 
         <template #panel>
           <div class="py-4 px-6">
@@ -19,16 +27,23 @@
               <div
                 v-for="column in navItem.children"
                 :key="column.label"
-                class="space-y-1.5">
-                <p class="font-bold font-serif text-sm">{{ column.label }}</p>
+                class="space-y-1.5"
+              >
+                <p class="font-bold font-serif text-sm">
+                  {{ column.label }}
+                </p>
                 <ul v-if="column.children">
-                  <li v-for="child in column.children">
+                  <li
+                    v-for="child in column.children"
+                    :key="child.label"
+                  >
                     <UDropdown
                       v-if="child.children"
                       :items="child.children"
                       mode="hover"
                       :popper="{ placement: 'right-start' }"
-                      :ui="dropdownUI">
+                      :ui="dropdownUI"
+                    >
                       <!-- <p>{{ child.label }}</p> -->
                       <UButton
                         block
@@ -36,13 +51,20 @@
                         :ui="childButtonUI"
                         size="md"
                         variant="link"
-                        >{{ child.label }}</UButton
                       >
+                        {{ child.label }}
+                      </UButton>
 
                       <!-- <p class="block w-full"></p> -->
                     </UDropdown>
 
-                    <nuxt-link :to="child.to" v-else class="font-serif text-sm block py-1 px-3 rounded hover:bg-actan-500">{{ child.label }}</nuxt-link>
+                    <nuxt-link
+                      v-else
+                      :to="child.to"
+                      class="font-serif text-sm block py-1 px-3 rounded hover:bg-actan-500"
+                    >
+                      {{ child.label }}
+                    </nuxt-link>
                   </li>
                 </ul>
               </div>
@@ -64,7 +86,8 @@
         color="acred"
         :to="navItem.to"
         size="md"
-        :disabled="navItem.disabled" />
+        :disabled="navItem.disabled"
+      />
     </template>
   </UButtonGroup>
 </template>

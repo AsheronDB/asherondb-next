@@ -10,12 +10,15 @@
 
     <!-- <PageBreadcrumb class="opacity-50 "/> -->
 
-    
+
     <h2 class="text-2xl font-serif leading-none text-primary-400">
       {{ route.meta.title }}
     </h2>
-    <p class="text-md font-serif text-gray-400" v-if="$slots.deck">
-      <slot name="deck"></slot>
+    <p
+      v-if="$slots.deck"
+      class="text-md font-serif text-gray-400"
+    >
+      <slot name="deck" />
     </p>
   </header>
 </template>
@@ -25,17 +28,17 @@ const route = useRoute();
 
 console.log(route);
 
-const parentMatch = computed(() => {
-  const matched = route.matched.filter(match => match.meta.title);
-  if (matched.length > 1) {
-    const parent = matched[matched.length - 2];
+// const parentMatch = computed(() => {
+//   const matched = route.matched.filter(match => match.meta.title);
+//   if (matched.length > 1) {
+//     const parent = matched[matched.length - 2];
 
-    return {
-      title: parent.meta.title,
-      path: parent.path,
-    };
-  } else {
-    return null;
-  }
-});
+//     return {
+//       title: parent.meta.title,
+//       path: parent.path,
+//     };
+//   } else {
+//     return null;
+//   }
+// });
 </script>

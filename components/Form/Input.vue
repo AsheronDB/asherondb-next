@@ -3,11 +3,12 @@
     class=" rounded-none border-2 border-t-primary-400 border-r-primary-800 border-b-primary-700 border-l-primary-500 bg-acred-700"
     :class="[classes]"
   >
-
-  <!-- has-[input:focus]:ring-primary-500 rounded-lg p-1 ring-2 ring-inset-->
+    <!-- has-[input:focus]:ring-primary-500 rounded-lg p-1 ring-2 ring-inset-->
     <div class="flex space-x-2">
       <div class="flex-1">
         <UInput
+          ref="input"
+          v-model="modelValue"
           :type
           :size
           :loading
@@ -19,14 +20,18 @@
           :placeholder
           :autofocus
           :ui="mergedUI"
-          v-model="modelValue"
-          ref="input"
         >
-          <template #leading v-if="$slots?.leading">
-            <slot name="leading"></slot>
+          <template
+            v-if="$slots?.leading"
+            #leading
+          >
+            <slot name="leading" />
           </template>
-          <template #trailing v-if="$slots?.trailing">
-            <slot name="trailing"></slot>
+          <template
+            v-if="$slots?.trailing"
+            #trailing
+          >
+            <slot name="trailing" />
           </template>
         </UInput>
       </div>
@@ -37,27 +42,28 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { merge } from "lodash-es";
 
 const input = ref(null);
 
-const props = defineProps([
-  "type",
-  "placeholder",
-  "size",
-  "color",
-  "icon",
-  "variant",
-  "disabled",
-  "padded",
-  "trailing",
-  "loading",
-  "ui",
-  "autocomplete",
-  "autofocus"
-]);
+const props = defineProps<{
+  type: string,
+  placeholder: string,
+  size: string,
+  color: string,
+  icon: string,
+  variant: string,
+  disabled: string,
+  padded: string,
+  trailing: string,
+  loading: string,
+  ui: string,
+  autocomplete: string,
+  autofocus: string,
+}>();
 
+// eslint-disable-next-line vue/require-prop-types
 const modelValue = defineModel("modelValue");
 const {
   type,
@@ -68,6 +74,7 @@ const {
   disabled,
   padded,
   loading,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   trailing,
   ui,
   autofocus

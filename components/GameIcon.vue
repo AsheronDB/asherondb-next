@@ -1,6 +1,10 @@
 <template>
   <div class="gameicon">
-    <img ref="imgRef" :src="imgData" v-if="imgData" />
+    <img
+      v-if="imgData"
+      ref="imgRef"
+      :src="imgData"
+    >
 
     <!--
 
@@ -15,7 +19,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(["weenie"]);
+import type { Weenie } from '~/models/Weenie';
+
+const props = defineProps<{weenie: Weenie}>();
 
 const { weenie } = toRefs(props);
 
@@ -55,7 +61,7 @@ const itemUnderlays = {
   "-2147483648": 100667860, //- Gameboard
 };
 
-let uiEffects = {
+const uiEffects = {
   0: "060011C5", // - UI_EFFECT_UNDEF
   1: "060011CA", // - UI_EFFECT_MAGICAL
   2: "060011C6", // - UI_EFFECT_POISONED
@@ -82,13 +88,13 @@ const render = () => {
   // console.log('RENDERING GAME ICON')
   isRendering.value = true;
 
-  let imgEl = imgRef.value;
+  // const imgEl = imgRef.value;
 
-  let c = document.createElement("canvas");
-  let ctx = c.getContext("2d");
+  const c = document.createElement("canvas");
+  const ctx = c.getContext("2d");
 
-  let w = 32;
-  let h = 32;
+  const w = 32;
+  const h = 32;
 
   c.width = w;
   c.height = h;
@@ -100,14 +106,14 @@ const render = () => {
   // Apply overlay ;
 
   if (weenie.value.itemType) {
-    let underlayPath =
+    const underlayPath =
       gameIconPath.value +
       "0" +
       itemUnderlays[this.weenie.itemType].toString(16).toUpperCase() +
       ".png";
 
-    let underlayImg = await new Promise((resolve, reject) => {
-      let img = new Image(32, 32);
+    const underlayImg = await new Promise((resolve, reject) => {
+      const img = new Image(32, 32);
       img.src = underlayPath;
       img.onload = () => resolve(img);
       img.onerror = reject;
@@ -116,7 +122,7 @@ const render = () => {
     ctx.drawImage(underlayImg, 0, 0, w, h);
   }
 
-  let iconPath = gameIconPath.value + weenie.value.icon + ".png";
+  const iconPath = gameIconPath.value + weenie.value.icon + ".png";
 
   // console.log(iconPath);
 
@@ -130,8 +136,8 @@ const render = () => {
     maskPath = gameIconPath.value + uiEffects[0] + ".png";
   }
 
-  let iconImg = await new Promise((resolve, reject) => {
-    let img = new Image(32, 32);
+  const iconImg = await new Promise((resolve, reject) => {
+    const img = new Image(32, 32);
     img.src = iconPath;
     img.onload = () => resolve(img);
     img.onerror = reject;
@@ -139,23 +145,23 @@ const render = () => {
 
   ctx.drawImage(iconImg, 0, 0, w, h);
 
-  let maskImg = await new Promise((resolve, reject) => {
-    let img = new Image(32, 32);
+  const maskImg = await new Promise((resolve, reject) => {
+    const img = new Image(32, 32);
     img.src = maskPath;
     img.onload = () => resolve(img);
     img.onerror = reject;
   });
 
-  let outlineC = document.createElement("canvas");
-  let outlineCtx = outlineC.getContext("2d");
+  const outlineC = document.createElement("canvas");
+  const outlineCtx = outlineC.getContext("2d");
 
   outlineC.width = w;
   outlineC.height = h;
 
-  var r = 0,
+  const r = 0,
     g = 1,
-    b = 2,
-    a = 3;
+    b = 2;
+    // a = 3;
 
   // var maskCanvas = document.createElement('canvas');
   // var maskContext = maskCanvas.getContext('2d');
@@ -164,17 +170,17 @@ const render = () => {
   // maskCanvas.height = h;
   // maskContext.drawImage(mask, 0, 0);
 
-  var imageData = ctx.getImageData(0, 0, w, h);
-  var pixel = imageData.data;
+  const imageData = ctx.getImageData(0, 0, w, h);
+  const pixel = imageData.data;
 
-  for (var p = 0; p < pixel.length; p += 4) {
-    let x = (p / 4) % w;
-    let y = (p / 4 - x) / w;
+  for (let p = 0; p < pixel.length; p += 4) {
+    const x = (p / 4) % w;
+    const y = (p / 4 - x) / w;
 
     if (pixel[p + r] == 255 && pixel[p + g] == 255 && pixel[p + b] == 255) {
       // if white then change alpha to 0
-      var outlineId = outlineCtx.createImageData(1, 1); // only do this once per page
-      var outlineData = outlineId.data; // only do this once per page
+      const outlineId = outlineCtx.createImageData(1, 1); // only do this once per page
+      const outlineData = outlineId.data; // only do this once per page
 
       outlineData[0] = 255;
       outlineData[1] = 255;
@@ -194,12 +200,12 @@ const render = () => {
   outlineCtx.globalCompositeOperation = "source-in";
   outlineCtx.drawImage(maskImg, 0, 0, w, h);
 
-  var outlineImageData = outlineCtx.getImageData(0, 0, w, h);
+  // const outlineImageData = outlineCtx.getImageData(0, 0, w, h);
 
   ctx.drawImage(outlineC, 0, 0, w, h);
 
   //ctx.putImageData(imageData, 0, 0);
-  let dataUrl = c.toDataURL("image/png");
+  const dataUrl = c.toDataURL("image/png");
 
   // console.log(dataUrl);
 
