@@ -30,6 +30,15 @@ export class WeenieProperties {
 	texture_map: Map<number, WeeniePropertyTextureMap> | undefined
 }
 
+// Type for return type of json() method
+export interface WeenieData {
+	classId: number,
+	type: WeenieType | undefined,
+	name: string | undefined,
+	description: string | undefined,
+	properties: WeenieProperties
+}
+
 export class Weenie {
 	classId: WeenieClassId
 	type?: WeenieType
@@ -551,7 +560,7 @@ export class Weenie {
 		return this.properties.strings?.get(PropertyString.LongDesc) || this.properties.strings?.get(PropertyString.ShortDesc);
 	}
 
-	json() {
+	json() : WeenieData {
 		return {
 			classId: this.classId,
 			type: this.type,

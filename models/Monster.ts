@@ -1,5 +1,28 @@
 import { PropertyInt, CreatureTypeName, PropertyAttribute, PropertyAttribute2nd } from "~/util/mappings";
-import { Weenie } from "./Weenie";
+import { Weenie, type WeenieData } from "./Weenie";
+
+// Type for return type of json() methods
+interface AttributesData {
+	strength: number
+	endurance: number
+	coordination: number
+	quickness: number
+	focus: number
+	self: number
+}
+
+interface VitalsData {
+	health: number
+	stamina: number
+	mana: number
+}
+
+export interface MonsterData extends WeenieData {
+	creatureTypeName: string | undefined,
+	level: number | undefined,
+	attributes: AttributesData,
+	vitals: VitalsData,
+}
 
 export class Vitals {
 	health?: number
@@ -96,7 +119,7 @@ export class Monster extends Weenie {
 		);
 	}
 
-	json() {
+	json() : MonsterData {
 		return {
 			...super.json(),
 			creatureTypeName: this.creatureTypeName,
