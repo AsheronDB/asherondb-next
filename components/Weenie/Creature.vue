@@ -12,7 +12,7 @@
         <div class="flex w-full rounded-lg text-gray-800">
           <div class="mr-auto flex flex-1 items-center">
             <p class="p-6 text-gray-400">
-              Icon
+              Icons
             </p>
           </div>
           <nav
