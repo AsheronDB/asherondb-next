@@ -54,7 +54,12 @@ const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<W
 	return WeenieModelType.Generic;
 }
 
-export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<Weenie> => {
+interface GetWeenieReturnType {
+	model_type: WeenieModelType,
+	weenie: Weenie
+}
+
+export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<GetWeenieReturnType> => {
 	// Get Weenie type so we know what kind of model to return
 	const model_type = await getWeenieModelType(fetch, classId);
 
@@ -76,7 +81,7 @@ export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<Wee
 
 	await weenie.load(fetch);
 
-	return weenie;
+	return { model_type: model_type, weenie: weenie}
 }
 
 export default defineEventHandler(async (event) => {
@@ -88,11 +93,11 @@ export default defineEventHandler(async (event) => {
   }
 
   // TODO: Handle error (http status, different body)
-  const weenie = await getWeenie(fetch, wcid);
+  const result = await getWeenie(fetch, wcid);
 
   return {
-    type: "Weenie",
+    type: result.model_type,
     classId: wcid,
-    data: weenie.json()
+    data: result.weenie.json()
   }
 })

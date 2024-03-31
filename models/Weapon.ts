@@ -1,5 +1,20 @@
 import { PropertyInt, PropertyFloat, DamageTypePhrase, SkillName, WeaponTypeName } from "~/util/mappings";
 import { Item } from "./Item";
+import type { ItemData } from "./Item";
+
+export interface WeaponData extends ItemData {
+	damageString: string,
+	speedString: string,
+	offenseString: string,
+	defenseString: string,
+	mana: string,
+	manaRate: number,
+	spellcraft: number,
+	skillString: string,
+	hasWieldRequirement: boolean,
+	wieldRequirementString: string,
+	spells: string
+}
 
 export class Weapon extends Item {
 	get ClassName() {
@@ -79,7 +94,7 @@ export class Weapon extends Item {
 		return `Your base ${name} must be at least ${req} to wield this item.`
 	}
 
-	json() {
+	json() : WeaponData {
 		return {
 			...super.json(),
 			damageString: this.damageString,

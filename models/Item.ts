@@ -1,5 +1,12 @@
 import { PropertyString, PropertyInt } from "~/util/mappings";
-import { Weenie } from "./Weenie";
+import { Weenie, type WeenieData } from "./Weenie";
+
+export interface ItemData extends WeenieData {
+	value: number | undefined,
+	burden: number | undefined,
+	itemDifficulty: number | undefined,
+	use: string | undefined,
+}
 
 export class Item extends Weenie {
 	get ClassName() {
@@ -29,7 +36,7 @@ export class Item extends Weenie {
 		return this.properties.strings.get(PropertyString.Use)
 	}
 
-	json() {
+	json() : ItemData {
 		return {
 			...super.json(),
 			value: this.value,
