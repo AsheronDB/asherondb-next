@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxtjs/seo"],
+  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/seo"],
   colorMode: {
     preference: "light",
   },
