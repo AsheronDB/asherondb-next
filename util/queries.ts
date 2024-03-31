@@ -49,10 +49,6 @@ export const getMonstersQueryURL = (name?: string, page?: number) => {
 	return DB.getURLForQuery(getMonstersQuery(name, limit, offset));
 }
 
-//
-//
-//
-
 const getWeeniePropertiesStringQuery = (id: number) => `
 		SELECT
 			*
