@@ -11,8 +11,6 @@
 const route = useRoute();
 const router = useRouter();
 
-console.log("BREADCRUMB setup");
-
 const linksRoot = [
   {
 
@@ -30,11 +28,8 @@ const linksRoot = [
 
 // const links = useBreadcrumbItems();
 
-console.log(route);
 
 const pathParts = route.fullPath.split("/").slice(1)
-
-console.log(pathParts);
 
 const newLinks = pathParts.map((part, index) => {
   const fullPath = '/' + pathParts.slice(0, index + 1).join('/')

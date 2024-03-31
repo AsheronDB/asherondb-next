@@ -76,7 +76,6 @@ export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<Wee
 
 export default defineEventHandler(async (event) => {
   const wcid = Number(event.context.params?.wcid)
-  console.log("api got wcid of ", wcid);
 
   if (Number.isNaN(wcid)) {
     // TODO: Handle missing or malformed param (bad request)
