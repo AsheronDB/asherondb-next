@@ -9,16 +9,9 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxtjs/seo"],
-  css: ["~/assets/css/main.css"],
+  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/seo"],
   colorMode: {
     preference: "light",
-  },
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
   },
   vite: {
     build: {
