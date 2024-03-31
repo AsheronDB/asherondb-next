@@ -57,6 +57,10 @@ export class Weenie {
 		return this.type === WeenieType.Creature
 	}
 
+	get IsVendor() {
+		return this.type === WeenieType.Vendor
+	}
+
 	get IsWeapon() {
 		return this.type === WeenieType.MeleeWeapon ||
 			this.type === WeenieType.MissileLauncher ||

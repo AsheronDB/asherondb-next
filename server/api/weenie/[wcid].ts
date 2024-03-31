@@ -17,7 +17,8 @@ enum WeenieModelType {
 	Monster = 2,
 	Weapon = 3,
 	Book = 4,
-	Clothing = 5
+	Clothing = 5,
+	Vendor = 6
 }
 
 const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<WeenieModelType> => {
@@ -26,6 +27,10 @@ const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<W
 
 	if (w.IsMonster) {
 		return WeenieModelType.Monster;
+	}
+
+	if (w.IsVendor) {
+		return WeenieModelType.Vendor;
 	}
 
 	if (w.IsWeapon) {
@@ -55,7 +60,7 @@ export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<Wee
 
 	let weenie: Weenie;
 
-	if (model_type === WeenieModelType.Monster) {
+	if (model_type === WeenieModelType.Monster || model_type === WeenieModelType.Vendor) {
 		weenie = new Monster(classId)
 	} else if (model_type === WeenieModelType.Weapon) {
 		weenie = new Weapon(classId)
