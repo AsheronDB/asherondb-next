@@ -1,21 +1,78 @@
 <template>
-  <UButtonGroup size="md" orientation="horizontal">
-    <template v-for="navItem in primaryNav" :key="navItem.label">
-      <SiteHeaderNavPopover v-if="navItem.children" :item="navItem" />
-      <UButton
-        v-else
-        :label="navItem.label"
-        color="acred"
-        :to="navItem.to"
-        size="md"
-        :disabled="navItem.disabled" />
+  <UPopover
+    :popper="{ placement: 'bottom-start' }"
+    mode="click"
+    :ui="popoverUI">
+    <UButton
+      color="acred"
+      :label="item.label"
+      :disabled="item.disabled"
+      size="md"
+      trailing-icon="i-heroicons-chevron-down-20-solid" />
+
+    <template #panel="{ close }">
+      <div class="py-4 px-6">
+        <div class="grid grid-cols-3 gap-12 text-black">
+          <div
+            v-for="column in item.children"
+            :key="column.label"
+            class="space-y-1.5">
+            <p class="font-bold font-serif text-sm">
+              {{ column.label }}
+            </p>
+
+            <ul v-if="column.children">
+              <li v-for="child in column.children" :key="child.label">
+                <UDropdown
+                  v-if="child.children"
+                  :items="child.children"
+                  mode="hover"
+                  :popper="{ placement: 'right-start' }"
+                  :ui="dropdownUI">
+                  <!-- <p>{{ child.label }}</p> -->
+
+                  <UButton
+                    block
+                    trailing-icon="i-heroicons-chevron-right-20-solid"
+                    :ui="childButtonUI"
+                    size="md"
+                    variant="link">
+                    {{ child.label }}
+                  </UButton>
+
+                  <template #item="{ item }">
+                    Item
+                  </template>
+
+                  <!-- <p class="block w-full"></p> -->
+                </UDropdown>
+
+                <nuxt-link
+                  v-else
+                  :to="child.to"
+                  class="font-serif text-sm block py-1 px-3 rounded hover:bg-actan-500">
+                  {{ child.label }}
+                </nuxt-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </template>
-  </UButtonGroup>
+
+    <!-- <div class="text-left">
+                    <p>Signed in as</p>
+                    <p
+                      class="truncate font-medium text-gray-900 dark:text-white">
+                      {{ item.label }}
+                    </p>
+                  </div> -->
+  </UPopover>
 </template>
 
 <script setup lang="ts">
-const store = useStore();
-const { primaryNav } = storeToRefs(store);
+const props = defineProps(["item"]);
+const { item } = toRefs(props);
 
 const popoverUI = {
   wrapper: "relative",
