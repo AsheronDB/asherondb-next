@@ -1,14 +1,12 @@
 <template>
   <div>
     <PageBreadcrumb :key="title" />
-    <Weapon :data="weenie" />
+    <WeenieWeapon :data="weenie" />
     <!-- TODO: Links -->
   </div>
 </template>
 
 <script setup lang="ts">
-// TODO: This should autoimport but I had to manually define it. What's going on?
-import Weapon from "~/components/Weenie/Weapon.vue"
 
 const route = useRoute();
 const title = ref("Weapon");
