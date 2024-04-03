@@ -18,6 +18,7 @@ const titlePhrases = ref([
   "LF PPGSA",
   'You say, "Shurov Thiloi"',
   "You are truly the master of bunnies!",
+  "You have not offended the xuta recently, so I will grant you passage.",
 ]);
 
 const randomTitlePhrase = () =>
