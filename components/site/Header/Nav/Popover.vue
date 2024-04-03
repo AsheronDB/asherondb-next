@@ -12,13 +12,13 @@
       trailing-icon="i-heroicons-chevron-down-20-solid" />
 
     <template #panel="{ close }">
-      <div class="py-4 px-6">
-        <div class="grid grid-cols-3 gap-12 text-black">
+      <div class="py-4 px-6 has-[.dropdown-active]:bg-red-500">
+        <div class="grid grid-cols-3 gap-12 text-gray-100">
           <div
             v-for="column in item.children"
             :key="column.label"
             class="space-y-1.5">
-            <p class="font-bold font-serif text-sm">
+            <p class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400">
               {{ column.label }}
             </p>
 
@@ -40,7 +40,7 @@
                   <!-- <p>{{ child.label }}</p> -->
 
                   <div
-                    class="flex-1 flex justify-between items-center relative truncate font-serif block py-1 px-3 rounded hover:bg-actan-500">
+                    class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2  rounded hover:bg-gray-600">
                     <div class="text-sm flex flex-col justify-center">
                       {{ child.label }}
                     </div>
@@ -65,7 +65,7 @@
                 <nuxt-link
                   v-else
                   :to="child.to"
-                  class="font-serif text-sm block py-1 px-3 rounded hover:bg-actan-500">
+                  class=" text-sm block py-1.5 px-2 rounded hover:bg-gray-600">
                   {{ child.label }}
                 </nuxt-link>
               </li>
@@ -89,15 +89,17 @@
 const props = defineProps(["item"]);
 const { item } = toRefs(props);
 
+const dropdownOpen = reactive({});
+
 const popoverUI = {
   wrapper: "relative",
   container: "z-50 group",
   trigger: "inline-flex w-full",
   width: "",
-  background: "bg-actan-400 dark:bg-gray-900",
-  shadow: "shadow-lg",
+  background: "bg-gray-700 dark:bg-gray-800",
+  shadow: "shadow-xl",
   rounded: "rounded-md",
-  ring: "ring-1 ring-primary-600",
+  ring: "ring-1 ring-gray-600",
   base: "overflow-hidden focus:outline-none relative",
   transition: {
     enterActiveClass: "transition ease-out duration-200",
@@ -143,32 +145,20 @@ const dropdownUI = {
   trigger: "flex w-full",
   width: "w-48",
   height: "",
-  background: "bg-actan-400 dark:bg-gray-800",
+  background: "bg-gray-700 dark:bg-gray-800",
   shadow: "shadow-xl",
   rounded: "rounded-md",
-  ring: "ring-2 ring-primary-600",
+  ring: "ring-1 ring-gray-600",
   base: "relative focus:outline-none overflow-y-auto scroll-py-1",
-  divide: "divide-y divide-primary-600 dark:divide-gray-700",
+  divide: "divide-y divide-gray-600 dark:divide-gray-700",
   padding: "p-1",
   item: {
-    base: "group flex items-center gap-1.5 w-full",
+    base: "group flex items-center gap-1.5 w-full font-sans",
     rounded: "rounded-md",
     padding: "px-1.5 py-1.5",
     size: "text-sm",
-    active: "bg-actan-300 text-gray-900",
-    inactive: "text-gray-700 hover:bg-actan-200 dark:text-gray-200",
-    disabled: "cursor-not-allowed opacity-50",
-    icon: {
-      base: "flex-shrink-0 w-5 h-5",
-      active: "text-gray-500 dark:text-gray-400",
-      inactive: "text-gray-400 dark:text-gray-500",
-    },
-    avatar: {
-      base: "flex-shrink-0",
-      size: "2xs",
-    },
-    label: "truncate",
-    shortcuts: "hidden md:inline-flex flex-shrink-0 gap-0.5 ms-auto",
+    active: "bg-gray-600 text-gray-100",
+    inactive: "text-gray-100 hover:bg-gray-600 dark:text-gray-200"
   },
   transition: {
     enterActiveClass: "transition duration-100 ease-out",
@@ -199,10 +189,20 @@ const dropdownUI = {
 
 const childButtonUI = {
   base: "border-0 text-left",
-  font: "font-normal font-serif",
+  font: "font-normal",
   rounded: "",
   truncate: "text-left break-all line-clamp-1",
   block: "w-full flex justify-start items-start",
   inline: "inline-flex items-center",
 };
+
+const onDropdownOpen = () => {
+  alert("open");
+};
 </script>
+
+<style>
+.dropdown-active {
+  background: red !important;
+}
+</style>
