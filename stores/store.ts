@@ -67,6 +67,7 @@ export const useStore = defineStore("store", () => {
                   {
                     label: "Creature Magic",
                     to: "/database/spells?school=creature",
+                    exact: true
                   },
                   {
                     label: "Item Magic",
@@ -126,6 +127,18 @@ export const useStore = defineStore("store", () => {
             {
               label: "Objects",
               to: "/database/objects",
+              children: [
+                [
+                  {
+                    label: "Lifestones",
+                    to: "/database/objects/lifestones",
+                  },
+                  {
+                    label: "Bindstones",
+                    to: "/database/objects/bindstones",
+                  },
+                ],
+              ],
             },
             {
               label: "Quests",

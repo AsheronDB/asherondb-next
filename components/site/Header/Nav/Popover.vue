@@ -18,11 +18,12 @@
             v-for="column in item.children"
             :key="column.label"
             class="space-y-1.5">
-            <p class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400">
+            <p
+              class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400">
               {{ column.label }}
             </p>
 
-            <ul v-if="column.children">
+            <ul v-if="column.children" class="space-y-0.5">
               <li v-for="child in column.children" :key="child.label">
                 <UDropdown
                   v-if="child.children"
@@ -37,35 +38,21 @@
                   mode="hover"
                   :popper="{ offsetDistance: 0, placement: 'right-start' }"
                   :ui="dropdownUI">
-                  <!-- <p>{{ child.label }}</p> -->
-
                   <div
-                    class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2  rounded hover:bg-gray-600">
-                    <div class="text-sm flex flex-col justify-center">
+                    class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2 text-gray-200 rounded hover:bg-gray-600">
+                    <div class="text-sm flex flex-col justify-center font-bold">
                       {{ child.label }}
                     </div>
                     <div class="text-lg flex flex-col justify-center">
                       <UIcon name="i-heroicons-chevron-right-20-solid" />
                     </div>
                   </div>
-
-                  <!-- <UButton
-                    block
-                    trailing-icon="i-heroicons-chevron-right-20-solid"
-                    :ui="childButtonUI"
-                    size="md"
-                    color="black"
-                    variant="link">
-                    {{ child.label }}
-                  </UButton> -->
-
-                  <!-- <p class="block w-full"></p> -->
                 </UDropdown>
 
                 <nuxt-link
                   v-else
                   :to="child.to"
-                  class=" text-sm block py-1.5 px-2 rounded hover:bg-gray-600">
+                  class="text-sm block py-1.5 px-2 rounded font-bold text-gray-200 [&.router-link-active]:bg-gray-600 hover:bg-gray-600">
                   {{ child.label }}
                 </nuxt-link>
               </li>
@@ -150,40 +137,15 @@ const dropdownUI = {
   rounded: "rounded-md",
   ring: "ring-1 ring-gray-600",
   base: "relative focus:outline-none overflow-y-auto scroll-py-1",
-  divide: "divide-y divide-gray-600 dark:divide-gray-700",
+  divide: "divide-y divide-gray-600 dark:divide-gray-700 ",
   padding: "p-1",
   item: {
-    base: "group flex items-center gap-1.5 w-full font-sans",
+    base: "group flex items-center gap-1.5 w-full font-sans font-bold text-gray-200 mb-0.5 last:mb-0",
     rounded: "rounded-md",
     padding: "px-1.5 py-1.5",
     size: "text-sm",
     active: "bg-gray-600 text-gray-100",
-    inactive: "text-gray-100 hover:bg-gray-600 dark:text-gray-200"
-  },
-  transition: {
-    enterActiveClass: "transition duration-100 ease-out",
-    enterFromClass: "transform scale-95 opacity-0",
-    enterToClass: "transform scale-100 opacity-100",
-    leaveActiveClass: "transition duration-75 ease-in",
-    leaveFromClass: "transform scale-100 opacity-100",
-    leaveToClass: "transform scale-95 opacity-0",
-  },
-  popper: {
-    placement: "bottom-end",
-    strategy: "fixed",
-  },
-  default: {
-    openDelay: 0,
-    closeDelay: 0,
-  },
-  arrow: {
-    base: "invisible before:visible before:block before:rotate-45 before:z-[-1] before:w-2 before:h-2",
-    ring: "before:ring-1 before:ring-gray-200 dark:before:ring-gray-700",
-    rounded: "before:rounded-sm",
-    background: "before:bg-white dark:before:bg-gray-700",
-    shadow: "before:shadow",
-    placement:
-      "group-data-[popper-placement*='right']:-left-1 group-data-[popper-placement*='left']:-right-1 group-data-[popper-placement*='top']:-bottom-1 group-data-[popper-placement*='bottom']:-top-1",
+    inactive: "text-gray-100 hover:bg-gray-600 dark:text-gray-200",
   },
 };
 
