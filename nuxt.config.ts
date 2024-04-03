@@ -6,10 +6,17 @@ export default defineNuxtConfig({
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/favicon.png",
+        },
+      ],
     },
   },
 
-  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/seo"],
+  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/seo", "@nuxtjs/device"],
   colorMode: {
     preference: "light",
   },
