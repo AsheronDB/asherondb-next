@@ -1,11 +1,12 @@
 <template>
-  <div>Player Races</div>
+  <div>Patches</div>
 </template>
+
 <script setup lang="ts">
 const route = useRoute();
 console.log(route);
 
 definePageMeta({
-  title: "Player Races",
+  title: "Patches",
 });
 </script>

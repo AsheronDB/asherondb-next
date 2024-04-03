@@ -38,7 +38,7 @@ export const useStore = defineStore("store", () => {
             },
             {
               label: "Rare Items",
-              to: "/database/items/rare",
+              to: "/database/items",
             },
           ],
         },
@@ -131,11 +131,11 @@ export const useStore = defineStore("store", () => {
                 [
                   {
                     label: "Lifestones",
-                    to: "/database/objects/lifestones",
+                    to: "/database/objects",
                   },
                   {
                     label: "Bindstones",
-                    to: "/database/objects/bindstones",
+                    to: "/database/objects",
                   },
                 ],
               ],
@@ -147,6 +147,10 @@ export const useStore = defineStore("store", () => {
             {
               label: "Dungeons",
               to: "/database/dungeons",
+            },
+            {
+              label: "Patches",
+              to: "/database/patches",
             },
           ],
         },

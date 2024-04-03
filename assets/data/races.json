@@ -1,0 +1,100 @@
+[
+  {
+      "name": "Aluvian",
+      "handle": "aluvian",
+      "augmentation": "Jack of All Trades",
+      "race": "Isparian",
+      "masteries": ["Daggers", "Bow"],
+      "added_at": "Release"
+  },
+  {
+      "name": "Gharu'ndim",
+      "handle": "gharundim",
+      "augmentation": "Jack of All Trades",
+      "masteries": ["Magical Spells", "Staves"],
+      "race": "Isparian",
+      "added_at": "Release"
+  },
+  {
+      "name": "Sho",
+      "handle": "sho",
+      "augmentation": "Jack of All Trades",
+      "masteries": ["Bows", "Unarmed Weapons"],
+      "race": "Isparian",
+      "added_at": "Release"
+  },
+  {
+      "name": "Viamontian",
+      "handle": "viamontian",
+      "augmentation": "Jack of All Trades",
+      "masteries": ["Crossbows", "Swords"],
+      "race": "Isparian",
+      "added_at": "Throne of Destiny"
+  },
+  {
+      "name": "Umbraen",
+      "handle": "umbraen",
+      "augmentation": "Eye of the Remorseless",
+      "masteries": ["Crossbows", "Unarmed Weapons"],
+      "race": "Shadow",
+      "added_at": "Shedding Skin"
+  },
+  {
+      "name": "Penumbraen",
+      "handle": "penumbraen",
+      "augmentation": "Eye of the Remorseless",
+      "masteries": ["Crossbows", "Unarmed Weapons"],
+      "race": "Shadow",
+      "added_at": "Shedding Skin"
+  },
+  {
+      "name": "Gear Knight",
+      "handle": "gear-knight",
+      "augmentation": "Iron Skin of the Invincible",
+      "masteries": ["Crossbows", "Maces"],
+      "added_at": "Shifting Gears"
+  },
+  {
+      "name": "Undead",
+      "handle": "undead",
+      "augmentation": "Critical Protection",
+      "masteries": ["Thrown Weapons", "Axes"],
+      "added_at": "Plans Within Plans"
+  },
+  {
+      "name": "Empyrean",
+      "handle": "empyrean",
+      "augmentation": "Infused Life Magic",
+      "masteries": ["Magical Spells", "Swords"],
+      "added_at": "From Darkness, Light"
+  },
+  {
+      "name": "Aun Tumerok",
+      "handle": "aun-tumerok",
+      "augmentation": "Hand of the Remorseless",
+      "masteries": ["Thrown Weapons", "Spears"],
+      "added_at": "Cloak of Darkness",
+      "race": "Tumerok"
+  },
+  {
+      "name": "Lugian",
+      "handle": "lugian",
+      "augmentation": "Might of the Seventh Mule",
+      "masteries": ["Thrown Weapons", "Axes"],
+      "added_at": "Retributions"
+  },
+  {
+      "name": "Olthoi Soldier",
+      "handle": "olthoi-soldier",
+      "added_at": "From Darkness, Light",
+      "race": "Olthoi",
+      "category": "olthoi"
+  },
+  {
+      "name": "Olthoi Spitter",
+      "handle": "olthoi-spitter",
+      "added_at": "From Darkness, Light",
+      "race": "Olthoi",
+      "category": "olthoi"
+  }
+]
