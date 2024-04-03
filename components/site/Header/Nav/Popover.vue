@@ -25,7 +25,14 @@
               <li v-for="child in column.children" :key="child.label">
                 <UDropdown
                   v-if="child.children"
-                  :items="child.children"
+                  :items="
+                    child.children.map((group) =>
+                      group.map((groupChild) => ({
+                        ...groupChild,
+                        click: () => close(),
+                      }))
+                    )
+                  "
                   mode="hover"
                   :popper="{ placement: 'right-start' }"
                   :ui="dropdownUI">
@@ -39,10 +46,6 @@
                     variant="link">
                     {{ child.label }}
                   </UButton>
-
-                  <template #item="{ item }">
-                    Item
-                  </template>
 
                   <!-- <p class="block w-full"></p> -->
                 </UDropdown>

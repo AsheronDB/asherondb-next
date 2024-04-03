@@ -64,7 +64,7 @@ export const useStore = defineStore("store", () => {
                 [
                   {
                     label: "Vendors",
-                    to: "/database/npcs/vendors",
+                    to: "/database/npcs/vendors"
                   },
                   {
                     label: "Creatures",
