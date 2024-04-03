@@ -1,7 +1,8 @@
 <template>
   <UPopover
     :popper="{ placement: 'bottom-start' }"
-    mode="click"
+    mode="hover"
+    open="true"
     :ui="popoverUI">
     <UButton
       color="acred"
@@ -34,18 +35,29 @@
                     )
                   "
                   mode="hover"
-                  :popper="{ placement: 'right-start' }"
+                  :popper="{ offsetDistance: 0, placement: 'right-start' }"
                   :ui="dropdownUI">
                   <!-- <p>{{ child.label }}</p> -->
 
-                  <UButton
+                  <div
+                    class="flex-1 flex justify-between items-center relative truncate font-serif block py-1 px-3 rounded hover:bg-actan-500">
+                    <div class="text-sm flex flex-col justify-center">
+                      {{ child.label }}
+                    </div>
+                    <div class="text-lg flex flex-col justify-center">
+                      <UIcon name="i-heroicons-chevron-right-20-solid" />
+                    </div>
+                  </div>
+
+                  <!-- <UButton
                     block
                     trailing-icon="i-heroicons-chevron-right-20-solid"
                     :ui="childButtonUI"
                     size="md"
+                    color="black"
                     variant="link">
                     {{ child.label }}
-                  </UButton>
+                  </UButton> -->
 
                   <!-- <p class="block w-full"></p> -->
                 </UDropdown>
@@ -85,7 +97,7 @@ const popoverUI = {
   background: "bg-actan-400 dark:bg-gray-900",
   shadow: "shadow-lg",
   rounded: "rounded-md",
-  ring: "",
+  ring: "ring-1 ring-primary-600",
   base: "overflow-hidden focus:outline-none relative",
   transition: {
     enterActiveClass: "transition ease-out duration-200",
@@ -132,19 +144,19 @@ const dropdownUI = {
   width: "w-48",
   height: "",
   background: "bg-actan-400 dark:bg-gray-800",
-  shadow: "shadow-lg",
+  shadow: "shadow-xl",
   rounded: "rounded-md",
-  ring: "ring-1 ring-gray-200 dark:ring-gray-700",
+  ring: "ring-2 ring-primary-600",
   base: "relative focus:outline-none overflow-y-auto scroll-py-1",
-  divide: "divide-y divide-gray-200 dark:divide-gray-700",
+  divide: "divide-y divide-primary-600 dark:divide-gray-700",
   padding: "p-1",
   item: {
     base: "group flex items-center gap-1.5 w-full",
     rounded: "rounded-md",
     padding: "px-1.5 py-1.5",
     size: "text-sm",
-    active: "bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white",
-    inactive: "text-gray-700 dark:text-gray-200",
+    active: "bg-actan-300 text-gray-900",
+    inactive: "text-gray-700 hover:bg-actan-200 dark:text-gray-200",
     disabled: "cursor-not-allowed opacity-50",
     icon: {
       base: "flex-shrink-0 w-5 h-5",
@@ -186,91 +198,11 @@ const dropdownUI = {
 };
 
 const childButtonUI = {
-  base: "text-black border-none focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0",
-  font: "font-normal",
+  base: "border-0 text-left",
+  font: "font-normal font-serif",
   rounded: "",
   truncate: "text-left break-all line-clamp-1",
-  block: "w-full flex justify-center items-center",
+  block: "w-full flex justify-start items-start",
   inline: "inline-flex items-center",
-  size: {
-    "2xs": "text-xs",
-    xs: "text-xs",
-    sm: "text-sm",
-    md: "text-sm",
-    lg: "text-sm",
-    xl: "text-base",
-  },
-  gap: {
-    "2xs": "gap-x-1",
-    xs: "gap-x-1.5",
-    sm: "gap-x-1.5",
-    md: "gap-x-2",
-    lg: "gap-x-2.5",
-    xl: "gap-x-2.5",
-  },
-  padding: {
-    "2xs": "px-2 py-1",
-    xs: "px-2.5 py-1.5",
-    sm: "px-2.5 py-1.5",
-    md: "",
-    lg: "px-3.5 py-2.5",
-    xl: "px-3.5 py-2.5",
-  },
-  square: {
-    "2xs": "p-1",
-    xs: "p-1.5",
-    sm: "p-1.5",
-    md: "p-2",
-    lg: "p-2.5",
-    xl: "p-2.5",
-  },
-  color: {
-    white: {
-      solid:
-        "shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-none hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-      ghost:
-        "text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-900 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-    },
-    gray: {
-      solid:
-        "shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200 bg-gray-50 hover:bg-gray-100 disabled:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/50 dark:disabled:bg-gray-800 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-      ghost:
-        "text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-      link: "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-    },
-    black: {
-      solid:
-        "shadow-sm text-white dark:text-gray-900 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-900 dark:bg-white dark:hover:bg-gray-100 dark:disabled:bg-white focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-      link: "text-gray-900 dark:text-white underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400",
-    },
-  },
-  variant: {
-    solid:
-      "shadow-sm text-white dark:text-gray-900 bg-{color}-500 hover:bg-{color}-600 disabled:bg-{color}-500 dark:bg-{color}-400 dark:hover:bg-{color}-500 dark:disabled:bg-{color}-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-{color}-500 dark:focus-visible:outline-{color}-400",
-    outline:
-      "ring-1 ring-inset ring-current text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400",
-    soft: "text-{color}-500 dark:text-{color}-400 bg-{color}-50 hover:bg-{color}-100 disabled:bg-{color}-50 dark:bg-{color}-950 dark:hover:bg-{color}-900 dark:disabled:bg-{color}-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400",
-    ghost:
-      "text-{color}-500 dark:text-{color}-400 hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-{color}-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400",
-    link: "text-{color}-500 hover:text-{color}-600 disabled:text-{color}-500 dark:text-{color}-400 dark:hover:text-{color}-500 dark:disabled:text-{color}-400 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-{color}-400",
-  },
-  icon: {
-    base: "flex-shrink-0",
-    loading: "animate-spin",
-    size: {
-      "2xs": "h-4 w-4",
-      xs: "h-4 w-4",
-      sm: "h-5 w-5",
-      md: "h-5 w-5",
-      lg: "h-5 w-5",
-      xl: "h-6 w-6",
-    },
-  },
-  default: {
-    size: "sm",
-    variant: "solid",
-    color: "primary",
-    loadingIcon: "i-heroicons-arrow-path-20-solid",
-  },
 };
 </script>

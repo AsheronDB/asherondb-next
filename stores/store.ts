@@ -23,13 +23,22 @@ export const useStore = defineStore("store", () => {
                   {
                     label: "Weapons",
                     to: "/database/items/weapons",
-                  }
+                  },
                 ],
               ],
             },
+
             {
               label: "Item Sets",
               to: "/database/item-sets",
+            },
+            {
+              label: "Item Upgrades",
+              to: "/database/item-upgrades",
+            },
+            {
+              label: "Rare Items",
+              to: "/database/items/rare",
             },
           ],
         },
@@ -39,6 +48,47 @@ export const useStore = defineStore("store", () => {
             {
               label: "Spells",
               to: "/database/spells",
+              children: [
+                [
+                  {
+                    label: "All Spells",
+                    to: "/database/spells",
+                  },
+                ],
+                [
+                  {
+                    label: "War Magic",
+                    to: "/database/spells?school=war",
+                  },
+                  {
+                    label: "Life Magic",
+                    to: "/database/spells?school=life",
+                  },
+                  {
+                    label: "Creature Magic",
+                    to: "/database/spells?school=creature",
+                  },
+                  {
+                    label: "Item Magic",
+                    to: "/database/spells?school=item",
+                  },
+                ],
+
+                [
+                  {
+                    label: "Spell Groups",
+                    to: "/database/spell-groups",
+                  },
+                ],
+              ],
+            },
+            {
+              label: "Augmentations",
+              to: "/database/augmentations",
+            },
+            {
+              label: "Luminance Auras",
+              to: "/database/luminance-auras",
             },
             {
               label: "Titles",
@@ -51,7 +101,7 @@ export const useStore = defineStore("store", () => {
             {
               label: "Templates",
               to: "/database/templates",
-            }
+            },
           ],
         },
         {
@@ -64,12 +114,12 @@ export const useStore = defineStore("store", () => {
                 [
                   {
                     label: "Vendors",
-                    to: "/database/npcs/vendors"
+                    to: "/database/npcs/vendors",
                   },
                   {
                     label: "Creatures",
                     to: "/database/npcs/creatures",
-                  }
+                  },
                 ],
               ],
             },
