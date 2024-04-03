@@ -7,7 +7,7 @@ export const useStore = defineStore("store", () => {
       label: "Database",
       slot: "database",
       to: "/database",
-      children: [
+      columns: [
         {
           label: "Items",
           children: [
@@ -67,7 +67,7 @@ export const useStore = defineStore("store", () => {
                   {
                     label: "Creature Magic",
                     to: "/database/spells?school=creature",
-                    exact: true
+                    exact: true,
                   },
                   {
                     label: "Item Magic",
@@ -163,12 +163,29 @@ export const useStore = defineStore("store", () => {
     {
       label: "Guides",
       to: "/guides",
-      disabled: true,
+      children: [
+        [
+          {
+            label: "How to Play",
+            to: "/guides/how-to-play"
+          }
+        ],
+      ],
     },
     {
       label: "Tools",
       to: "/tools",
       disabled: true,
+      children: [
+        [
+          {
+            label: "Character Planner",
+            to: "https://planner.treestats.net/",
+            external: true,
+            target: "_blank"
+          }
+        ],
+      ],
     },
   ]);
 

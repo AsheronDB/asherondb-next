@@ -2,7 +2,6 @@
   <UPopover
     :popper="{ placement: 'bottom-start' }"
     mode="hover"
-    open="true"
     :ui="popoverUI">
     <UButton
       color="acred"
@@ -15,7 +14,7 @@
       <div class="py-4 px-6 has-[.dropdown-active]:bg-red-500">
         <div class="grid grid-cols-3 gap-12 text-gray-100">
           <div
-            v-for="column in item.children"
+            v-for="column in item.columns"
             :key="column.label"
             class="space-y-1.5">
             <p
