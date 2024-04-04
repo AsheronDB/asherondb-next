@@ -1,6 +1,9 @@
 <template>
   <div class="bg-gray-950 text-white min-h-screen flex flex-col">
-    <NuxtLayout><NuxtPage /></NuxtLayout>
+    <NuxtLoadingIndicator />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
@@ -35,6 +38,11 @@ useHead({
         return `AsheronDB - Asheron's Call Database`;
       }
     }
+  },
+  bodyAttrs: () => {
+    return {
+      class: 'bg-gray-900'
+    };
   },
 });
 

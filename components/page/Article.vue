@@ -1,17 +1,6 @@
 <template>
   <div>
-    <header>
-      <PageBreadcrumb v-if="route.meta.breadcrumb == true || route.meta.breadcrumb !== false" />
-      <PageHeader v-if="route.meta.breadcrumb == true || route.meta.breadcrumb !== false">
-        <template #deck>
-          <slot name="deck" />
-        </template>
-      </PageHeader>
-      <div v-if="$slots?.header">
-        <slot name="header" />
-      </div>
-    </header>
-
+    
     <div
       class="group-[.two-column]/layout:grid group-[.two-column]/layout:grid-cols-5 group-[.two-column]/layout:gap-3 group-[.three-column]/layout:grid group-[.three-column]/layout:grid-cols-5 group-[.three-column]/layout:gap-8 group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
       <template v-if="$slots?.sidebar && !$slots?.linkbar">
@@ -19,6 +8,7 @@
           <slot name="sidebar" />
         </div>
         <div class="col-span-4">
+          <PageHeaderArticle />
           <slot />
         </div>
       </template>
@@ -27,6 +17,7 @@
           <slot name="sidebar" />
         </div>
         <div class="col-span-3">
+          <PageHeaderArticle />
           <slot />
         </div>
         <div class="col-span-1">
@@ -35,6 +26,7 @@
       </template>
       <template v-else-if="!$slots?.sidebar && $slots?.linkbar">
         <div class="col-span-4">
+          <PageHeaderArticle />
           <slot />
         </div>
         <div class="col-span-1">
@@ -42,6 +34,7 @@
         </div>
       </template>
       <template v-else>
+        <PageHeaderArticle />
         <slot />
       </template>
     </div>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <PageBreadcrumb :key="title" />
+  <Page>
+    <!-- <PageBreadcrumb :key="title" /> -->
     <Creature :data="weenie" />
     <!--
       TODO: I'm not sure what this is but it was part of the content
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </Page>
 </template>
 
 <script setup lang="ts">

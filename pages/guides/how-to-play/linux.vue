@@ -1,11 +1,12 @@
 <template>
-  <div>TODO: Guides</div>
+  <div>Linux</div>
 </template>
 
 <script setup lang="ts">
 
-
 definePageMeta({
-  title: 'Guides'
+  title: 'Linux',
+  breadcrumbLabel: 'Linux'
 })
+
 </script>

@@ -100,6 +100,10 @@ export const useStore = defineStore("store", () => {
               to: "/database/races",
             },
             {
+              label: "Levels",
+              to: "/database/levels",
+            },
+            {
               label: "Templates",
               to: "/database/templates",
             },

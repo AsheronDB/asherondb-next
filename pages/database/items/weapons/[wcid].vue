@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <PageBreadcrumb :key="title" />
+  <Page>
+    <!-- <PageBreadcrumb :key="title" /> -->
     <WeenieWeapon :data="weenie" />
     <!-- TODO: Links -->
-  </div>
+  </Page>
 </template>
 
 <script setup lang="ts">
