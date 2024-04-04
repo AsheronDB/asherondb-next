@@ -29,8 +29,9 @@ If you are using [Visual Studio Code](https://code.visualstudio.com/) and want e
 
     ```sh
     {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-      }
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+        }
     }
     ```
