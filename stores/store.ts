@@ -2,6 +2,9 @@
 import { defineStore } from "pinia";
 
 export const useStore = defineStore("store", () => {
+
+  const now = ref(Date.now());
+
   const primaryNav = ref([
     {
       label: "Database",
@@ -195,5 +198,6 @@ export const useStore = defineStore("store", () => {
 
   return {
     primaryNav,
+    now
   };
 });

@@ -12,10 +12,10 @@
 
       <!-- <PageBreadcrumb class="opacity-50 "/> -->
 
-      <h2 class="text-2xl font-serif leading-none text-primary-400">
+      <h2 class="text-2xl font-serif leading-none text-primary-400 mb-1">
         {{ route.meta.title }}
       </h2>
-      <p v-if="$slots?.deck" class="text-md font-serif text-gray-400">
+      <p v-if="$slots?.deck" class="text-sm font-serif text-gray-400">
         <slot name="deck" />
       </p>
     </div>

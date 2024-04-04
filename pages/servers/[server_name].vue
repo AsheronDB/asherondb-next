@@ -1,21 +1,46 @@
 <template>
   <Page>
-    <!-- <PageBreadcrumb :key="pageTitle" />
-    <PageHeader :key="pageTitle" /> -->
-
     <div v-if="data" class="py-4">
-      <ul>
-        <li v-for="status in data.statuses" :key="status.created_at">
-          {{ status }}
-        </li>
-      </ul>
+
+      <UTable :columns :rows="data.statuses">
+
+        <template #created_at-data="{ row }">
+
+          {{ dateFormat(new Date(row.created_at), "yyyy-MM-dd '@' hh:mm:ss") }}
+
+        </template>
+
+      </UTable>
     </div>
   </Page>
 </template>
 
 <script setup lang="ts">
+import { format as dateFormat } from 'date-fns';
 const route = useRoute();
 const pageTitle = ref(null);
+
+const columns = [
+  {
+    key: "status",
+    label: "Status",
+    class: "w-[0.1%] text-center",
+  },
+  {
+    key: "created_at",
+    label: "Checked At",
+    class: "w-[0.1%]",
+  },
+  {
+    key: "rtt",
+    label: "RTT",
+    class: "w-[0.1%]",
+  },
+  {
+    key: "message",
+    label: "Message",
+  },
+];
 
 const { data, error } = await useFetch(
   `https://servers.treestats.net/api/statuses/${route.params.server_name}`,

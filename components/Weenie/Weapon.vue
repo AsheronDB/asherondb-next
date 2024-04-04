@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="p-4 space-y-4">
+    <div class="py-4 space-y-4">
       <div class="border-2 border-primary-800 bg-primary-950 mb-6">
         <div class="border-b-2 border-primary-800 p-6">
           <h2 class="text-3xl font-serif text-primary-400 font-normal text-center">

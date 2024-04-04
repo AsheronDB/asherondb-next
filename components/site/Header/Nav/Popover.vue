@@ -11,7 +11,7 @@
       trailing-icon="i-heroicons-chevron-down-20-solid" />
 
     <template #panel="{ close }">
-      <div class="py-4 px-6 has-[.dropdown-active]:bg-red-500">
+      <div class="py-4 px-6 " :class="[ dropdownHovered ? 'bg-red-500' : '' ]">
         <div class="grid grid-cols-3 gap-12 text-gray-100">
           <div
             v-for="column in item.columns"
@@ -46,6 +46,8 @@
                       <UIcon name="i-heroicons-chevron-right-20-solid" />
                     </div>
                   </div>
+
+   
                 </UDropdown>
 
                 <nuxt-link
@@ -75,7 +77,7 @@
 const props = defineProps(["item"]);
 const { item } = toRefs(props);
 
-const dropdownOpen = reactive({});
+const dropdownHovered = ref(false);
 
 const popoverUI = {
   wrapper: "relative",
@@ -157,8 +159,14 @@ const childButtonUI = {
   inline: "inline-flex items-center",
 };
 
-const onDropdownOpen = () => {
-  alert("open");
+const dropdownItemMouseOver = () => {
+  console.log('dropdownItemMouseOver')
+  dropdownHovered.value = true;
+};
+
+const dropdownItemMouseOut = () => {
+  console.log('dropdownItemMouseOut')
+  dropdownHovered.value = false
 };
 </script>
 

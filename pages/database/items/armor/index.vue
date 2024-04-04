@@ -15,7 +15,7 @@
     </div>
 
     <template #footer>
-      <div class="bg-gray-800/50 p-4">
+      <div class="bg-gray-800/50 p-4 border-t border-gray-950">
         <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
           <UPagination v-model="page" :page-count="perPage" :total="totalPages" />
         </div>

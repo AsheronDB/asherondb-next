@@ -26,7 +26,10 @@
 
 <script setup lang="ts">
 import { orderBy } from "lodash-es";
-import { formatDistanceToNowStrict } from "date-fns";
+import { formatDistanceStrict } from "date-fns";
+
+const store = useStore();
+const { now } = storeToRefs(store);
 
 const columns = [
   {
@@ -54,7 +57,7 @@ const servers = computed(() =>
 
 const lastUpdated = computed(() =>
   data.value && data.value.last_checked
-    ? formatDistanceToNowStrict(data.value.last_checked)
+    ? formatDistanceStrict(data.value.last_checked, new Date(now.value))
     : "unknown"
 );
 

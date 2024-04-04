@@ -8,6 +8,8 @@
 </template>
 
 <script setup lang="ts">
+const store = useStore();
+const { now } = storeToRefs(store);
 const { isCrawler } = useDevice();
 
 const titlePhrases = ref([
@@ -50,6 +52,15 @@ onMounted(() => {
   // if (!isCrawler) {
   //   document.title = this.pageTitle + " - " + randomTitlePhrase();
   // }
+
+
+  setInterval(() => {
+    now.value = Date.now();
+    console.log('app timestamp updated')
+  }, 60000)
+
+
+
 });
 
 </script>
