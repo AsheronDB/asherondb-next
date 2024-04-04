@@ -1,12 +1,7 @@
 <template>
-  <div>
-    <PageBreadcrumb />
-    <PageHeader />
+  <Page>
     <div>
-      <UTable
-        :columns
-        :rows="creatures"
-      >
+      <UTable :columns :rows="creatures">
         <template #name-data="{ row }">
           <nuxt-link :to="'/database/npcs/creatures/' + row.wcid">
             <p class="font-bold">
@@ -16,15 +11,19 @@
         </template>
       </UTable>
 
-      <div class="bg-gray-800/50 p-4">
-        <UPagination
-          v-model="page"
-          :page-count="perPage"
-          :total="totalPages"
-        />
-      </div>
+
     </div>
-  </div>
+
+    <template #footer>
+      <div class="bg-gray-800/50 p-4">
+        <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
+          <UPagination v-model="page" :page-count="perPage" :total="totalPages" />
+        </div>
+
+      </div>
+    </template>
+
+  </Page>
 </template>
 
 <script setup lang="ts">
@@ -50,7 +49,7 @@ const { data: count } = await useFetch(
       sql: getCountOfWeenieByClassId([WeenieType.Creature]),
     },
   }
-) as AsyncData<CountResponse[] , Error>;
+) as AsyncData<CountResponse[], Error>;
 
 totalPages.value = Math.round(Number(count.value[0].total) / perPage.value)
 

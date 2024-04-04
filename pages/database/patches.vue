@@ -1,5 +1,7 @@
 <template>
-  <div>Patches</div>
+  <Page>
+    <div>Patches</div>
+  </Page>
 </template>
 
 <script setup lang="ts">

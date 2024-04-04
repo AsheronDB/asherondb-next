@@ -1,9 +1,12 @@
 <template>
   <div class="bg-acred-700 px-6 py-3 border-b border-gray-950">
-    <UBreadcrumb
+    <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
+      <UBreadcrumb
       divider="i-heroicons-chevron-right-20-solid"
       :links="links"
     />
+    </div>
+
   </div>
 </template>
 

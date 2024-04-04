@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <PageBreadcrumb />
-    <PageHeader />
-    <div class="p-4 space-y-4">
+  <Page>
+    <div class="py-4 space-y-4">
       <UTable :columns :rows="races">
         <template #name-data="{ row }">
           <nuxt-link :to="'/database/races/' + row.handle">
@@ -13,7 +11,7 @@
         </template>
       </UTable>
     </div>
-  </div>
+  </Page>
 </template>
 <script setup lang="ts">
 const route = useRoute();

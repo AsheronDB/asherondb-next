@@ -1,22 +1,16 @@
 <template>
-  <div>
-    <PageBreadcrumb :key="pageTitle" />
-    <PageHeader :key="pageTitle" />
+  <Page>
+    <!-- <PageBreadcrumb :key="pageTitle" />
+    <PageHeader :key="pageTitle" /> -->
 
-    <div
-      v-if="data"
-      class="p-4"
-    >
+    <div v-if="data" class="py-4">
       <ul>
-        <li
-          v-for="status in data.statuses"
-          :key="status.created_at"
-        >
+        <li v-for="status in data.statuses" :key="status.created_at">
           {{ status }}
         </li>
       </ul>
     </div>
-  </div>
+  </Page>
 </template>
 
 <script setup lang="ts">

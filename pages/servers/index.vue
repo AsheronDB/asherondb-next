@@ -1,17 +1,9 @@
 <template>
-  <div>
-    <PageBreadcrumb />
-    <PageHeader>
-      <template #deck>
-        Last updated {{ lastUpdated }} ago
-      </template>
-    </PageHeader>
+  <Page>
+    <template #deck>Last updated {{ lastUpdated }} ago</template>
 
-    <div class="px-2">
-      <UTable
-        :columns
-        :rows="servers"
-      >
+    <div>
+      <UTable :columns :rows="servers">
         <template #name-data="{ row }">
           <nuxt-link :to="'/servers/' + row.name">
             <p class="font-bold">
@@ -29,12 +21,12 @@
         </template>
       </UTable>
     </div>
-  </div>
+  </Page>
 </template>
 
 <script setup lang="ts">
 import { orderBy } from "lodash-es";
-import { formatDistanceToNowStrict } from 'date-fns';
+import { formatDistanceToNowStrict } from "date-fns";
 
 const columns = [
   {
@@ -60,7 +52,11 @@ const servers = computed(() =>
   data.value ? orderBy(data.value.servers, ["name"], ["asc"]) : []
 );
 
-const lastUpdated = computed(() => data.value && data.value.last_checked ? formatDistanceToNowStrict(data.value.last_checked) : 'unknown');
+const lastUpdated = computed(() =>
+  data.value && data.value.last_checked
+    ? formatDistanceToNowStrict(data.value.last_checked)
+    : "unknown"
+);
 
 definePageMeta({
   title: "Server Tracker",
