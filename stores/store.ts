@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useStore = defineStore("store", () => {
 
   const now = ref(Date.now());
+  const titlePhrase = ref(null);
 
   const primaryNav = ref([
     {
@@ -87,6 +88,10 @@ export const useStore = defineStore("store", () => {
               ],
             },
             {
+              label: "Skills",
+              to: "/database/skills",
+            },
+            {
               label: "Augmentations",
               to: "/database/augmentations",
             },
@@ -159,6 +164,10 @@ export const useStore = defineStore("store", () => {
               label: "Patches",
               to: "/database/patches",
             },
+            {
+              label: "Story Arcs",
+              to: "/database/story-arcs",
+            },
           ],
         },
       ],
@@ -198,6 +207,7 @@ export const useStore = defineStore("store", () => {
 
   return {
     primaryNav,
+    titlePhrase,
     now
   };
 });
