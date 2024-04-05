@@ -16,7 +16,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/seo", "@nuxtjs/device"],
+  modules: [
+    "@pinia/nuxt",
+    "@nuxt/ui",
+    "@nuxtjs/seo",
+    "@nuxtjs/device",
+    "@nuxt/content"
+  ],
   colorMode: {
     preference: "light",
   },

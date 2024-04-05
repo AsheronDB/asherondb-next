@@ -1,5 +1,8 @@
 <template>
-  <UBreadcrumb divider="i-heroicons-chevron-right-20-solid" :links="links" />
+  <UBreadcrumb
+    divider="i-heroicons-chevron-right-20-solid"
+    :links="links"
+  />
 </template>
 <script setup lang="ts">
 

@@ -2,12 +2,17 @@
   <PageArticle>
     <template #sidebar>
       <div class="">
-        <PageToC :key="route.fullPath" :target="mainContentRef" />
+        <PageToC
+          :key="route.fullPath"
+          :target="mainContentRef"
+        />
       </div>
     </template>
     <template #linkbar>
       <div class="py-8">
-        <p class="font-bold">Quick Links</p>
+        <p class="font-bold">
+          Quick Links
+        </p>
         <ul>
           <li>
             Asheron's Call Installer
@@ -17,41 +22,64 @@
     </template>
     <template #default>
       <div class="py-8">
-
-
-
-
-        <div class="space-y-12" ref="mainContentRef">
-
-
+        <div
+          ref="mainContentRef"
+          class="space-y-12"
+        >
           <ul
-            class="flex flex-wrap font-bold text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 text-lg">
+            class="flex flex-wrap font-bold text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 text-lg"
+          >
             <li class="me-2">
-              <nuxt-link to="/guides/how-to-play"
-                class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Windows</nuxt-link>
+              <nuxt-link
+                to="/guides/how-to-play"
+                class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500"
+              >
+                Windows
+              </nuxt-link>
             </li>
             <li class="me-2">
-              <nuxt-link to="/guides/how-to-play/macos"
-                class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">macOS</nuxt-link>
+              <nuxt-link
+                to="/guides/how-to-play/macos"
+                class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+              >
+                macOS
+              </nuxt-link>
             </li>
             <li class="me-2">
-              <nuxt-link to="/guides/how-to-play/linux"
-                class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Linux</nuxt-link>
+              <nuxt-link
+                to="/guides/how-to-play/linux"
+                class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+              >
+                Linux
+              </nuxt-link>
             </li>
           </ul>
 
-          <NuxtPage />
-          <hr />
+          <NuxtPage v-model="headings" />
+
+
+          <hr>
           <section class="space-y-6">
-            <h3 id="decal" class="text-3xl font-bold text-gray-900 tracking-tight leading-none">
+            <h3
+              id="decal"
+              class="text-3xl font-bold text-gray-900 tracking-tight leading-none"
+            >
               <span class="text-gray-400 dark:text-gray-500">Optional:</span>
               Download and install Decal
             </h3>
 
-            <UButton to="https://decaldev.com/releases/2983/Decal.msi" class="font-bold" size="xl"
-              icon="i-heroicons-arrow-down-tray">Decal v2.9.8.3</UButton>
+            <UButton
+              to="https://decaldev.com/releases/2983/Decal.msi"
+              class="font-bold"
+              size="xl"
+              icon="i-heroicons-arrow-down-tray"
+            >
+              Decal v2.9.8.3
+            </UButton>
 
-            <h4 id="decal-install">Installation</h4>
+            <h4 id="decal-install">
+              Installation
+            </h4>
 
             <ul class="list-decimal list-inside text-lg">
               <li>Right click the installer and run as admin.</li>
@@ -59,9 +87,11 @@
               <li>
                 If you receive this
                 <a
-                  href="https://images-ext-2.discordapp.net/external/cO7WaIu-p1t2vzxGHCZOtr6X2IJ4rveqc0kzMVOIu0A/https/media.discordapp.net/attachments/380130471750795265/409583758748942337/unknown.png">error
+                  href="https://images-ext-2.discordapp.net/external/cO7WaIu-p1t2vzxGHCZOtr6X2IJ4rveqc0kzMVOIu0A/https/media.discordapp.net/attachments/380130471750795265/409583758748942337/unknown.png"
+                >error
                   message</a>, run the&nbsp;<a
-                  href="https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe">DirectX
+                  href="https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
+                >DirectX
                   installer</a>, then try again.
               </li>
               <li>
@@ -78,7 +108,9 @@
               </li>
             </ul>
 
-            <h4 id="decal-thwargfilter">ThwargFilter</h4>
+            <h4 id="decal-thwargfilter">
+              ThwargFilter
+            </h4>
 
             <ul class="list-decimal list-inside text-lg">
               <li>
@@ -103,18 +135,25 @@
               </li>
             </ul>
 
-            <media-gallery :images="[
-          'https://emulator.ac/wp-content/uploads/2019/11/decal-thwargfilter.png',
-          'https://emulator.ac/wp-content/uploads/2019/11/decal-thwargfilter2.png',
-          'https://emulator.ac/wp-content/uploads/2019/11/decal-thwargfilter3.png',
-        ]" />
+            <media-gallery
+              :images="[
+                'https://emulator.ac/wp-content/uploads/2019/11/decal-thwargfilter.png',
+                'https://emulator.ac/wp-content/uploads/2019/11/decal-thwargfilter2.png',
+                'https://emulator.ac/wp-content/uploads/2019/11/decal-thwargfilter3.png',
+              ]"
+            />
 
-            <h4 id="decal-plugins">Recommended Plugins</h4>
+            <h4 id="decal-plugins">
+              Recommended Plugins
+            </h4>
           </section>
-          <hr />
+          <hr>
 
           <section class="space-y-6">
-            <h3 id="4k-monitor" class="text-3xl font-bold text-gray-900 tracking-tight leading-none">
+            <h3
+              id="4k-monitor"
+              class="text-3xl font-bold text-gray-900 tracking-tight leading-none"
+            >
               <span class="text-gray-400 dark:text-gray-500">Optional:</span>
               4K Monitor Setup
             </h3>
@@ -130,10 +169,15 @@
               required
             </p>
           </section>
-          <hr />
+          <hr>
 
           <section class="space-y-6">
-            <h3 id="servers" class="">Finding a Server</h3>
+            <h3
+              id="servers"
+              class=""
+            >
+              Finding a Server
+            </h3>
 
             <p>
               To begin playing, you'll want to choose a server with a good
@@ -154,35 +198,45 @@
 
             <div class="grid gap-8 grid-cols-2">
               <div class="space-y-6">
-                <h4 id="ace">AC Emulator</h4>
-                <!-- 
+                <h4 id="ace">
+                  AC Emulator
+                </h4>
+                <!--
       <UAlert
         icon="i-heroicons-exclamation-circle"
         color="primary"
         variant="subtle"
         title="Accounts for most ACE servers are created on first login." /> -->
 
-                <UTable :rows="people" :ui="{
-          divide: 'dark:divide-primary-900',
-          tbody: 'dark:divide-primary-950',
-          td: {
-            color: 'dark:text-primary',
-          },
-        }">
+                <UTable
+                  :rows="people"
+                  :ui="{
+                    divide: 'dark:divide-primary-900',
+                    tbody: 'dark:divide-primary-950',
+                    td: {
+                      color: 'dark:text-primary',
+                    },
+                  }"
+                >
                   <template #discord-data="{ row }">
                     <UButton icon="i-heroicons-ellipsis-horizontal-20-solid" />
                   </template>
                 </UTable>
               </div>
               <div class="space-y-6">
-                <h4 id="gdle">GDLEnhanced</h4>
-                <UTable :rows="people" :ui="{
-          divide: 'dark:divide-primary-900',
-          tbody: 'dark:divide-primary-950',
-          td: {
-            color: 'dark:text-primary',
-          },
-        }">
+                <h4 id="gdle">
+                  GDLEnhanced
+                </h4>
+                <UTable
+                  :rows="people"
+                  :ui="{
+                    divide: 'dark:divide-primary-900',
+                    tbody: 'dark:divide-primary-950',
+                    td: {
+                      color: 'dark:text-primary',
+                    },
+                  }"
+                >
                   <template #discord-data="{ row }">
                     <UButton icon="i-heroicons-ellipsis-horizontal-20-solid" />
                   </template>
@@ -191,35 +245,42 @@
             </div>
           </section>
 
-          <hr />
+          <hr>
 
           <section class="space-y-6">
-            <h3 id="issues" class="text-3xl font-bold text-gray-900 tracking-tight leading-none mb-3">
+            <h3
+              id="issues"
+              class="text-3xl font-bold text-gray-900 tracking-tight leading-none mb-3"
+            >
               Common Issues
             </h3>
 
-            <UAccordion :items="issues" multiple :ui="{ wrapper: 'flex flex-col w-full' }">
+            <UAccordion
+              :items="issues"
+              multiple
+              :ui="{ wrapper: 'flex flex-col w-full' }"
+            >
               <template #default="{ item, index, open }">
-                <UButton color="gray" variant="ghost" class="border-b border-gray-200 dark:border-gray-700"
-                  :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
+                <UButton
+                  color="gray"
+                  variant="ghost"
+                  class="border-b border-gray-200 dark:border-gray-700"
+                  :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }"
+                >
                   <span class="truncate">{{ item.label }}</span>
 
                   <template #trailing>
-                    <UIcon name="i-heroicons-chevron-right-20-solid"
+                    <UIcon
+                      name="i-heroicons-chevron-right-20-solid"
                       class="w-5 h-5 ms-auto transform transition-transform duration-200"
-                      :class="[open && 'rotate-90']" />
+                      :class="[open && 'rotate-90']"
+                    />
                   </template>
                 </UButton>
               </template>
             </UAccordion>
           </section>
         </div>
-
-
-
-
-
-
       </div>
     </template>
   </PageArticle>
@@ -229,6 +290,8 @@
 const mainContentRef = ref(null);
 
 const route = useRoute();
+
+const headings = ref(null);
 
 definePageMeta({
   layout: "three-column",

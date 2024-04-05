@@ -3,7 +3,6 @@
     <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
       <PageBreadcrumbPath />
     </div>
-
   </div>
 </template>
 

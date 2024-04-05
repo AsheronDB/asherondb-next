@@ -12,6 +12,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@nuxt/content": "^2.12.1",
     "@nuxt/ui": "^2.14.2",
     "@nuxtjs/seo": "^2.0.0-rc.9",
     "@pinia/nuxt": "^0.5.1",
