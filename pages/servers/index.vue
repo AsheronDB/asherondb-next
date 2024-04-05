@@ -1,9 +1,13 @@
 <template>
   <Page>
-    <template #deck>Last updated {{ lastUpdated }} ago</template>
-
+    <template #deck>
+      Last updated {{ lastUpdated }} ago
+    </template>
     <div>
-      <UTable :columns :rows="servers">
+      <UTable
+        :columns
+        :rows="servers"
+      >
         <template #name-data="{ row }">
           <nuxt-link :to="'/servers/' + row.name">
             <p class="font-bold">

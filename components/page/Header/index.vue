@@ -1,7 +1,8 @@
 <template>
   <header class="bg-gray-800 px-6 py-6 space-y-3 border-b border-gray-950">
     <div
-      class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
+      class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto"
+    >
       <!-- <p class="text-md font-serif leading-none text-gray-400" v-if="$slots.kicker">
         <slot name="kicker"></slot>
       </p> -->
@@ -15,7 +16,10 @@
       <h2 class="text-2xl font-serif leading-none text-primary-400 mb-1">
         {{ route.meta.title }}
       </h2>
-      <p v-if="$slots?.deck" class="text-sm font-serif text-gray-400">
+      <p
+        v-if="$slots?.deck"
+        class="text-sm font-serif text-gray-400"
+      >
         <slot name="deck" />
       </p>
     </div>

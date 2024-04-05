@@ -2,33 +2,46 @@
   <UPopover
     :popper="{ placement: 'bottom-start' }"
     mode="hover"
-    :ui="popoverUI">
+    :ui="popoverUI"
+  >
     <UButton
       color="acred"
       :label="item.label"
       :disabled="item.disabled"
       size="md"
-      trailing-icon="i-heroicons-chevron-down-20-solid" />
+      trailing-icon="i-heroicons-chevron-down-20-solid"
+    />
 
     <template #panel="{ close }">
-      <div class="py-4 px-6 " :class="[ dropdownHovered ? 'bg-red-500' : '' ]">
-        <div class="grid grid-cols-3 gap-12 text-gray-100">
+      <div
+        class="py-4 px-6 "
+        :class="[ dropdownHovered ? 'bg-red-500' : '' ]"
+      >
+        <div class="grid grid-cols-3 gap-10 text-gray-100">
           <div
             v-for="column in item.columns"
             :key="column.label"
-            class="space-y-1.5">
+            class="space-y-1.5"
+          >
             <p
-              class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400">
+              class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400"
+            >
               {{ column.label }}
             </p>
 
-            <ul v-if="column.children" class="space-y-0.5">
-              <li v-for="child in column.children" :key="child.label">
+            <ul
+              v-if="column.children"
+              class="space-y-0.5"
+            >
+              <li
+                v-for="child in column.children"
+                :key="child.label"
+              >
                 <UDropdown
                   v-if="child.children"
                   :items="
-                    child.children.map((group) =>
-                      group.map((groupChild) => ({
+                    child.children.map((group: object) =>
+                      group.map((groupChild: object) => ({
                         ...groupChild,
                         click: () => close(),
                       }))
@@ -36,9 +49,11 @@
                   "
                   mode="hover"
                   :popper="{ offsetDistance: 0, placement: 'right-start' }"
-                  :ui="dropdownUI">
+                  :ui="dropdownUI"
+                >
                   <div
-                    class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2 text-gray-200 rounded hover:bg-gray-600">
+                    class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2 text-gray-200 rounded hover:bg-gray-600"
+                  >
                     <div class="text-sm flex flex-col justify-center font-bold">
                       {{ child.label }}
                     </div>
@@ -46,14 +61,13 @@
                       <UIcon name="i-heroicons-chevron-right-20-solid" />
                     </div>
                   </div>
-
-   
                 </UDropdown>
 
                 <nuxt-link
                   v-else
                   :to="child.to"
-                  class="text-sm block py-1.5 px-2 rounded font-bold text-gray-200 [&.router-link-active]:bg-gray-600 hover:bg-gray-600">
+                  class="text-sm block py-1.5 px-2 rounded font-bold text-gray-200 [&.router-link-active]:bg-gray-600 hover:bg-gray-600"
+                >
                   {{ child.label }}
                 </nuxt-link>
               </li>
@@ -148,15 +162,6 @@ const dropdownUI = {
     active: "bg-gray-600 text-gray-100",
     inactive: "text-gray-100 hover:bg-gray-600 dark:text-gray-200",
   },
-};
-
-const childButtonUI = {
-  base: "border-0 text-left",
-  font: "font-normal",
-  rounded: "",
-  truncate: "text-left break-all line-clamp-1",
-  block: "w-full flex justify-start items-start",
-  inline: "inline-flex items-center",
 };
 
 const dropdownItemMouseOver = () => {

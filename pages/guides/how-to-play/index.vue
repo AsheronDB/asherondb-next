@@ -4,19 +4,22 @@
       <section class="space-y-6">
         <h3
           id="step-1"
+          ref="heading"
           class="scroll-mt-[calc(48px+48px+var(--header-height))] lg:scroll-mt-[calc(48px+var(--header-height))]"
-          ref="heading">
-          <a aria-current="page" href="/how-to-play#step1" class="group"
-            ><div
-              class="-ml-6 pr-2 py-2 inline-flex opacity-0 group-hover:lg:opacity-100 transition-opacity absolute">
-              <span
-                class="i-heroicons-hashtag-20-solid w-4 h-4 text-primary"></span>
-            </div>
-            Step 1:
-            <span class="text-black dark:text-white"
-              >Asheron's Call Installer</span
-            ></a
+        >
+          <a
+            aria-current="page"
+            href="/how-to-play#step1"
+            class="group"
+          ><div
+            class="-ml-6 pr-2 py-2 inline-flex opacity-0 group-hover:lg:opacity-100 transition-opacity absolute"
           >
+            <span
+              class="i-heroicons-hashtag-20-solid w-4 h-4 text-primary"
+            />
+          </div>
+            Step 1:
+            <span class="text-black dark:text-white">Asheron's Call Installer</span></a>
         </h3>
 
         <ol class="ml-4 list-disc marker:text-lg space-y-6">
@@ -33,11 +36,14 @@
                   size="xl"
                   color="acred"
                   icon="i-heroicons-arrow-down-tray"
-                  >ac1install.exe</UButton
                 >
+                  ac1install.exe
+                </UButton>
               </p>
 
-              <p class="text-sm">* Requires Windows 7 and up</p>
+              <p class="text-sm">
+                * Requires Windows 7 and up
+              </p>
             </div>
           </li>
 
@@ -50,16 +56,18 @@
             <media-gallery
               :images="[
                 'https://emulator.ac/wp-content/uploads/2019/11/acinstall.png',
-              ]" />
+              ]"
+            />
           </li>
         </ol>
       </section>
-      <hr />
+      <hr>
       <section class="space-y-6">
         <h3
           id="step-2"
+          ref="heading"
           class="text-3xl font-bold text-gray-900 tracking-tight leading-none mb-3"
-          ref="heading">
+        >
           <span class="text-primary">Step 2:</span> Update to May 2015 client
           files
         </h3>
@@ -78,13 +86,15 @@
               target="_blank"
               size="xl"
               icon="i-heroicons-arrow-down-tray"
-              >May 2015 Client Files</UButton
             >
+              May 2015 Client Files
+            </UButton>
 
             <media-gallery
               :images="[
                 'https://emulator.ac/wp-content/uploads/2020/03/Capture.png',
-              ]" />
+              ]"
+            />
           </li>
 
           <li class="space-y-4">
@@ -96,12 +106,13 @@
             <media-gallery
               :images="[
                 'https://emulator.ac/wp-content/uploads/2020/03/copy-files-1.png',
-              ]" />
+              ]"
+            />
           </li>
         </ol>
       </section>
 
-      <hr />
+      <hr>
 
       <section class="space-y-6">
         <h3 id="step-3">
@@ -115,7 +126,7 @@
         3.5 and 4.x on Windows 8.1 and older: .NET Framework 4.0 .NET Framework
         3.0
       </section>
-      <hr />
+      <hr>
 
       <section class="space-y-6">
         <h3 id="step-4">
@@ -128,7 +139,9 @@
           Asheron's Call on private emulator servers.
         </p>
 
-        <h4 id="step-4-launcher">ThwargLauncher</h4>
+        <h4 id="step-4-launcher">
+          ThwargLauncher
+        </h4>
 
         <p>
           The most widely-used third party launcher is
@@ -140,15 +153,17 @@
           class="font-bold"
           size="xl"
           icon="i-heroicons-arrow-down-tray"
-          >ThwargLauncher.exe</UButton
         >
+          ThwargLauncher.exe
+        </UButton>
 
         <p>Be sure to install Thwarglauncher to its default path.</p>
 
         <media-gallery
           :images="[
             'https://emulator.ac/wp-content/uploads/2019/11/thwarglauncher-default-path.png',
-          ]" />
+          ]"
+        />
 
         <p>
           To use ThwargLauncher in <strong>Advanced Mode</strong>, you will need
@@ -176,4 +191,3 @@ onMounted(async () => {
 // })
 
 </script>
-

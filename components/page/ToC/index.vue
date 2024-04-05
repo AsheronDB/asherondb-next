@@ -1,14 +1,23 @@
 <template>
   <nav class="sticky top-[--header-height] bg-background/75 backdrop-blur group overflow-y-auto">
     <div class="py-3 lg:py-8 border-b border-dashed border-gray-200 dark:border-gray-800 lg:border-0 space-y-3">
-
-      <button class="flex items-center gap-1.5 lg:cursor-text lg:select-text w-full" tabindex="-1">
+      <button
+        class="flex items-center gap-1.5 lg:cursor-text lg:select-text w-full"
+        tabindex="-1"
+      >
         <span class="font-semibold text-sm/6 truncate">Table of Contents</span><span
-          class="i-heroicons-chevron-down-20-solid lg:hidden w-5 h-5 ms-auto transform transition-transform duration-200 flex-shrink-0 mr-1.5 text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-200 -rotate-90"></span>
+          class="i-heroicons-chevron-down-20-solid lg:hidden w-5 h-5 ms-auto transform transition-transform duration-200 flex-shrink-0 mr-1.5 text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-200 -rotate-90"
+        />
       </button>
       <ul class="space-y-1 hidden lg:block">
-        <PageToCNavItem v-for="(item, index) in headingsData" :key="index" :id="item.id" :text="item.text"
-          :activeIds="activeTocIds" :children="item.children" />
+        <PageToCNavItem
+          v-for="(item, index) in headingsData"
+          :id="item.id"
+          :key="index"
+          :text="item.text"
+          :active-ids="activeTocIds"
+          :children="item.children"
+        />
       </ul>
     </div>
   </nav>
@@ -39,8 +48,8 @@ function createNestedJsonStructureWithLodash(headings) {
   // }
 
 
-  let structure = [];
-  let currentLevelNodes = [structure];
+  const structure = [];
+  const currentLevelNodes = [structure];
 
   forEach(headings, (heading) => {
     const level = parseInt(heading.tagName.substring(1));
