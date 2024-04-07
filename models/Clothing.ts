@@ -1,5 +1,26 @@
 import { PropertyInt, PropertyFloat, ArmorModPhrase, CoveragePhrase } from "~/util/mappings";
-import { Item } from "./Item";
+import { Item, type ItemData } from "./Item";
+
+export interface ClothingData extends ItemData {
+	armorLevel: number,
+	armorLevelVsSlash: number,
+	armorLevelVsPierce: number,
+	armorLevelVsBludgeon: number,
+	armorLevelVsCold: number,
+	armorLevelVsFire: number,
+	armorLevelVsAcid: number,
+	armorLevelVsElectric: number,
+	armorLevelVsNether: number,
+	armorLevelVsSlashPhrase: number,
+	armorLevelVsPiercePhrase: number,
+	armorLevelVsBludgeonPhrase: number,
+	armorLevelVsColdPhrase: number,
+	armorLevelVsFirePhrase: number,
+	armorLevelVsAcidPhrase: number,
+	armorLevelVsElectricPhrase: number,
+	armorLevelVsNetherPhrase: number,
+	coverageString: string
+}
 
 export class Clothing extends Item {
 	get ClassName() {
