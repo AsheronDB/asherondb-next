@@ -18,13 +18,14 @@
       <div class="grid gap-8 grid-cols-2 font-serif">
         <div class="border-2 border-primary-800">
           <h3 class="bg-primary-800 p-3 font-serif font-bold text-lg">
-            Properties (WIP)
+            Properties
           </h3>
-          <tr><td>Value: {{ props.data.value }}</td></tr>
-          <tr><td>Burden: {{ props.data.burden }}</td></tr>
-          <tr><td>Skill: {{ props.data.skillString }}</td></tr>
-          <tr><td>Damage: {{ props.data.damageString }}</td></tr>
-          <tr><td>Speed: {{ props.data.speedString }}</td></tr>
+          <p>Value: {{ props.data.value }}</p>
+          <p>Burden: {{ props.data.burden }}</p>
+          <p>Properties: {{ props.data.propertyString }}</p>
+          <p>Skill: {{ props.data.skillString }}</p>
+          <p>Damage: {{ props.data.damageString }}</p>
+          <p>Speed: {{ props.data.speedString }}</p>
           <!-- See props for remainder of information you can grab -->
         </div>
       </div>
