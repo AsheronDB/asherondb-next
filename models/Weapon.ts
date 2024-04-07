@@ -55,18 +55,6 @@ export class Weapon extends Item {
 		return `${value}%`;
 	}
 
-	get mana(): string {
-		return this.properties.ints.get(PropertyInt.ItemMaxMana);
-	}
-
-	get manaRate(): number {
-		return this.properties.floats.get(PropertyFloat.ManaRate)
-	}
-
-	get spellcraft(): number {
-		return this.properties.ints.get(PropertyInt.ItemSpellcraft);
-	}
-
 	get skillString(): string {
 		const name = SkillName[this.properties.ints.get(PropertyInt.WeaponSkill)];
 		const category = WeaponTypeName[this.properties.ints.get(PropertyInt.WeaponType)];

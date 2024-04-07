@@ -20,8 +20,11 @@
           <h3 class="bg-primary-800 p-3 font-serif font-bold text-lg">
             Properties
           </h3>
+          <!-- TODO: This isn't styled so please re-design as you wish -->
+          <p>Value: {{ props.data.value }}</p>
+          <p>Burden: {{ props.data.burden }}</p>
           <p class="pb-4">Covers {{ props.data.coverageString }}</p>
-          <p class="pb-4">
+          <div class="pb-4">
             Armor Level: {{ props.data.armorLevel }}<br>
             Slashing: {{ props.data.armorLevelVsSlashPhrase }} ({{ props.data.armorLevelVsSlash }})<br>
             Piercing: {{ props.data.armorLevelVsPiercePhrase }} ({{ props.data.armorLevelVsPierce }})<br>
@@ -31,8 +34,21 @@
             Acid: {{ props.data.armorLevelVsAcidPhrase }} ({{ props.data.armorLevelVsAcid }})<br>
             Electric: {{ props.data.armorLevelVsElectricPhrase }} ({{ props.data.armorLevelVsElectric }})<br>
             Nether: {{ props.data.armorLevelVsNetherPhrase }} ({{ props.data.armorLevelVsNether }})<br>
-            TODO Properties: Bonded
-          </p>
+          </div>
+          <div>
+            Properties: {{ props.data.propertyString }}
+          </div>
+          <div>
+            <p>Wield requires level 40</p>
+            <p>Activation requires Arcane Lore: 100</p>
+            <p v-if="!props.data.isSellable">
+              This item cannot be sold.
+            </p>
+            <p>Spellcraft: 250.</p>
+            <p>{{ props.data.use }}</p>
+            <p>Mana: {{ props.data.mana }} / {{ props.data.mana }}</p>
+            <p>Mana Cost: {{ props.data.manaRateString }}</p>
+          </div>
           <p>
             {{ data.description }}
           </p>
