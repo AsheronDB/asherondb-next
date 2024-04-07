@@ -2,7 +2,9 @@ import { Book } from "~/models/Book";
 import { Clothing } from "~/models/Clothing";
 import { Item } from "~/models/Item";
 import { Monster } from "~/models/Monster";
-import { Weapon } from "~/models/Weapon";
+import { Caster } from "~/models/Weapon/Caster";
+import { MeleeWeapon, Weapon } from "~/models/Weapon/MeleeWeapon";
+import { MissileWeapon } from "~/models/Weapon/MissileWeapon";
 import { Weenie } from "~/models/Weenie";
 import { WeenieClassId } from "~/util/types";
 
@@ -12,13 +14,15 @@ import { WeenieClassId } from "~/util/types";
 // As views for more weenie types are implemented, expand this enum and the
 // functions below.
 enum WeenieModelType {
-	Generic = 0,
-	Item = 1,
-	Monster = 2,
-	Weapon = 3,
-	Book = 4,
-	Clothing = 5,
-	Vendor = 6
+	Generic,
+	Item,
+	Monster,
+	MeleeWeapon,
+	MissileWeapon,
+	Caster,
+	Book,
+	Clothing,
+	Vendor
 }
 
 const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<WeenieModelType> => {
@@ -33,8 +37,16 @@ const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<W
 		return WeenieModelType.Vendor;
 	}
 
-	if (w.IsWeapon) {
-		return WeenieModelType.Weapon;
+	if (w.IsMeleeWeapon) {
+		return WeenieModelType.MeleeWeapon;
+	}
+
+	if (w.IsMissileWeapon) {
+		return WeenieModelType.MissileWeapon;
+	}
+
+	if (w.IsCaster) {
+		return WeenieModelType.Caster;
 	}
 
 	if (w.IsBook) {
@@ -67,8 +79,12 @@ export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<Get
 
 	if (model_type === WeenieModelType.Monster || model_type === WeenieModelType.Vendor) {
 		weenie = new Monster(classId)
-	} else if (model_type === WeenieModelType.Weapon) {
-		weenie = new Weapon(classId)
+	} else if (model_type === WeenieModelType.MeleeWeapon) {
+		weenie = new MeleeWeapon(classId)
+	} else if (model_type === WeenieModelType.MissileWeapon) {
+		weenie = new MissileWeapon(classId)
+	} else if (model_type === WeenieModelType.Caster) {
+		weenie = new Caster(classId)
 	} else if (model_type === WeenieModelType.Book) {
 		weenie = new Book(classId)
 	} else if (model_type === WeenieModelType.Clothing) {

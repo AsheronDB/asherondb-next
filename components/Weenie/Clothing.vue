@@ -38,17 +38,7 @@
           <div>
             Properties: {{ props.data.propertyString }}
           </div>
-          <div>
-            <p>Wield requires level 40</p>
-            <p>Activation requires Arcane Lore: 100</p>
-            <p v-if="!props.data.isSellable">
-              This item cannot be sold.
-            </p>
-            <p>Spellcraft: 250.</p>
-            <p>{{ props.data.use }}</p>
-            <p>Mana: {{ props.data.mana }} / {{ props.data.mana }}</p>
-            <p>Mana Cost: {{ props.data.manaRateString }}</p>
-          </div>
+          <WeenieItemProperties :data="props.data" />
           <p>
             {{ data.description }}
           </p>

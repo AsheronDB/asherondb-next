@@ -1,12 +1,17 @@
 <template>
   <Page>
     <!-- <PageBreadcrumb :key="title" /> -->
-    <WeenieWeapon :data="weenie" />
+    <component :is="view" :data="weenie" />
     <!-- TODO: Links -->
   </Page>
 </template>
 
 <script setup lang="ts">
+import WeenieWeaponMelee from "~/components/Weenie/Weapon/Melee.vue"
+import WeenieWeaponMissile from "~/components/Weenie/Weapon/Missile.vue"
+import WeenieWeaponCaster from "~/components/Weenie/Weapon/Caster.vue"
+
+import { WeenieType } from '~/util/mappings';
 
 const route = useRoute();
 const title = ref("Weapon");
@@ -40,6 +45,19 @@ definePageMeta({
 const { data } = await useFetch(`/api/weenie/${wcid}`);
 // TODO: Handle bad fetch
 weenie.value = data.value?.data
+
+// Dynamically decide component to use for rendering based on type
+let view: Component
+
+if (data.value?.data.type == WeenieType.MeleeWeapon) {
+  view = WeenieWeaponMelee
+} else if (data.value?.data.type == WeenieType.MissileLauncher) {
+  view = WeenieWeaponMissile
+} else if (data.value?.data.type == WeenieType.Caster) {
+  view = WeenieWeaponCaster
+} else {
+  throw new Error("Unsupported component");
+}
 
 title.value = weenie?.value.name;
 route.meta.title = weenie?.value.name;
