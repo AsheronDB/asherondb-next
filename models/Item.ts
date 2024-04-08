@@ -1,6 +1,12 @@
 import { PropertyString, PropertyInt, PropertyFloat, PropertyBool } from "~/util/mappings";
 import { Weenie, type WeenieData } from "./Weenie";
 
+interface SpellData {
+	index: number,
+	id: number,
+	name: string
+}
+
 export interface ItemData extends WeenieData {
 	value: number | undefined,
 	burden: number | undefined,
@@ -9,7 +15,8 @@ export interface ItemData extends WeenieData {
 	mana: number,
 	manaRateString: string,
 	spellcraft: number,
-	isSellable: boolean
+	isSellable: boolean,
+	spells: SpellData[]
 }
 
 export class Item extends Weenie {
@@ -57,6 +64,16 @@ export class Item extends Weenie {
 		return this.properties.bool.get(PropertyBool.IsSellable)
 	}
 
+	get spells(): SpellData[] {
+		return Array.from(this.properties.spell_book?.entries()).map((x, i) => {
+			return {
+				index: i,
+				id: x[0],
+				name: x[1]
+			}
+		});
+	}
+
 	json() : ItemData {
 		return {
 			...super.json(),
@@ -67,7 +84,8 @@ export class Item extends Weenie {
 			mana: this.mana,
 			manaRateString: this.manaRateString,
 			spellcraft: this.spellcraft,
-			isSellable: this.isSellable
+			isSellable: this.isSellable,
+			spells: this.spells,
 		}
 	}
 }

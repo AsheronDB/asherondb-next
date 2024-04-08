@@ -6,10 +6,10 @@
     <p v-if="!props.data.isSellable">
       This item cannot be sold.
     </p>
-    <p>Spellcraft: {{ props.data.spellcraft }}.</p>
+    <p v-if="props.data.spellcraft">Spellcraft: {{ props.data.spellcraft }}.</p>
     <p>{{ props.data.use }}</p>
-    <p>Mana: {{ props.data.mana }} / {{ props.data.mana }}</p>
-    <p>Mana Cost: {{ props.data.manaRateString }}</p>
+    <p v-if="props.data.mana">Mana: {{ props.data.mana }} / {{ props.data.mana }}</p>
+    <p v-if="props.data.mana">Mana Cost: {{ props.data.manaRateString }}</p>
   </div>
 </template>
 

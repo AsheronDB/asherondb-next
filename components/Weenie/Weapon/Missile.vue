@@ -24,18 +24,34 @@
             <div>
               <WeenieItemPropertiesBasic :data="props.data" />
             </div>
+            <div>
+              <div>Skill: {{ props.data.skillString }}</div>
+              <div>Damage Bonus: {{ props.data.damageBonus }}</div>
+              <div v-if="props.data.elementalDamageBonus">
+                Elemental Damage Bonus: {{ props.data.elementalDamageBonus }},
+                {{ props.data.elementalDamageTypeString }}.</div>
+              <div>Damage Modifier: {{ props.data.damageMod }}%.</div>
+              <div>Speed: {{ props.data.speedString }}</div>
+              <div>Range: {{ props.data.range }}</div>
+              <div>Uses {{ props.data.ammoTypeString }} as ammunition.</div>
+              <div v-if="props.data.hasMeleeDefenseBonus">Bonus to Melee Defense: +{{ props.data.defenseString }}%</div>
+              <!-- TODO: Magic Defense? -->
+              <!-- TODO: Missile Defense? -->
+            </div>
+            <div v-if="props.data.spells.length > 0">
+              Spells:
+              <span v-for="spell in props.data.spells" v-bind:key="spell.id">
+                <NuxtLink :to="`/spells/${spell.id}`">{{ spell.name }}</NuxtLink>
+                <span v-if="spell.index != props.data.spells.length - 1">,&nbsp;</span>
+              </span>
+            </div>
             <div v-if="props.data.propertyString">
               <div>Properties: {{ props.data.propertyString }}</div>
             </div>
             <div>
-              <div>Skill: {{ props.data.skillString }}</div>
-              <div>Damage: {{ props.data.damageString }}</div>
-              <div>Speed: {{ props.data.speedString }}</div>
-            </div>
-            <div>
               <WeenieItemPropertiesExtended :data="props.data" />
             </div>
-            <div>
+            <div v-if="props.data.description">
               <div>{{ props.data.description }}</div>
             </div>
           </div>

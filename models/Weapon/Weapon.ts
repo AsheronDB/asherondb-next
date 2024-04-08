@@ -1,29 +1,25 @@
-import { PropertyInt, PropertyFloat, DamageTypePhrase, SkillName, WeaponTypeName, PropertyBool } from "~/util/mappings";
+import { PropertyInt, PropertyFloat, DamageTypePhrase, SkillName, WeaponTypeName, PropertyBool, SpeedCategoryName } from "~/util/mappings";
 import { Item } from "../Item";
 import type { ItemData } from "../Item";
 
-interface SpellData {
-  index: number,
-  id: number,
-  name: string
-}
-
 export interface WeaponData extends ItemData {
-  damageString: string
+  damageBonus: number,
+  damageMod: number,
   speedString: string
   offenseString: string
+  hasMeleeDefenseBonus: boolean
   defenseString: string
   skillString: string
   hasWieldRequirement: boolean
-  spells: SpellData[]
   wieldRequirementSkillName: string
   wieldRequirementSkillValue: number
   manaConversionBonus: number
-  hasElementalDamageMod: boolean
   elementalDamageModString: string
   elementalDamageModVsHumansString: string
+  hasElementalDamageMod: boolean
   elementalDamageTypeString: string
   propertyString: string
+  elementalDamageBonus: number
 }
 
 export class Weapon extends Item {
@@ -35,27 +31,21 @@ export class Weapon extends Item {
     await super.load(fetch);
   }
 
-  get minDamage(): number {
-    return this.maxDamage - (this.maxDamage * this.properties.floats.get(PropertyFloat.DamageVariance))
-  }
-
-  get maxDamage(): number {
+  get damageBonus(): number {
     return this.properties.ints.get(PropertyInt.Damage)
   }
 
-  get damageString(): string {
-    return `${this.minDamage} - ${this.maxDamage}, ${DamageTypePhrase(this.properties.ints.get(PropertyInt.DamageType))}`
+  get damageMod(): number {
+    return Math.round((this.properties.floats.get(PropertyFloat.DamageMod) - 1) * 100)
   }
 
   get speedString(): string {
-    return this.properties.ints.get(PropertyInt.WeaponTime)
+    return `${SpeedCategoryName(this.properties.ints.get(PropertyInt.WeaponTime))} (${this.properties.ints.get(PropertyInt.WeaponTime)})`
   }
 
-  get defenseString(): string {
-    const rawValue = this.properties.floats.get(PropertyFloat.WeaponDefense);
-    const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 });
-
-    return `${value}%`;
+  get hasMeleeDefenseBonus(): boolean {
+    return this.properties.floats.get(PropertyFloat.WeaponDefense) > 1 +
+      Number.EPSILON
   }
 
   get offenseString(): string {
@@ -65,21 +55,24 @@ export class Weapon extends Item {
     return `${value}%`;
   }
 
-  get skillString(): string {
-    const name = SkillName[this.properties.ints.get(PropertyInt.WeaponSkill)];
-    const category = WeaponTypeName[this.properties.ints.get(PropertyInt.WeaponType)];
+  get defenseString(): string {
+    const rawValue = this.properties.floats.get(PropertyFloat.WeaponDefense);
+    const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 });
 
-    return `${name} (${category})`;
+    return `${value}%`;
   }
 
-  get spells(): SpellData[] {
-    return Array.from(this.properties.spell_book?.entries()).map((x, i) => {
-      return {
-        index: i,
-        id: x[0],
-        name: x[1]
-      }
-    });
+  get skillString(): string {
+    console.log("skillStringskillStringskillString", this.properties.ints.get(PropertyInt.WeaponType))
+    const name = SkillName[this.properties.ints.get(PropertyInt.WeaponSkill)];
+    // Category can sometimes be undefined, see Enhanced Shivering Atlan Bow
+    const category = WeaponTypeName[this.properties.ints.get(PropertyInt.WeaponType)];
+
+    if (typeof category === "undefined") {
+      return `${name}`;
+    } else {
+      return `${name} (${category})`;
+    }
   }
 
   get hasWieldRequirement(): boolean {
@@ -124,10 +117,6 @@ export class Weapon extends Item {
     return props.join(", ")
   }
 
-  get hasElementalDamageMod(): boolean {
-    return typeof this.properties.floats.get(PropertyFloat.ElementalDamageMod) !== "undefined"
-  }
-
   get elementalDamageModString(): string {
     const rawValue = this.properties.floats.get(PropertyFloat.ElementalDamageMod);
     const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 });
@@ -142,28 +131,38 @@ export class Weapon extends Item {
     return value
   }
 
+  get hasElementalDamageMod(): boolean {
+    return this.properties.ints.get(PropertyInt.ResistanceModifierType);
+  }
+
   get elementalDamageTypeString(): string {
     return DamageTypePhrase(this.properties.ints.get(PropertyInt.ResistanceModifierType));
+  }
+
+  get elementalDamageBonus(): number {
+    return this.properties.ints.get(PropertyInt.ElementalDamageBonus)
   }
 
   json(): WeaponData {
     return {
       ...super.json(),
-      damageString: this.damageString,
+      damageBonus: this.damageBonus,
+      damageMod: this.damageMod,
       speedString: this.speedString,
       offenseString: this.offenseString,
+      hasMeleeDefenseBonus: this.hasMeleeDefenseBonus,
       defenseString: this.defenseString,
       skillString: this.skillString,
       hasWieldRequirement: this.hasWieldRequirement,
       wieldRequirementSkillName: this.wieldRequirementSkillName,
       wieldRequirementSkillValue: this.wieldRequirementSkillValue,
       manaConversionBonus: this.manaConversionBonus,
-      spells: this.spells,
       hasElementalDamageMod: this.hasElementalDamageMod,
       elementalDamageModString: this.elementalDamageModString,
       elementalDamageModVsHumansString: this.elementalDamageModVsHumansString,
       elementalDamageTypeString: this.elementalDamageTypeString,
       propertyString: this.propertyString,
+      elementalDamageBonus: this.elementalDamageBonus
     }
   }
 }

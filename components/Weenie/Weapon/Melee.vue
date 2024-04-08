@@ -31,8 +31,20 @@
               <div>Skill: {{ props.data.skillString }}</div>
               <div>Damage: {{ props.data.damageString }}</div>
               <div>Speed: {{ props.data.speedString }}</div>
+              <div>Bonus to Attack Skill: {{ props.data.offenseString }}</div>
+              <div>Speed to Melee Defense: {{ props.data.defenseString }}</div>
+            </div>
+            <div v-if="props.data.spells.length > 0">
+              Spells:
+              <span v-for="spell in props.data.spells" v-bind:key="spell.id">
+                <NuxtLink :to="`/spells/${spell.id}`">{{ spell.name }}</NuxtLink>
+                <span v-if="spell.index != props.data.spells.length - 1">,&nbsp;</span>
+              </span>
             </div>
             <div>
+              <div>Wield requires base {{ props.data.wieldRequirementSkillName }} {{
+                props.data.wieldRequirementSkillValue }}</div>
+              <div>Activation requires Arcane Lore: {{ props.data.itemDifficulty }}</div>
               <WeenieItemPropertiesExtended :data="props.data" />
             </div>
             <div>

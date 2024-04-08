@@ -2284,6 +2284,46 @@ export const DamageTypePhrase = (value: number) => {
 	return types.join("/")
 }
 
+// ACE: AmmoType
+export enum AmmoType {
+	None = 0x0,
+	Arrow = 0x1,
+	Bolt = 0x2,
+	Atlatl = 0x4,
+	ArrowCrystal = 0x8,
+	BoltCrystal = 0x10,
+	AtlatlCrystal = 0x20,
+	ArrowChorizite = 0x40,
+	BoltChorizite = 0x80,
+	AtlatlChorizite = 0x100
+}
+
+export const AmmoTypePhrase = (ammo_type: AmmoType) => {
+	if (ammo_type == AmmoType.None) {
+		return "none"
+	} else if (ammo_type == AmmoType.Arrow) {
+		return "arrows"
+	} else if (ammo_type == AmmoType.Bolt) {
+		return "quarrels"
+	} else if (ammo_type == AmmoType.Atlatl) {
+		return "atlatl darts"
+	} else if (ammo_type == AmmoType.ArrowCrystal) {
+		return "crystal-tip arrows"
+	} else if (ammo_type == AmmoType.BoltCrystal) {
+		return "crystal-tip quarrels"
+	} else if (ammo_type == AmmoType.AtlatlCrystal) {
+		return "crystal-tip atlatl darts"
+	} else if (ammo_type == AmmoType.ArrowChorizite) {
+		return "chorizite arrows"
+	} else if (ammo_type == AmmoType.BoltChorizite) {
+		return "chorizite quarrels"
+	} else if (ammo_type == AmmoType.AtlatlChorizite) {
+		return "chorizite atlatl darts"
+	}
+
+	return "error"
+}
+
 // ACE::PropertyDataId
 export enum PropertyDataId {
 	Undef = 0,
@@ -2576,4 +2616,22 @@ export const PropertyInstanceIdName: StringIndexedDict<string> = {
 	[PropertyInstanceId.PetDevice]: "PetDevice",
 	[PropertyInstanceId.PCAPRecordedObjectIID]: "PCAPRecordedObjectIID",
 	[PropertyInstanceId.PCAPRecordedParentIID]: "PCAPRecordedParentIID"
+}
+
+// WIP
+// 20, 30 is Fast
+// 35 is Average
+// 55 is Slow
+// 120 is Very Slow
+// TODO: Very Fast?
+export const SpeedCategoryName = (speed: number) => {
+	if (speed <= 30) {
+		return "Fast"
+	} else if (speed <= 45) {
+		return "Average"
+	} else if (speed <= 55) {
+		return "Slow"
+	} else {
+		return "Very Slow"
+	}
 }
