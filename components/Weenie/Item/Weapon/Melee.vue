@@ -13,7 +13,7 @@
       <div>Bonus to Attack Skill: {{ props.data.offenseString }}</div>
       <div>Speed to Melee Defense: {{ props.data.defenseString }}</div>
     </div>
-    <WeenieSpells
+    <WeenieItemSpells
       v-if="props.data.spells.length > 0"
       :spells="props.data.spells"
     />

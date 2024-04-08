@@ -20,7 +20,7 @@
       <!-- TODO: Magic Defense? -->
       <!-- TODO: Missile Defense? -->
     </div>
-    <WeenieSpells
+    <WeenieItemSpells
       v-if="props.data.spells.length > 0"
       :spells="props.data.spells"
     />
