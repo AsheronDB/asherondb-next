@@ -27,7 +27,7 @@
             <div>
               <div>Bonus to Melee Defense: {{ props.data.defenseString }}</div>
             </div>
-            <SpellsList v-if="props.data.spells.length > 0" :spells="props.data.spells" />
+            <WeenieSpells v-if="props.data.spells.length > 0" :spells="props.data.spells" />
             <div v-if="props.data.propertyString">
               <div>Properties: {{ props.data.propertyString }}</div>
             </div>
