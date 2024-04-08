@@ -27,13 +27,7 @@
             <div>
               <div>Bonus to Melee Defense: {{ props.data.defenseString }}</div>
             </div>
-            <div>
-              Spells:
-              <span v-for="spell in props.data.spells" v-bind:key="spell.id">
-                <NuxtLink :to="`/spells/${spell.id}`">{{ spell.name }}</NuxtLink>
-                <span v-if="spell.index != props.data.spells.length - 1">,&nbsp;</span>
-              </span>
-            </div>
+            <SpellsList v-if="props.data.spells.length > 0" :spells="props.data.spells" />
             <div v-if="props.data.propertyString">
               <div>Properties: {{ props.data.propertyString }}</div>
             </div>

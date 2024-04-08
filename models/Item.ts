@@ -1,7 +1,7 @@
 import { PropertyString, PropertyInt, PropertyFloat, PropertyBool } from "~/util/mappings";
 import { Weenie, type WeenieData } from "./Weenie";
 
-interface SpellData {
+export interface SpellData {
 	index: number,
 	id: number,
 	name: string
