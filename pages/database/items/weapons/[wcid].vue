@@ -1,17 +1,35 @@
 <template>
   <Page>
     <!-- <PageBreadcrumb :key="title" /> -->
-    <component :is="view" :data="weenie" />
+    <!-- <component :is="view" :data="weenie" /> -->
+
+    <div class="py-6">
+      <WeenieItem :data="weenie" />
+    </div>
+
+
     <!-- TODO: Links -->
+
+    <div class="pb-6">
+      <UHorizontalNavigation
+        :links="links"
+        class="border-b border-gray-700 bg-gray-800/40 px-2 rounded-t"
+      />
+
+      <div class="bg-gray-800 py-6 px-4 rounded-b">
+        <div
+          v-for="section in sections"
+          v-show="route.hash === '#' + section.key"
+          :key="section.key"
+        >
+          {{ section.content }}
+        </div>
+      </div>
+    </div>
   </Page>
 </template>
 
 <script setup lang="ts">
-import WeenieWeaponMelee from "~/components/Weenie/Weapon/Melee.vue"
-import WeenieWeaponMissile from "~/components/Weenie/Weapon/Missile.vue"
-import WeenieWeaponCaster from "~/components/Weenie/Weapon/Caster.vue"
-
-import { WeenieType } from '~/util/mappings';
 
 const route = useRoute();
 const title = ref("Weapon");
@@ -43,23 +61,39 @@ definePageMeta({
 });
 
 const { data } = await useFetch(`/api/weenie/${wcid}`);
+
 // TODO: Handle bad fetch
 weenie.value = data.value?.data
 
 // Dynamically decide component to use for rendering based on type
-let view: Component
 
-if (data.value?.data.type == WeenieType.MeleeWeapon) {
-  view = WeenieWeaponMelee
-} else if (data.value?.data.type == WeenieType.MissileLauncher) {
-  view = WeenieWeaponMissile
-} else if (data.value?.data.type == WeenieType.Caster) {
-  view = WeenieWeaponCaster
-} else {
-  throw new Error("Unsupported component");
-}
 
 title.value = weenie?.value.name;
 route.meta.title = weenie?.value.name;
 route.matched[route.matched.length - 1].meta.title = weenie?.value.name;
+
+
+const links = [
+  {
+    label: "Screenshots",
+    to: route.path + "#trophies",
+  },
+  {
+    label: "Sounds",
+    to: route.path + "#sounds",
+  },
+];
+
+const sections = [
+  {
+    label: "Trophies",
+    key: "trophies",
+    content: "Trophy Section content",
+  },
+  {
+    label: "Sounds",
+    key: "sounds",
+    content: "Sound Section content",
+  },
+];
 </script>
