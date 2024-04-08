@@ -38,35 +38,35 @@ export class Clothing extends Item {
 	}
 
 	get armorLevelVsSlash(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsSlash) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsSlash) || 1))
 	}
 
 	get armorLevelVsPierce(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsPierce) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsPierce) || 1))
 	}
 
 	get armorLevelVsBludgeon(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsBludgeon) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsBludgeon) || 1))
 	}
 
 	get armorLevelVsCold(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsCold) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsCold) || 1))
 	}
 
 	get armorLevelVsFire(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsFire) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsFire) || 1))
 	}
 
 	get armorLevelVsAcid(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsAcid) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsAcid) || 1))
 	}
 
 	get armorLevelVsElectric(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsElectric) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsElectric) || 1))
 	}
 
 	get armorLevelVsNether(): number | undefined {
-		return this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsNether) || 1)
+		return Math.round(this.armorLevel * (this.properties.floats.get(PropertyFloat.ArmorModVsNether) || 1))
 	}
 
 	get armorLevelVsSlashPhrase(): string | undefined {
