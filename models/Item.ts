@@ -10,6 +10,7 @@ export interface SpellData {
 export interface ItemData extends WeenieData {
 	value: number | undefined,
 	burden: number | undefined,
+	wieldDifficulty: number,
 	itemDifficulty: number | undefined,
 	use: string | undefined,
 	mana: number,
@@ -38,6 +39,10 @@ export class Item extends Weenie {
 
 	get burden(): number | undefined {
 		return this.properties.ints.get(PropertyInt.EncumbranceVal);
+	}
+
+	get wieldDifficulty(): number {
+		return this.properties.ints.get(PropertyInt.WieldDifficulty)
 	}
 
 	get itemDifficulty(): number | undefined {
@@ -79,6 +84,7 @@ export class Item extends Weenie {
 			...super.json(),
 			value: this.value,
 			burden: this.burden,
+			wieldDifficulty: this.wieldDifficulty,
 			itemDifficulty: this.itemDifficulty,
 			use: this.use,
 			mana: this.mana,

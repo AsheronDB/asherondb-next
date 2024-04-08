@@ -32,6 +32,7 @@
               <div>Properties: {{ props.data.propertyString }}</div>
             </div>
             <div>
+              <div v-if="props.data.wieldDifficulty">Wield requires level {{ props.data.wieldDifficulty }}</div>
               <div>Wield requires base {{ props.data.wieldRequirementSkillName }} {{
                 props.data.wieldRequirementSkillValue }}</div>
               <div>Activation requires Arcane Lore: {{ props.data.itemDifficulty }}</div>

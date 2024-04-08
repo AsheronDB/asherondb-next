@@ -43,6 +43,7 @@
               <div>Properties: {{ props.data.propertyString }}</div>
             </div>
             <div>
+              <div v-if="props.data.wieldDifficulty">Wield requires level {{ props.data.wieldDifficulty }}</div>
               <WeenieItemPropertiesExtended :data="props.data" />
             </div>
             <div v-if="props.data.description">
