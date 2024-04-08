@@ -1,4 +1,4 @@
-import { PropertyInt, PropertyFloat, ArmorModPhrase, CoveragePhrase } from "~/util/mappings";
+import { PropertyInt, PropertyFloat, ArmorModPhrase, CoveragePhrase, PropertyBool } from "~/util/mappings";
 import { Item, type ItemData } from "./Item";
 
 export interface ClothingData extends ItemData {
