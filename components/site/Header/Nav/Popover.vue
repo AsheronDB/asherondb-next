@@ -23,55 +23,57 @@
             :key="column.label"
             class="space-y-1.5"
           >
-            <p
-              class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400"
-            >
-              {{ column.label }}
-            </p>
-
-            <ul
-              v-if="column.children"
-              class="space-y-0.5"
-            >
-              <li
-                v-for="child in column.children"
-                :key="child.label"
+            <div v-for="section in column">
+              <p
+                class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400"
               >
-                <UDropdown
-                  v-if="child.children"
-                  :items="
-                    child.children.map((group: object) =>
-                      group.map((groupChild: object) => ({
-                        ...groupChild,
-                        click: () => close(),
-                      }))
-                    )
-                  "
-                  mode="hover"
-                  :popper="{ offsetDistance: 0, placement: 'right-start' }"
-                  :ui="dropdownUI"
-                >
-                  <div
-                    class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2 text-gray-200 rounded hover:bg-gray-600"
-                  >
-                    <div class="text-sm flex flex-col justify-center font-bold">
-                      {{ child.label }}
-                    </div>
-                    <div class="text-lg flex flex-col justify-center">
-                      <UIcon name="i-heroicons-chevron-right-20-solid" />
-                    </div>
-                  </div>
-                </UDropdown>
+                {{ section.label }}
+              </p>
 
-                <nuxt-link
-                  v-else
-                  :to="child.to"
-                  class="text-sm block py-1.5 px-2 rounded font-bold text-gray-200 [&.router-link-active]:bg-gray-600 hover:bg-gray-600"
+              <ul
+                v-if="section.children"
+                class="space-y-0.5"
+              >
+                <li
+                  v-for="child in section.children"
+                  :key="child.label"
                 >
-                  {{ child.label }}
-                </nuxt-link>
-              </li>
-            </ul>
+                  <UDropdown
+                    v-if="child.children"
+                    :items="
+                      child.children.map((group: object) =>
+                        group.map((groupChild: object) => ({
+                          ...groupChild,
+                          click: () => close(),
+                        }))
+                      )
+                    "
+                    mode="hover"
+                    :popper="{ offsetDistance: 0, placement: 'right-start' }"
+                    :ui="dropdownUI"
+                  >
+                    <div
+                      class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2 text-gray-200 rounded hover:bg-gray-600"
+                    >
+                      <div class="text-sm flex flex-col justify-center font-bold">
+                        {{ child.label }}
+                      </div>
+                      <div class="text-lg flex flex-col justify-center">
+                        <UIcon name="i-heroicons-chevron-right-20-solid" />
+                      </div>
+                    </div>
+                  </UDropdown>
+
+                  <nuxt-link
+                    v-else
+                    :to="child.to"
+                    class="text-sm block py-1.5 px-2 rounded font-bold text-gray-200 [&.router-link-active]:bg-gray-600 hover:bg-gray-600"
+                  >
+                    {{ child.label }}
+                  </nuxt-link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
