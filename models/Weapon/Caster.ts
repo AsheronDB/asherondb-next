@@ -1,3 +1,4 @@
+import { DamageTypePhrase, PropertyFloat, PropertyInt } from "~/util/mappings";
 import { Weapon, type WeaponData } from "./Weapon";
 
 export interface CasterData extends WeaponData {
@@ -16,6 +17,7 @@ export class Caster extends Weapon {
   json(): CasterData {
     return {
       ...super.json(),
+
     }
   }
 }

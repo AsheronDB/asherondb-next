@@ -21,23 +21,23 @@
             Properties
           </h3>
           <div class="flex flex-col gap-4">
-            <WeeniePanelSection>
+            <div>
               <WeenieItemPropertiesBasic :data="props.data" />
-            </WeeniePanelSection>
-            <WeeniePanelSection v-if="props.data.propertyString">
+            </div>
+            <div v-if="props.data.propertyString">
               <div>Properties: {{ props.data.propertyString }}</div>
-            </WeeniePanelSection>
-            <WeeniePanelSection>
+            </div>
+            <div>
               <div>Skill: {{ props.data.skillString }}</div>
               <div>Damage: {{ props.data.damageString }}</div>
               <div>Speed: {{ props.data.speedString }}</div>
-            </WeeniePanelSection>
-            <WeeniePanelSection>
+            </div>
+            <div>
               <WeenieItemPropertiesExtended :data="props.data" />
-            </WeeniePanelSection>
-            <WeeniePanelSection>
+            </div>
+            <div>
               <div>{{ props.data.description }}</div>
-            </WeeniePanelSection>
+            </div>
           </div>
         </div>
       </div>

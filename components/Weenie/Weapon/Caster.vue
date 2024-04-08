@@ -21,24 +21,39 @@
             Properties
           </h3>
           <div class="flex flex-col gap-4">
-            <WeeniePanelSection>
+            <div>
               <WeenieItemPropertiesBasic :data="props.data" />
-            </WeeniePanelSection>
-            <WeeniePanelSection v-if="props.data.propertyString">
+            </div>
+            <div>
+              <div>Bonus to Melee Defense: {{ props.data.defenseString }}</div>
+            </div>
+            <div>
+              Spells:
+              <span v-for="spell in props.data.spells" v-bind:key="spell.id">
+                <NuxtLink :to="`/spells/${spell.id}`">{{ spell.name }}</NuxtLink>
+                <span v-if="spell.index != props.data.spells.length - 1">,&nbsp;</span>
+              </span>
+            </div>
+            <div v-if="props.data.propertyString">
               <div>Properties: {{ props.data.propertyString }}</div>
-            </WeeniePanelSection>
-            <WeeniePanelSection>
-              TODO
-              <div>Skill: {{ props.data.skillString }}</div>
-              <div>Damage: {{ props.data.damageString }}</div>
-              <div>Speed: {{ props.data.speedString }}</div>
-            </WeeniePanelSection>
-            <WeeniePanelSection>
+            </div>
+            <div>
+              <div>Wield requires base {{ props.data.wieldRequirementSkillName }} {{
+                props.data.wieldRequirementSkillValue }}</div>
+              <div>Activation requires Arcane Lore: {{ props.data.itemDifficulty }}</div>
+            </div>
+            <div>
+              <div>Bonus to Mana Conversion: +{{ props.data.manaConversionBonus }}%</div>
+            </div>
+            <div>
+              <div>Damage bonus for {{ props.data.elementalDamageTypeString }} spells:</div>
+              <div>vs. Monsters: +{{ props.data.elementalDamageModString }}%.</div>
+              <div>vs. Players: +{{ props.data.elementalDamageModVsHumansString }}%.</div>
               <WeenieItemPropertiesExtended :data="props.data" />
-            </WeeniePanelSection>
-            <WeeniePanelSection>
+            </div>
+            <div>
               <div>{{ props.data.description }}</div>
-            </WeeniePanelSection>
+            </div>
           </div>
         </div>
       </div>

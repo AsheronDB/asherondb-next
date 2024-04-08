@@ -9,7 +9,6 @@ export interface ItemData extends WeenieData {
 	mana: number,
 	manaRateString: string,
 	spellcraft: number,
-	propertyString: string,
 	isSellable: boolean
 }
 
@@ -47,34 +46,11 @@ export class Item extends Weenie {
 	}
 
 	get manaRateString(): string {
-		console.log("manaRateString", this.properties.floats.get(PropertyFloat.ManaRate))
 		return `1 point per ${Math.round(Math.abs(1 / this.properties.floats.get(PropertyFloat.ManaRate)))} seconds.`
 	}
 
 	get spellcraft(): number {
 		return this.properties.ints.get(PropertyInt.ItemSpellcraft);
-	}
-
-	get propertyString(): string {
-		const props = []
-
-		if (this.properties.ints.get(PropertyInt.Attuned)) {
-			props.push("Attuned");
-		}
-
-		if (this.properties.ints.get(PropertyInt.Bonded)) {
-			props.push("Bonded");
-		}
-
-		if (this.properties.bool.get(PropertyBool.Ivoryable)) {
-			props.push("Ivoryable");
-		}
-
-		if (this.properties.bool.get(PropertyBool.Dyable)) {
-			props.push("Dyable");
-		}
-
-		return props.join(", ")
 	}
 
 	get isSellable(): bool {
@@ -91,7 +67,6 @@ export class Item extends Weenie {
 			mana: this.mana,
 			manaRateString: this.manaRateString,
 			spellcraft: this.spellcraft,
-			propertyString: this.propertyString,
 			isSellable: this.isSellable
 		}
 	}
