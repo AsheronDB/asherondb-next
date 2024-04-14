@@ -1,4 +1,6 @@
 // WIP: I'm factoring out queries I need for pages in here
+import { PropertyString } from "../mappings";
+
 // TODO: Rename this once I get a sense of what is needed
 export interface CountResponse {
    total: number
@@ -7,6 +9,12 @@ export interface CountResponse {
 export interface WeenieListingRow {
    wcid: string,
    name: string
+}
+
+export interface WeenieSearchListingRow {
+   wcid: string,
+   type: number,
+   name: string,
 }
 
 // getCountOfWeenieByClassId
@@ -39,4 +47,33 @@ export const getWeenies = (classIds: number[], page: number, page_size: number) 
       ${page_size}
    OFFSET
       ${(page - 1) * page_size}`
+}
+
+// getWeeniesByName
+export const getWeeniesByName = (name: string | null) => {
+   // Handle name being null
+   let filter = "";
+
+   if (name) {
+      filter = `AND name LIKE '%${name}%'`
+   } else {
+      filter = ""
+   }
+
+   return `
+   SELECT
+      weenie_properties_string.object_Id as wcid,
+      weenie.type as type,
+      weenie_properties_string.value as name
+   FROM
+      weenie
+   LEFT JOIN weenie_properties_string ON weenie.class_Id = weenie_properties_string.object_Id
+   WHERE
+      weenie_properties_string.type = ${PropertyString.Name}
+      ${filter}
+   ORDER BY
+      id
+   LIMIT
+      101
+   `;
 }
