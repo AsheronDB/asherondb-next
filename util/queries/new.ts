@@ -1,5 +1,15 @@
 // WIP: I'm factoring out queries I need for pages in here
+import { SQLiteSyncDialect } from 'drizzle-orm/sqlite-core';
+import { sql } from 'drizzle-orm'
+
 import { PropertyString } from "../mappings";
+
+// Run a raw query through Drizzle sql.raw and generate an SQLite query string
+export const getSQLString = function(query: string) : string {
+   const sqliteDialect = new SQLiteSyncDialect();
+
+   return sqliteDialect.sqlToQuery(sql.raw(query)).sql;
+}
 
 // TODO: Rename this once I get a sense of what is needed
 export interface CountResponse {
@@ -75,5 +85,4 @@ export const getWeeniesByName = (name: string | null) => {
       id
    LIMIT
       101
-   `;
 }
