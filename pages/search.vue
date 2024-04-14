@@ -12,13 +12,13 @@
 
 import type { AsyncData } from '#app';
 import type { WeenieSearchListingRow } from '~/util/queries/new';
-import { getWeeniesByName } from '~/util/queries/new';
+import { getSQLString, getWeeniesByName } from '~/util/queries/new';
 
 const route = useRoute();
 
 // It's important to use reactivity here so we refetch on client
 const filter = computed(() => route.query.q)
-const querySQL = computed(() => getWeeniesByName(filter.value))
+const querySQL = computed(() => getSQLString(getWeeniesByName(filter.value)))
 
 const { data : results, error } = await useFetch(
   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,

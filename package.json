@@ -17,6 +17,7 @@
     "@nuxtjs/seo": "^2.0.0-rc.9",
     "@pinia/nuxt": "^0.5.1",
     "date-fns": "^3.6.0",
+    "drizzle-orm": "^0.29.5",
     "lodash-es": "^4.17.21",
     "nuxt": "^3.11.1",
     "pinia": "^2.1.7",
