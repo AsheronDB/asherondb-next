@@ -1,13 +1,42 @@
+<script setup lang="ts">
+import type { FormSubmitEvent } from '#ui/types'
+
+type Schema = {
+  query: string
+}
+
+const state = reactive({
+  query: "",
+})
+
+async function onSubmit (event: FormSubmitEvent<Schema>) {
+  await navigateTo({
+    path: "/search",
+    query: {
+      "q": event.data.query
+    }
+  })
+}
+
+</script>
+
 <template>
-  <FormInput
-    placeholder="Search database... "
-    size="md"
+  <UForm
+    class="space-y-4"
+    :state="state"
+    @submit="onSubmit"
   >
+    <FormInput
+      v-model="state.query"
+      placeholder="Search database... "
+      size="md"
+    />
     <UButton
       color="acred"
       size="md"
+      type="submit"
     >
       Search
     </UButton>
-  </FormInput>
+  </UForm>
 </template>
