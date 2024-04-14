@@ -23,24 +23,7 @@
           <SiteHeaderNav />
         </div>
         <div class="flex-1">
-          <FormInput
-            placeholder="Search database... "
-            size="md"
-          >
-            <UButton
-              color="acred"
-              size="md"
-            >
-              Search
-            </UButton>
-          </FormInput>
-          <!-- <UInput
-            icon="i-heroicons-magnifying-glass-20-solid"
-            size="md"
-            color="white"
-            :trailing="false"
-            disabled
-            placeholder="Search..." /> -->
+          <SiteHeaderSearch />
         </div>
 
         <!-- <nuxt-link to="/servers">
