@@ -1,5 +1,8 @@
 <template>
   <Page>
+    <!-- <template #kicker>
+      Server Tracker
+    </template> -->
     <div
       v-if="data"
       class="py-4"

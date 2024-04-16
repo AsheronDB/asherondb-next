@@ -3,9 +3,12 @@
     <div
       class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto"
     >
-      <!-- <p class="text-md font-serif leading-none text-gray-400" v-if="$slots.kicker">
-        <slot name="kicker"></slot>
-      </p> -->
+      <p
+        v-if="$slots.kicker"
+        class="text-md font-serif leading-none text-gray-400 mb-3"
+      >
+        <slot name="kicker" />
+      </p>
       <!-- <p class="text-md font-serif leading-none text-gray-400" v-if="parentMatch">
 
       <nuxt-link :to="parentMatch.path">{{ parentMatch.title }}</nuxt-link>

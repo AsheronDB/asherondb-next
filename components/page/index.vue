@@ -3,7 +3,16 @@
     <header>
       <PageBreadcrumb v-if="route.meta.breadcrumb == true || route.meta.breadcrumb !== false" />
       <PageHeader v-if="route.meta.breadcrumb == true || route.meta.breadcrumb !== false">
-        <template #deck>
+        <template
+          v-if="$slots.kicker"
+          #kicker
+        >
+          <slot name="kicker" />
+        </template>
+        <template
+          v-if="$slots.deck"
+          #deck
+        >
           <slot name="deck" />
         </template>
       </PageHeader>
@@ -13,7 +22,8 @@
     </header>
 
     <div
-      class="group-[.two-column]/layout:grid group-[.two-column]/layout:grid-cols-5 group-[.two-column]/layout:gap-3 group-[.three-column]/layout:grid group-[.three-column]/layout:grid-cols-5 group-[.three-column]/layout:gap-8 group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
+      class="group-[.two-column]/layout:grid group-[.two-column]/layout:grid-cols-5 group-[.two-column]/layout:gap-3 group-[.three-column]/layout:grid group-[.three-column]/layout:grid-cols-5 group-[.three-column]/layout:gap-8 group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto"
+    >
       <template v-if="$slots?.sidebar && !$slots?.linkbar">
         <div class="col-span-1">
           <slot name="sidebar" />
