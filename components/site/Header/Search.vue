@@ -22,7 +22,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
 
 <template>
   <UForm
-    class="space-y-4"
+
     :state="state"
     @submit="onSubmit"
   >
@@ -30,13 +30,14 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
       v-model="state.query"
       placeholder="Search database... "
       size="md"
-    />
-    <UButton
-      color="acred"
-      size="md"
-      type="submit"
     >
-      Search
-    </UButton>
+      <UButton
+        color="acred"
+        size="md"
+        type="submit"
+      >
+        Search
+      </UButton>
+    </FormInput>
   </UForm>
 </template>

@@ -5,7 +5,7 @@ import { sql } from 'drizzle-orm'
 import { PropertyString } from "../mappings";
 
 // Run a raw query through Drizzle sql.raw and generate an SQLite query string
-export const getSQLString = function(query: string) : string {
+export const getSQLString = function (query: string): string {
    const sqliteDialect = new SQLiteSyncDialect();
 
    return sqliteDialect.sqlToQuery(sql.raw(query)).sql;
@@ -14,7 +14,7 @@ export const getSQLString = function(query: string) : string {
 // TODO: Rename this once I get a sense of what is needed
 export interface CountResponse {
    total: number
- }
+}
 
 export interface WeenieListingRow {
    wcid: string,
@@ -59,8 +59,30 @@ export const getWeenies = (classIds: number[], page: number, page_size: number) 
       ${(page - 1) * page_size}`
 }
 
+// getCountOfWeenieByName
+export const getCountOfWeenieByName = (name: string | null) => {
+   // const where = classIds.map((x) => `type = ${x}`).join(" OR ")
+
+   let filter = "";
+
+   if (name) {
+      filter = `AND weenie_properties_string.value LIKE '%${name}%'`
+   } else {
+      filter = ""
+   }
+
+   return `SELECT
+      COUNT(1) as total
+      FROM weenie
+      LEFT JOIN weenie_properties_string ON weenie.class_Id = weenie_properties_string.object_Id
+      WHERE
+         weenie_properties_string.type = ${PropertyString.Name}
+         ${filter}
+    `;
+}
+
 // getWeeniesByName
-export const getWeeniesByName = (name: string | null) => {
+export const getWeeniesByName = (name: string | null, page: number, page_size: number) => {
    // Handle name being null
    let filter = "";
 
@@ -84,5 +106,7 @@ export const getWeeniesByName = (name: string | null) => {
    ORDER BY
       id
    LIMIT
-      101
+      ${page_size}
+   OFFSET
+      ${(page - 1) * page_size}`
 }

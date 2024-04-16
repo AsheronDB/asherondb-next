@@ -1,7 +1,10 @@
 <template>
   <Page>
     <div>
-      <UTable :columns :rows="armor">
+      <UTable
+        :columns
+        :rows="armor"
+      >
         <template #name-data="{ row }">
           <nuxt-link :to="'/database/items/armor/' + row.wcid">
             <p class="font-bold">
@@ -10,19 +13,19 @@
           </nuxt-link>
         </template>
       </UTable>
-
-
     </div>
 
     <template #footer>
-      <div class="bg-gray-800/50 p-4 border-t border-gray-950">
+      <div class="bg-gray-800/50 py-6 border-t border-gray-950">
         <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
-          <UPagination v-model="page" :page-count="perPage" :total="totalPages" />
+          <UPagination
+            v-model="page"
+            :page-count="perPage"
+            :total="totalPages"
+          />
         </div>
-
       </div>
     </template>
-
   </Page>
 </template>
 
