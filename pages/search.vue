@@ -1,5 +1,5 @@
 <template>
-  <Page>
+  <Page :key="filter">
     <template #deck>
       {{ resultsRange }}
     </template>
@@ -100,6 +100,28 @@ const columns = [{
 //   titleTemplate: (title) => `${title} - Search - AsheronDB`
 // });
 
+watch(page, async () => {
+
+  window.scrollTo(0, 0);
+
+  // await navigateTo({
+  //   query: {
+  //     ...route.query,
+  //     page: page.value
+  //   }
+  // })
+
+
+});
+
+watch(filter, async () => {
+
+
+route.meta.title = `Search: "${filter.value}"`;
+route.matched[route.matched.length - 1].meta.title = `Search: "${filter.value}"`;
+
+
+});
 
 route.meta.title = `Search: "${filter.value}"`;
 route.matched[route.matched.length - 1].meta.title = `Search: "${filter.value}"`;
