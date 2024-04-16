@@ -9,7 +9,7 @@
         :rows="results"
       >
         <template #name-data="{ row }">
-          <nuxt-link :to="'/database/npcs/vendors/' + row.wcid">
+          <nuxt-link :to="`/database/${weenieTypeURLMapThing[row.type]}/${row.wcid}`">
             <p class="font-bold">
               {{ row.name }}
             </p>
@@ -49,6 +49,7 @@
 import type { AsyncData } from '#app';
 import type { WeenieSearchListingRow } from '~/util/queries/new';
 import { getSQLString, getWeeniesByName, getCountOfWeenieByName, type CountResponse } from '~/util/queries/new';
+import { weenieTypeURLMapThing } from "~/util/search"
 
 const route = useRoute();
 

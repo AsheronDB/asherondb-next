@@ -5,6 +5,7 @@ export const useStore = defineStore("store", () => {
 
   const now = ref(Date.now());
   const titlePhrase = ref(null);
+  const siteSearchFilter = ref('');
 
   const primaryNav = ref([
     {
@@ -231,6 +232,7 @@ export const useStore = defineStore("store", () => {
   return {
     primaryNav,
     titlePhrase,
+    siteSearchFilter,
     now
   };
 });

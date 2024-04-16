@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from '#ui/types'
 
+const route = useRoute();
+
 type Schema = {
   query: string
 }
 
 const state = reactive({
-  query: "",
+  query: route.query.q || "",
 })
 
 async function onSubmit (event: FormSubmitEvent<Schema>) {
