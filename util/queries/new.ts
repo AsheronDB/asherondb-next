@@ -82,7 +82,7 @@ export const getCountOfWeenieByName = (name: string | null) => {
 }
 
 // getWeeniesByName
-export const getWeeniesByName = (name: string | null, page: number, page_size: number) => {
+export const getWeeniesByName = (name: string | null, offset: number, offset_size: number) => {
    // Handle name being null
    let filter = "";
 
@@ -106,7 +106,7 @@ export const getWeeniesByName = (name: string | null, page: number, page_size: n
    ORDER BY
       id
    LIMIT
-      ${page_size}
+      ${offset_size}
    OFFSET
-      ${(page - 1) * page_size}`
+      ${offset}`
 }
