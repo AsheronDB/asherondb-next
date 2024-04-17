@@ -1,5 +1,6 @@
 <template>
   <Page :key="filter">
+    Total: {{ total }}
     <!-- <template #deck>
       {{ resultsRange }}
     </template> -->
@@ -56,7 +57,7 @@ const { data: count } = await useFetch(
   {
     key: "search-total",
     query: {
-      sql: getCountOfWeenieByName(filter.value),
+      sql: computed(() => getCountOfWeenieByName(filter.value))
     },
   }
 ) as AsyncData<CountResponse[], Error>;
