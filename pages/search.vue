@@ -1,6 +1,5 @@
 <template>
   <Page :key="filter">
-    Total: {{ total }}
     <!-- <template #deck>
       {{ resultsRange }}
     </template> -->
