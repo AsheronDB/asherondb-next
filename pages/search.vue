@@ -3,37 +3,32 @@
     <!-- <template #deck>
       {{ resultsRange }}
     </template> -->
-    <div>
-      <UTable
-        :columns
-        :rows="results"
-      >
-        <template #name-data="{ row }">
-          <nuxt-link :to="`/database/${weenieTypeURLMapThing[row.type]}/${row.wcid}`">
-            <p class="font-bold">
-              {{ row.name }}
-            </p>
-          </nuxt-link>
-        </template>
-      </UTable>
-    </div>
-
-    <template #footer>
-      <div class="bg-gray-800/50 p-4 border-t border-gray-950">
-        <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
+    <div class="py-6">
+      <div class="border border-gray-950 rounded-lg">
+        <div class="p-4 bg-gray-800 border-b-2 border-gray-700 rounded-t-lg flex justify-end">
           <PagePagination
             v-model="offset"
             :offset-size="offsetSize"
             :total
           />
-          <!-- <UPagination
-            v-model="page"
-            :page-count="perPage"
-            :total="total"
-          /> -->
+        </div>
+
+        <div class="bg-gray-800/40 rounded-b-lg">
+          <UTable
+            :columns
+            :rows="results"
+          >
+            <template #name-data="{ row }">
+              <nuxt-link :to="`/database/${weenieTypeURLMapThing[row.type]}/${row.wcid}`">
+                <p class="font-bold">
+                  {{ row.name }}
+                </p>
+              </nuxt-link>
+            </template>
+          </UTable>
         </div>
       </div>
-    </template>
+    </div>
   </Page>
 </template>
 
