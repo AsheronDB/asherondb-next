@@ -33,17 +33,9 @@ const randomTitlePhrase = () => {
   titlePhrase.value = titlePhrases.value[Math.floor(Math.random() * titlePhrases.value.length)];
 }
 
-
 if (!titlePhrase.value) {
-
-  console.log('app.vue setup, checking titlePhrase')
-  console.log(titlePhrase.value);
-
   randomTitlePhrase();
-  console.log(titlePhrase.value);
 }
-
-
 
 useHead({
   titleTemplate: (title) => {
@@ -69,22 +61,6 @@ useHead({
 
 
 onMounted(() => {
-
-  console.log('mounted')
-  // if (!isCrawler) {
-  //   document.title = this.pageTitle + " - " + randomTitlePhrase();
-  // }
-
-  // console.log('Title phrase')
-  // console.log(titlePhrase.value);
-  // if (!titlePhrase.value) {
-
-  //   console.log('app.vue mounted hook, checking titlePhrase')
-  //   console.log(titlePhrase.value);
-  // }
-
-
-
 
   setInterval(() => {
     now.value = Date.now();

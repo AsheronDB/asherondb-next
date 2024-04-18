@@ -45,23 +45,29 @@
 <script setup lang="ts">
 import { merge } from "lodash-es";
 
+defineOptions({
+  inheritAttrs: false
+})
+
 const input = ref(null);
 
-const props = defineProps<{
-  type: string,
-  placeholder: string,
-  size: string,
-  color: string,
-  icon: string,
-  variant: string,
-  disabled: string,
-  padded: string,
-  trailing: string,
-  loading: string,
-  ui: string,
-  autocomplete: string,
-  autofocus: string,
-}>();
+interface Props {
+  type?: string
+  placeholder?: string | null,
+  size?: string,
+  color?: string,
+  icon?: string | null,
+  variant?: string,
+  disabled?: string,
+  padded?: string,
+  trailing?: string,
+  loading?: string,
+  ui?: string,
+  autocomplete?: string,
+  autofocus?: string,
+}
+
+const props = defineProps<Props>();
 
 // eslint-disable-next-line vue/require-prop-types
 const modelValue = defineModel("modelValue");
