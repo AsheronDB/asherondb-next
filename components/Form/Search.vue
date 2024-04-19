@@ -1,91 +1,124 @@
 <template>
-  <div ref="container" class="flex flex-col gap-2 p-2">
+  <div
+    ref="container"
+    class="flex flex-col gap-2 p-2"
+  >
     <input
       id="search"
-      type="text"
-      class="px-2 py-1 w-100"
       ref="el"
       v-model="text"
-      @click="onClick"
-      @keyup="onKeyUp"
+      type="text"
+      class="px-2 py-1 w-100"
       aria-label="Search"
       placeholder="Start typing to search..."
-    />
+      @click="openDropdown"
+      @focus="openDropdown"
+      @keyup="onKeyUp"
+    >
     <div
       ref="dropdown"
       class="bg-gray-800 border border-gray-600 rounded p-2"
       :class="isShowingClass"
     >
-      <div>
-        <UTabs :items="items" class="w-full">
+      <div
+        class="max-h-96 overflow-y-scroll"
+      >
+        <UTabs
+          v-if="results"
+          :items="tabs"
+          class="w-full"
+        >
           <template #item="{ item }">
+            <!-- TODO: Sections are hard-coded right now! -->
             <div v-if="item.key === 'all'">
-              <FormSearchDropdownRow icon="🗺️" name="Shoushi" category="Zone" />
               <FormSearchDropdownRow
-                icon="🛡️"
-                name="Greenmire Cuirass"
-                category="Armor"
-              />
-              <FormSearchDropdownRow
-                icon="🗡️️"
-                name="Greenmire Yari"
-                category="Weapon"
-              />
-              <FormSearchDropdownRow
-                icon="👺"
-                name="Mosswart Shaman"
-                category="Monster"
-              />
-              <FormSearchDropdownRow icon="💰" name="Pyreal" category="Item" />
-            </div>
-            <div v-if="item.key === 'zones'">
-              <FormSearchDropdownRow icon="🗺️" name="Shoushi" category="Zone" />
-            </div>
-            <div v-if="item.key === 'armor'">
-              <FormSearchDropdownRow
-                icon="🛡️"
-                name="Greenmire Cuirass"
-                category="Armor"
+                v-for="result in results.items"
+                :key="result.name"
+                icon="🗺️"
+                :name="result.name"
+                :category="result.category"
+                :subcategory="result.subcategory"
+                :url="result.url"
               />
             </div>
-            <div v-if="item.key === 'weapons'">
+            <div v-if="item.key === 'item'">
               <FormSearchDropdownRow
-                icon="🗡️️"
-                name="Greenmire Yari"
-                category="Weapon"
+                v-for="result in results.items.filter(
+                  (i) => i.category === 'item',
+                )"
+                :key="result.name"
+                icon="🗺️"
+                :name="result.name"
+                :category="result.category"
+                :subcategory="result.subcategory"
+                :url="result.url"
               />
             </div>
-            <div v-if="item.key === 'monsters'">
+            <div v-if="item.key === 'character'">
               <FormSearchDropdownRow
-                icon="👺"
-                name="Mosswart Shaman"
-                category="Monster"
+                v-for="result in results.items.filter(
+                  (i) => i.category === 'character',
+                )"
+                :key="result.name"
+                icon="🗺️"
+                :name="result.name"
+                :category="result.category"
+                :subcategory="result.subcategory"
+                :url="result.url"
               />
             </div>
-            <div v-if="item.key === 'items'">
-              <FormSearchDropdownRow icon="💰" name="Pyreal" category="Item" />
+            <div v-if="item.key === 'world'">
+              <FormSearchDropdownRow
+                v-for="result in results.items.filter(
+                  (i) => i.category === 'world',
+                )"
+                :key="result.name"
+                icon="🗺️"
+                :name="result.name"
+                :category="result.category"
+                :subcategory="result.subcategory"
+                :url="result.url"
+              />
+            </div>
+            <div v-if="item.key === 'other'">
+              <FormSearchDropdownRow
+                v-for="result in results.items.filter(
+                  (i) => i.category === 'other',
+                )"
+                :key="result.name"
+                icon="🗺️"
+                :name="result.name"
+                :category="result.category"
+                :subcategory="result.subcategory"
+                :url="result.url"
+              />
             </div>
           </template>
         </UTabs>
       </div>
       <div class="text-right p-2">
-        <NuxtLink class="text-actan-500 hover:text-actan-500" to="/search"
-          >See All Results 👉</NuxtLink
+        <NuxtLink
+          class="text-actan-500 hover:text-actan-500"
+          :to="`/search?q=${text}`"
         >
+          See All Results 👉
+        </NuxtLink>
       </div>
     </div>
-    {{ text }}
   </div>
 </template>
 
 <script setup lang="ts">
+import { useDebounceFn } from "@vueuse/core";
+
 // Element refs
 const container = ref(null);
 const text = ref("");
 const el = ref(null);
 const dropdown = ref(null);
+const results = ref();
 
-// State
+// UI State
 const isShowing = ref(false);
 
 // TODO: Can simplify this if we want
@@ -97,41 +130,49 @@ const isShowingClass = computed(() => {
   }
 });
 
-const onClick = function (e: MouseEvent) {
+// Bound to @focus and @click on <input> box so we can show dropdown
+// automatically
+const openDropdown = function () {
   isShowing.value = true;
 };
 
-const onKeyUp = function (e: KeyboardEvent) {
-  // TODO: Hook this up to API, debounce, etc.
+const debouncedFetch = useDebounceFn($fetch, 300);
+
+const onKeyUp = async function (e: KeyboardEvent) {
+  // Do nothing if the input is empty
+  if (text.value.length <= 0) {
+    return;
+  }
+
+  const data = await debouncedFetch(`/api/search?q=${text.value}`);
+
+  results.value = data;
 };
 
-// TODO: Hook this into API so we only show tabs we need
-const items = [
-  {
-    key: "all",
-    label: "All",
-  },
-  {
-    key: "zones",
-    label: "Zones",
-  },
-  {
-    key: "armor",
-    label: "Armor",
-  },
-  {
-    key: "weapons",
-    label: "Weapons",
-  },
-  {
-    key: "monsters",
-    label: "Monsters",
-  },
-  {
-    key: "items",
-    label: "Items",
-  },
-];
+const tabs = computed(() => {
+  return [
+    {
+      key: "all",
+      label: `All (${results.value.items.length})`
+    },
+    {
+      key: "item",
+      label: `Item (${results.value.items.filter(i => i.category === 'item').length})`
+    },
+    {
+      key: "character",
+      label: `Character (${results.value.items.filter(i => i.category === 'character').length})`
+    },
+    {
+      key: "world",
+      label: `World (${results.value.items.filter(i => i.category === 'world').length})`
+    },
+    {
+      key: "other",
+      label: `Other (${results.value.items.filter(i => i.category === 'other').length})`
+    }
+  ]
+})
 
 // Only close the dropdown when we click anywhere and
 //

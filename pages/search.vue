@@ -37,7 +37,7 @@
 
 import type { AsyncData } from '#app';
 import type { WeenieSearchListingRow } from '~/util/queries/new';
-import { getSQLString, getWeeniesByName, getCountOfWeenieByName, type CountResponse } from '~/util/queries/new';
+import { getWeeniesByName, getCountOfWeenieByName, type CountResponse } from '~/util/queries/new';
 import { weenieTypeURLMapThing } from "~/util/search"
 
 const route = useRoute();
@@ -51,28 +51,35 @@ const offset = ref(0);
 const filter = computed(() => route.query.q)
 
 // Count
+const countQueryParams = computed(() => {
+  return {
+    sql: getCountOfWeenieByName(),
+    name: `%${filter.value}%`
+  }
+})
 const { data: count } = await useFetch(
   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
   {
     key: "search-total",
-    query: {
-      sql: computed(() => getCountOfWeenieByName(filter.value))
-    },
+    query: countQueryParams,
   }
 ) as AsyncData<CountResponse[], Error>;
 
 // if (count.value) totalPages.value = Math.round(Number(count.value[0].total) / offsetSize.value)
 const total = computed(() => count.value ? count.value[0].total : 0);
 
-const querySQL = computed(() => getSQLString(getWeeniesByName(filter.value, offset.value, offsetSize.value)))
+const queryParams = computed(() => {
+  return {
+    sql: getWeeniesByName(offset.value, offsetSize.value),
+    name: `%${filter.value}%`
+  }
+})
 
 const { data : results, error } = await useFetch(
   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
   {
     key: "search",
-    query: {
-      sql: querySQL,
-    },
+    query: queryParams,
   },
 ) as AsyncData<WeenieSearchListingRow[], Error>;
 

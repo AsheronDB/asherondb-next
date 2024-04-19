@@ -1,15 +1,6 @@
 // WIP: I'm factoring out queries I need for pages in here
-import { SQLiteSyncDialect } from 'drizzle-orm/sqlite-core';
-import { sql } from 'drizzle-orm'
 
 import { PropertyString } from "../mappings";
-
-// Run a raw query through Drizzle sql.raw and generate an SQLite query string
-export const getSQLString = function (query: string): string {
-   const sqliteDialect = new SQLiteSyncDialect();
-
-   return sqliteDialect.sqlToQuery(sql.raw(query)).sql;
-}
 
 // TODO: Rename this once I get a sense of what is needed
 export interface CountResponse {
@@ -60,53 +51,36 @@ export const getWeenies = (classIds: number[], page: number, page_size: number) 
 }
 
 // getCountOfWeenieByName
-export const getCountOfWeenieByName = (name: string | null) => {
-   // const where = classIds.map((x) => `type = ${x}`).join(" OR ")
-
-   let filter = "";
-
-   if (name) {
-      filter = `AND weenie_properties_string.value LIKE '%${name}%'`
-   } else {
-      filter = ""
-   }
-
+export const getCountOfWeenieByName = () => {
    return `SELECT
       COUNT(1) as total
       FROM weenie
       LEFT JOIN weenie_properties_string ON weenie.class_Id = weenie_properties_string.object_Id
       WHERE
          weenie_properties_string.type = ${PropertyString.Name}
-         ${filter}
+         AND
+         weenie_properties_string.value LIKE :name
     `;
 }
 
 // getWeeniesByName
-export const getWeeniesByName = (name: string | null, offset: number, offset_size: number) => {
-   // Handle name being null
-   let filter = "";
-
-   if (name) {
-      filter = `AND name LIKE '%${name}%'`
-   } else {
-      filter = ""
-   }
-
+export const getWeeniesByName = (offset: number, offset_size: number) => {
    return `
-   SELECT
-      weenie_properties_string.object_Id as wcid,
-      weenie.type as type,
-      weenie_properties_string.value as name
-   FROM
-      weenie
-   LEFT JOIN weenie_properties_string ON weenie.class_Id = weenie_properties_string.object_Id
-   WHERE
-      weenie_properties_string.type = ${PropertyString.Name}
-      ${filter}
-   ORDER BY
-      id
-   LIMIT
-      ${offset_size}
-   OFFSET
-      ${offset}`
+      SELECT
+         weenie_properties_string.object_Id as wcid,
+         weenie.type as type,
+         weenie_properties_string.value as name
+      FROM
+         weenie
+      LEFT JOIN weenie_properties_string ON weenie.class_Id = weenie_properties_string.object_Id
+      WHERE
+         weenie_properties_string.type = ${PropertyString.Name}
+         AND
+         name LIKE :name
+      ORDER BY
+         id
+      LIMIT
+         ${offset_size}
+      OFFSET
+         ${offset}`
 }
