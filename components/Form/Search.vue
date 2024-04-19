@@ -1,7 +1,7 @@
 <template>
   <div
     ref="container"
-    class="flex flex-col gap-2 p-2"
+    class="relative flex flex-col gap-2 p-2"
   >
     <input
       id="search"
@@ -15,94 +15,107 @@
       @focus="openDropdown"
       @keyup="onKeyUp"
     >
-    <div
-      ref="dropdown"
-      class="bg-gray-800 border border-gray-600 rounded p-2"
-      :class="isShowingClass"
-    >
+    <div class="absolute top-10 left-0 p-2">
       <div
-        class="max-h-96 overflow-y-scroll"
+        ref="dropdown"
+        class="bg-gray-800 border border-gray-600 rounded p-2"
+        :class="isShowingClass"
       >
-        <UTabs
-          v-if="results"
-          :items="tabs"
+        <div
+          v-if="!results"
           class="w-full"
         >
-          <template #item="{ item }">
-            <!-- TODO: Sections are hard-coded right now! -->
-            <div v-if="item.key === 'all'">
-              <FormSearchDropdownRow
-                v-for="result in results.items"
-                :key="result.name"
-                icon="🗺️"
-                :name="result.name"
-                :category="result.category"
-                :subcategory="result.subcategory"
-                :url="result.url"
-              />
-            </div>
-            <div v-if="item.key === 'item'">
-              <FormSearchDropdownRow
-                v-for="result in results.items.filter(
-                  (i) => i.category === 'item',
-                )"
-                :key="result.name"
-                icon="🗺️"
-                :name="result.name"
-                :category="result.category"
-                :subcategory="result.subcategory"
-                :url="result.url"
-              />
-            </div>
-            <div v-if="item.key === 'character'">
-              <FormSearchDropdownRow
-                v-for="result in results.items.filter(
-                  (i) => i.category === 'character',
-                )"
-                :key="result.name"
-                icon="🗺️"
-                :name="result.name"
-                :category="result.category"
-                :subcategory="result.subcategory"
-                :url="result.url"
-              />
-            </div>
-            <div v-if="item.key === 'world'">
-              <FormSearchDropdownRow
-                v-for="result in results.items.filter(
-                  (i) => i.category === 'world',
-                )"
-                :key="result.name"
-                icon="🗺️"
-                :name="result.name"
-                :category="result.category"
-                :subcategory="result.subcategory"
-                :url="result.url"
-              />
-            </div>
-            <div v-if="item.key === 'other'">
-              <FormSearchDropdownRow
-                v-for="result in results.items.filter(
-                  (i) => i.category === 'other',
-                )"
-                :key="result.name"
-                icon="🗺️"
-                :name="result.name"
-                :category="result.category"
-                :subcategory="result.subcategory"
-                :url="result.url"
-              />
-            </div>
-          </template>
-        </UTabs>
-      </div>
-      <div class="text-right p-2">
-        <NuxtLink
-          class="text-actan-500 hover:text-actan-500"
-          :to="`/search?q=${text}`"
+          No results to show.
+        </div>
+        <!-- Results overflow container -->
+        <div
+          class="max-h-96 overflow-y-scroll"
         >
-          See All Results 👉
-        </NuxtLink>
+          <UTabs
+            v-if="results"
+            :items="tabs"
+            class="w-full"
+          >
+            <template #item="{ item }">
+              <!-- TODO: Sections are hard-coded right now! -->
+              <div v-if="item.key === 'all'">
+                <FormSearchDropdownRow
+                  v-for="result in results.items"
+                  :key="result.name"
+                  icon="🗺️"
+                  :name="result.name"
+                  :category="result.category"
+                  :subcategory="result.subcategory"
+                  :url="result.url"
+                />
+              </div>
+              <div v-if="item.key === 'item'">
+                <FormSearchDropdownRow
+                  v-for="result in results.items.filter(
+                    (i) => i.category === 'item',
+                  )"
+                  :key="result.name"
+                  icon="🗺️"
+                  :name="result.name"
+                  :category="result.category"
+                  :subcategory="result.subcategory"
+                  :url="result.url"
+                />
+              </div>
+              <div v-if="item.key === 'character'">
+                <FormSearchDropdownRow
+                  v-for="result in results.items.filter(
+                    (i) => i.category === 'character',
+                  )"
+                  :key="result.name"
+                  icon="🗺️"
+                  :name="result.name"
+                  :category="result.category"
+                  :subcategory="result.subcategory"
+                  :url="result.url"
+                />
+              </div>
+              <div v-if="item.key === 'world'">
+                <FormSearchDropdownRow
+                  v-for="result in results.items.filter(
+                    (i) => i.category === 'world',
+                  )"
+                  :key="result.name"
+                  icon="🗺️"
+                  :name="result.name"
+                  :category="result.category"
+                  :subcategory="result.subcategory"
+                  :url="result.url"
+                />
+              </div>
+              <div v-if="item.key === 'other'">
+                <FormSearchDropdownRow
+                  v-for="result in results.items.filter(
+                    (i) => i.category === 'other',
+                  )"
+                  :key="result.name"
+                  icon="🗺️"
+                  :name="result.name"
+                  :category="result.category"
+                  :subcategory="result.subcategory"
+                  :url="result.url"
+                />
+              </div>
+            </template>
+          </UTabs>
+        </div>
+        <div
+          v-if="results"
+          class="text-right p-2"
+        >
+          <NuxtLink
+            class="text-actan-500 hover:text-actan-500"
+            :to="`/search?q=${text}`"
+            @click="closeDropdown"
+          >
+            See All Results 👉
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
@@ -134,6 +147,10 @@ const isShowingClass = computed(() => {
 // automatically
 const openDropdown = function () {
   isShowing.value = true;
+};
+
+const closeDropdown = function () {
+  isShowing.value = false;
 };
 
 const debouncedFetch = useDebounceFn($fetch, 300);
