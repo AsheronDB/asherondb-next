@@ -14,7 +14,7 @@
 
     <template #panel="{ close }">
       <div
-        class="py-4 px-6 "
+        class="py-4 px-6"
         :class="[dropdownHovered ? 'bg-red-500' : '']"
       >
         <div class="grid grid-cols-3 gap-10 text-gray-100">
