@@ -57,7 +57,6 @@
 
           <NuxtPage v-model="headings" />
 
-
           <hr>
           <section class="space-y-6">
             <h3
@@ -287,15 +286,14 @@
 </template>
 
 <script setup lang="ts">
-const mainContentRef = ref(null);
+const mainContentRef = ref(null)
 
-const route = useRoute();
+const route = useRoute()
 
-const headings = ref(null);
+const headings = ref(null)
 
 definePageMeta({
   layout: "three-column",
-  title: 'How to Play'
+  title: "How to Play",
 })
-
 </script>

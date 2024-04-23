@@ -122,72 +122,73 @@
 </template>
 
 <script setup lang="ts">
-import { useDebounceFn } from "@vueuse/core";
+import { useDebounceFn } from "@vueuse/core"
 
 // Element refs
-const container = ref(null);
-const text = ref("");
-const el = ref(null);
-const dropdown = ref(null);
-const results = ref();
+const container = ref(null)
+const text = ref("")
+const el = ref(null)
+const dropdown = ref(null)
+const results = ref()
 
 // UI State
-const isShowing = ref(false);
+const isShowing = ref(false)
 
 // TODO: Can simplify this if we want
 const isShowingClass = computed(() => {
   if (isShowing.value) {
-    return "visible";
-  } else {
-    return "hidden";
+    return "visible"
   }
-});
+  else {
+    return "hidden"
+  }
+})
 
 // Bound to @focus and @click on <input> box so we can show dropdown
 // automatically
 const openDropdown = function () {
-  isShowing.value = true;
-};
+  isShowing.value = true
+}
 
 const closeDropdown = function () {
-  isShowing.value = false;
-};
+  isShowing.value = false
+}
 
-const debouncedFetch = useDebounceFn($fetch, 300);
+const debouncedFetch = useDebounceFn($fetch, 300)
 
-const onKeyUp = async function (e: KeyboardEvent) {
+const onKeyUp = async function () {
   // Do nothing if the input is empty
   if (text.value.length <= 0) {
-    return;
+    return
   }
 
-  const data = await debouncedFetch(`/api/search?q=${text.value}`);
+  const data = await debouncedFetch(`/api/search?q=${text.value}`)
 
-  results.value = data;
-};
+  results.value = data
+}
 
 const tabs = computed(() => {
   return [
     {
       key: "all",
-      label: `All (${results.value.items.length})`
+      label: `All (${results.value.items.length})`,
     },
     {
       key: "item",
-      label: `Item (${results.value.items.filter(i => i.category === 'item').length})`
+      label: `Item (${results.value.items.filter(i => i.category === "item").length})`,
     },
     {
       key: "character",
-      label: `Character (${results.value.items.filter(i => i.category === 'character').length})`
+      label: `Character (${results.value.items.filter(i => i.category === "character").length})`,
     },
     {
       key: "world",
-      label: `World (${results.value.items.filter(i => i.category === 'world').length})`
+      label: `World (${results.value.items.filter(i => i.category === "world").length})`,
     },
     {
       key: "other",
-      label: `Other (${results.value.items.filter(i => i.category === 'other').length})`
-    }
+      label: `Other (${results.value.items.filter(i => i.category === "other").length})`,
+    },
   ]
 })
 
@@ -199,26 +200,26 @@ const tabs = computed(() => {
 // TODO: Maybe this can be more Vue-like.
 onMounted(() => {
   if (!document) {
-    return;
+    return
   }
 
   document.addEventListener("click", function (e: MouseEvent) {
     // Don't do anything if we're not showing the dropdown
     if (!isShowing.value) {
-      return;
+      return
     }
 
     // Return now just in case container isn't set
     if (!container.value) {
-      return;
+      return
     }
 
     // Don't hide if we clicked inside the container
     if (container.value.contains(e.target)) {
-      return;
+      return
     }
 
-    isShowing.value = false;
-  });
-});
+    isShowing.value = false
+  })
+})
 </script>

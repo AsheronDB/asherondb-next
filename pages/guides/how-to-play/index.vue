@@ -176,18 +176,17 @@
 </template>
 
 <script setup>
-const props = defineProps(["modelValue"]);
-const emits = defineEmits(["update:modelValue"]);
+const _props = defineProps(["modelValue"])
+const emits = defineEmits(["update:modelValue"])
 
-const heading = ref([]);
+const heading = ref([])
 
 onMounted(async () => {
-  await nextTick();
-  emits("update:modelValue", heading.value);
-});
+  await nextTick()
+  emits("update:modelValue", heading.value)
+})
 
 // definePageMeta({
 //   title: 'Windows'
 // })
-
 </script>

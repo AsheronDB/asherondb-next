@@ -30,9 +30,9 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute();
+const route = useRoute()
 
-console.log(route);
+console.log(route)
 
 // const parentMatch = computed(() => {
 //   const matched = route.matched.filter(match => match.meta.title);

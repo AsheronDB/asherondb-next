@@ -15,7 +15,6 @@
   </div>
 </template>
 
-  <script setup lang="ts">
-  const route = useRoute();
-
-  </script>
+<script setup lang="ts">
+const route = useRoute()
+</script>

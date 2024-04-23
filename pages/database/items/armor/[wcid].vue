@@ -7,19 +7,18 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
+const title = ref("Armor")
 
-const route = useRoute();
-const title = ref("Armor");
-
-const wcid = route.params.wcid;
-const weenie = ref();
+const wcid = route.params.wcid
+const weenie = ref()
 
 definePageMeta({
   // title: weenie?.name, // Might need to make reactive, it's only a ref right now
   validate: async (route) => {
     if (
-      typeof route.params.wcid !== "string" ||
-      !/^\d+$/.test(route.params.wcid)
+      typeof route.params.wcid !== "string"
+      || !/^\d+$/.test(route.params.wcid)
     ) {
       // TODO: Nuxt claims returning an object like this is how you set a
       // non-404 response but if you enable this block, you get an infinite
@@ -30,18 +29,18 @@ definePageMeta({
       // return {
       // statusCode: 400, statusMessage: "Invalid value for weenie class ID."
       // }
-      return false;
+      return false
     }
 
-    return true;
+    return true
   },
-});
+})
 
-const { data } = await useFetch(`/api/weenie/${wcid}`);
+const { data } = await useFetch(`/api/weenie/${wcid}`)
 // TODO: Handle bad fetch
 weenie.value = data.value?.data
 
-title.value = weenie?.value.name;
-route.meta.title = weenie?.value.name;
-route.matched[route.matched.length - 1].meta.title = weenie?.value.name;
+title.value = weenie?.value.name
+route.meta.title = weenie?.value.name
+route.matched[route.matched.length - 1].meta.title = weenie?.value.name
 </script>

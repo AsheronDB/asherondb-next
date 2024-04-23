@@ -1,7 +1,10 @@
 <template>
   <Page>
     <div class="py-4 space-y-4">
-      <UTable :columns :rows="races">
+      <UTable
+        :columns
+        :rows="races"
+      >
         <template #name-data="{ row }">
           <nuxt-link :to="'/database/races/' + row.handle">
             <p class="font-bold">
@@ -13,9 +16,10 @@
     </div>
   </Page>
 </template>
+
 <script setup lang="ts">
-const route = useRoute();
-console.log(route);
+const route = useRoute()
+console.log(route)
 
 const races = [
   {
@@ -42,9 +46,9 @@ const races = [
     race: "Isparian",
     added_at: "Release",
   },
-];
+]
 
 definePageMeta({
   title: "Player Races",
-});
+})
 </script>

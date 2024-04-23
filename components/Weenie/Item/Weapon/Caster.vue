@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CasterData } from '~/models/Weapon/Caster';
+import type { CasterData } from "~/models/Weapon/Caster"
 
-const props = defineProps<{ data: CasterData }>();
+const props = defineProps<{ data: CasterData }>()
 </script>

@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MonsterData } from "../../models/Monster";
+import type { MonsterData } from "../../models/Monster"
 
-const props = defineProps<{data: MonsterData}>();
+const props = defineProps<{ data: MonsterData }>()
 </script>

@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ItemData } from '~/models/Item';
+import type { ItemData } from "~/models/Item"
 
-const props = defineProps<{ data: ItemData }>();
+const props = defineProps<{ data: ItemData }>()
 </script>

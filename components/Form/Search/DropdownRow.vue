@@ -18,12 +18,12 @@
 </template>
 
 <script setup lang="ts">
-import { SearchResultSubCategoryLabel, SearchResultSubCategoryIcon } from "~/util/search";
+import { SearchResultSubCategoryLabel, SearchResultSubCategoryIcon } from "~/util/search"
 
 const props = defineProps<{
-  name: string;
-  category: string;
-  subcategory: string;
-  url: string;
-}>();
+  name: string
+  category: string
+  subcategory: string
+  url: string
+}>()
 </script>

@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MeleeWeaponData } from '~/models/Weapon/MeleeWeapon';
+import type { MeleeWeaponData } from "~/models/Weapon/MeleeWeapon"
 
-const props = defineProps<{ data: MeleeWeaponData }>();
+const props = defineProps<{ data: MeleeWeaponData }>()
 </script>

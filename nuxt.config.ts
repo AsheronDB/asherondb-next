@@ -21,7 +21,8 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/seo",
     "@nuxtjs/device",
-    "@nuxt/content"
+    "@nuxt/content",
+    "@nuxt/eslint",
   ],
   colorMode: {
     preference: "light",
@@ -47,4 +48,12 @@ export default defineNuxtConfig({
       },
     },
   },
-});
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        quotes: "double",
+      },
+    },
+  },
+})
