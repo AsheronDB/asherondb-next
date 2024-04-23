@@ -37,8 +37,6 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore();
-const { primaryNav } = storeToRefs(store);
-
-
+const store = useStore()
+const { primaryNav } = storeToRefs(store)
 </script>

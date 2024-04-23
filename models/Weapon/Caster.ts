@@ -1,5 +1,4 @@
-import { DamageTypePhrase, PropertyFloat, PropertyInt } from "~/util/mappings";
-import { Weapon, type WeaponData } from "./Weapon";
+import { Weapon, type WeaponData } from "./Weapon"
 
 export interface CasterData extends WeaponData {
 
@@ -11,7 +10,7 @@ export class Caster extends Weapon {
   }
 
   async load(fetch: any) {
-    await super.load(fetch);
+    await super.load(fetch)
   }
 
   json(): CasterData {

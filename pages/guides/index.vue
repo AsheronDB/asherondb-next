@@ -3,9 +3,7 @@
 </template>
 
 <script setup lang="ts">
-
-
 definePageMeta({
-  title: 'Guides'
+  title: "Guides",
 })
 </script>

@@ -1,10 +1,10 @@
-import { PropertyInt, PropertyFloat, DamageTypePhrase, SkillName, WeaponTypeName, PropertyBool, SpeedCategoryName } from "~/util/mappings";
-import { Item } from "../Item";
-import type { ItemData } from "../Item";
+import { Item } from "../Item"
+import type { ItemData } from "../Item"
+import { PropertyInt, PropertyFloat, DamageTypePhrase, SkillName, WeaponTypeName, PropertyBool, SpeedCategoryName } from "~/util/mappings"
 
 export interface WeaponData extends ItemData {
-  damageBonus: number,
-  damageMod: number,
+  damageBonus: number
+  damageMod: number
   speedString: string
   offenseString: string
   hasMeleeDefenseBonus: boolean
@@ -28,7 +28,7 @@ export class Weapon extends Item {
   }
 
   async load(fetch: any) {
-    await super.load(fetch);
+    await super.load(fetch)
   }
 
   get damageBonus(): number {
@@ -44,34 +44,35 @@ export class Weapon extends Item {
   }
 
   get hasMeleeDefenseBonus(): boolean {
-    return this.properties.floats.get(PropertyFloat.WeaponDefense) > 1 +
-      Number.EPSILON
+    return this.properties.floats.get(PropertyFloat.WeaponDefense) > 1
+      + Number.EPSILON
   }
 
   get offenseString(): string {
-    const rawValue = this.properties.floats.get(PropertyFloat.WeaponOffense);
-    const value = Math.round((rawValue - 1) * 1000) / 10;
+    const rawValue = this.properties.floats.get(PropertyFloat.WeaponOffense)
+    const value = Math.round((rawValue - 1) * 1000) / 10
 
-    return `${value}%`;
+    return `${value}%`
   }
 
   get defenseString(): string {
-    const rawValue = this.properties.floats.get(PropertyFloat.WeaponDefense);
-    const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 });
+    const rawValue = this.properties.floats.get(PropertyFloat.WeaponDefense)
+    const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 })
 
-    return `${value}%`;
+    return `${value}%`
   }
 
   get skillString(): string {
     console.log("skillStringskillStringskillString", this.properties.ints.get(PropertyInt.WeaponType))
-    const name = SkillName[this.properties.ints.get(PropertyInt.WeaponSkill)];
+    const name = SkillName[this.properties.ints.get(PropertyInt.WeaponSkill)]
     // Category can sometimes be undefined, see Enhanced Shivering Atlan Bow
-    const category = WeaponTypeName[this.properties.ints.get(PropertyInt.WeaponType)];
+    const category = WeaponTypeName[this.properties.ints.get(PropertyInt.WeaponType)]
 
     if (typeof category === "undefined") {
-      return `${name}`;
-    } else {
-      return `${name} (${category})`;
+      return `${name}`
+    }
+    else {
+      return `${name} (${category})`
     }
   }
 
@@ -88,18 +89,18 @@ export class Weapon extends Item {
   }
 
   get manaConversionBonus(): number {
-    return this.properties.floats.get(PropertyFloat.ManaConversionMod) * 100;
+    return this.properties.floats.get(PropertyFloat.ManaConversionMod) * 100
   }
 
   get propertyString(): string {
     const props = []
 
     if (this.properties.ints.get(PropertyInt.Attuned)) {
-      props.push("Attuned");
+      props.push("Attuned")
     }
 
     if (this.properties.ints.get(PropertyInt.Bonded)) {
-      props.push("Bonded");
+      props.push("Bonded")
     }
 
     if (this.hasElementalDamageMod) {
@@ -107,36 +108,36 @@ export class Weapon extends Item {
     }
 
     if (this.properties.bool.get(PropertyBool.Ivoryable)) {
-      props.push("Ivoryable");
+      props.push("Ivoryable")
     }
 
     if (this.properties.bool.get(PropertyBool.Dyable)) {
-      props.push("Dyable");
+      props.push("Dyable")
     }
 
     return props.join(", ")
   }
 
   get elementalDamageModString(): string {
-    const rawValue = this.properties.floats.get(PropertyFloat.ElementalDamageMod);
-    const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 });
+    const rawValue = this.properties.floats.get(PropertyFloat.ElementalDamageMod)
+    const value = (Math.round((rawValue - 1) * 1000) / 10).toLocaleString(undefined, { minimumFractionDigits: 1 })
 
     return value
   }
 
   get elementalDamageModVsHumansString(): string {
-    const rawValue = this.properties.floats.get(PropertyFloat.ElementalDamageMod);
-    const value = ((Math.round((rawValue - 1) * 1000) / 10) / 2).toLocaleString(undefined, { minimumFractionDigits: 1 });
+    const rawValue = this.properties.floats.get(PropertyFloat.ElementalDamageMod)
+    const value = ((Math.round((rawValue - 1) * 1000) / 10) / 2).toLocaleString(undefined, { minimumFractionDigits: 1 })
 
     return value
   }
 
   get hasElementalDamageMod(): boolean {
-    return this.properties.ints.get(PropertyInt.ResistanceModifierType);
+    return this.properties.ints.get(PropertyInt.ResistanceModifierType)
   }
 
   get elementalDamageTypeString(): string {
-    return DamageTypePhrase(this.properties.ints.get(PropertyInt.ResistanceModifierType));
+    return DamageTypePhrase(this.properties.ints.get(PropertyInt.ResistanceModifierType))
   }
 
   get elementalDamageBonus(): number {
@@ -162,7 +163,7 @@ export class Weapon extends Item {
       elementalDamageModVsHumansString: this.elementalDamageModVsHumansString,
       elementalDamageTypeString: this.elementalDamageTypeString,
       propertyString: this.propertyString,
-      elementalDamageBonus: this.elementalDamageBonus
+      elementalDamageBonus: this.elementalDamageBonus,
     }
   }
 }

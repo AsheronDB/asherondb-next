@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from '#ui/types'
+import type { FormSubmitEvent } from "#ui/types"
 
-const route = useRoute();
+const route = useRoute()
 
 type Schema = {
   query: string
@@ -11,15 +11,14 @@ const state = reactive({
   query: route.query.q || "",
 })
 
-async function onSubmit (event: FormSubmitEvent<Schema>) {
+async function onSubmit(event: FormSubmitEvent<Schema>) {
   await navigateTo({
     path: "/search",
     query: {
-      "q": event.data.query
-    }
+      q: event.data.query,
+    },
   })
 }
-
 </script>
 
 <template>

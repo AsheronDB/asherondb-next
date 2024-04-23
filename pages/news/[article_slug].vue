@@ -12,7 +12,6 @@
       </template>
     </page-header> -->
 
-
     <div class="flex-1">
       {{ surround }}
 
@@ -46,18 +45,18 @@
 </template>
 
 <script setup>
-const route = useRoute();
+const route = useRoute()
 
-const prev = ref(null);
-const next = ref(null);
+const prev = ref(null)
+const next = ref(null)
 
 const { data } = await useAsyncData("article-" + route.params.article_slug, () =>
-    queryContent("news/" + route.params.article_slug).findOne()
-);
+  queryContent("news/" + route.params.article_slug).findOne(),
+)
 
 definePageMeta({
-title: "News Article",
-});
+  title: "News Article",
+})
 
 // const { data: surround } = await useAsyncData("article-surround-" + route.params.article_slug, () =>
 //   queryContent()
@@ -69,16 +68,14 @@ title: "News Article",
 // const next = computed(() => surround.value[1]);
 
 onMounted(async () => {
+  const surround = await queryContent()
+    .only(["_path", "title"])
+    .sort({ date: -1 })
+    .findSurround("/news/" + route.params.article_slug)
 
-const surround = await queryContent()
-.only(["_path", "title"])
-.sort({ date: -1})
-.findSurround("/news/" + route.params.article_slug);
-
-
-prev.value = surround[0];
-next.value = surround[1];
-});
+  prev.value = surround[0]
+  next.value = surround[1]
+})
 // const [prev, next] = await queryContent()
 //   .only(['_path', 'title'])
 //   .sort({ date: 1})

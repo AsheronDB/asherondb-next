@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MissileWeaponData } from '~/models/Weapon/MissileWeapon';
+import type { MissileWeaponData } from "~/models/Weapon/MissileWeapon"
 
-const props = defineProps<{ data: MissileWeaponData }>();
+const props = defineProps<{ data: MissileWeaponData }>()
 </script>

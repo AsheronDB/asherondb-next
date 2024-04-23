@@ -1,5 +1,5 @@
-import { WeenieType } from "./mappings";
-import type { StringIndexedDict } from "./types";
+import { WeenieType } from "./mappings"
+import type { StringIndexedDict } from "./types"
 
 export const weenieTypeURLMapThing: StringIndexedDict<string> = {
   [WeenieType.Generic]: "items",
@@ -72,7 +72,7 @@ export const weenieTypeURLMapThing: StringIndexedDict<string> = {
   [WeenieType.Pet]: "items",
   [WeenieType.PetDevice]: "items",
   [WeenieType.CombatPet]: "items",
-};
+}
 
 enum SearchResultCategory {
   Item = "item",
@@ -86,7 +86,7 @@ export const SearchResultCategoryLabel: StringIndexedDict<string> = {
   [SearchResultCategory.Character]: "Character",
   [SearchResultCategory.World]: "World",
   [SearchResultCategory.Other]: "Other",
-};
+}
 
 // TODO: Many of these are wrong and I need help categorizing
 export const weenieTypeToSearchResultCategory: StringIndexedDict<string> = {
@@ -160,7 +160,7 @@ export const weenieTypeToSearchResultCategory: StringIndexedDict<string> = {
   [WeenieType.Pet]: SearchResultCategory.World,
   [WeenieType.PetDevice]: SearchResultCategory.World,
   [WeenieType.CombatPet]: SearchResultCategory.World,
-};
+}
 
 enum SearchResultSubCategory {
   Item = "item",
@@ -180,7 +180,7 @@ export const SearchResultSubCategoryLabel: StringIndexedDict<string> = {
   [SearchResultSubCategory.Portal]: "Portal",
   [SearchResultSubCategory.Book]: "Book",
   [SearchResultSubCategory.Other]: "Other",
-};
+}
 
 export const SearchResultSubCategoryIcon: StringIndexedDict<string> = {
   [SearchResultSubCategory.Item]: "🛍️",
@@ -190,7 +190,7 @@ export const SearchResultSubCategoryIcon: StringIndexedDict<string> = {
   [SearchResultSubCategory.Portal]: "🇵🇹",
   [SearchResultSubCategory.Book]: "📚",
   [SearchResultSubCategory.Other]: "🤔",
-};
+}
 
 export const weenieTypeToSearchResultSubCategory: StringIndexedDict<string> = {
   [WeenieType.Generic]: SearchResultSubCategory.Item,
@@ -263,4 +263,4 @@ export const weenieTypeToSearchResultSubCategory: StringIndexedDict<string> = {
   [WeenieType.Pet]: SearchResultSubCategory.Creature,
   [WeenieType.PetDevice]: SearchResultSubCategory.Item,
   [WeenieType.CombatPet]: SearchResultSubCategory.Creature,
-};
+}

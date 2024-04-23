@@ -15,7 +15,7 @@
     <template #panel="{ close }">
       <div
         class="py-4 px-6 "
-        :class="[ dropdownHovered ? 'bg-red-500' : '' ]"
+        :class="[dropdownHovered ? 'bg-red-500' : '']"
       >
         <div class="grid grid-cols-3 gap-10 text-gray-100">
           <div
@@ -23,7 +23,10 @@
             :key="column.label"
             class="space-y-1.5"
           >
-            <div v-for="section in column">
+            <div
+              v-for="section in column"
+              :key="section.label"
+            >
               <p
                 class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400"
               >
@@ -45,7 +48,7 @@
                         group.map((groupChild: object) => ({
                           ...groupChild,
                           click: () => close(),
-                        }))
+                        })),
                       )
                     "
                     mode="hover"
@@ -90,10 +93,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(["item"]);
-const { item } = toRefs(props);
+const props = defineProps(["item"])
+const { item } = toRefs(props)
 
-const dropdownHovered = ref(false);
+const dropdownHovered = ref(false)
 
 const popoverUI = {
   wrapper: "relative",
@@ -141,7 +144,7 @@ const popoverUI = {
     placement:
       "group-data-[popper-placement*='right']:-left-1 group-data-[popper-placement*='left']:-right-1 group-data-[popper-placement*='top']:-bottom-1 group-data-[popper-placement*='bottom']:-top-1",
   },
-};
+}
 
 const dropdownUI = {
   wrapper: "relative flex text-left rtl:text-right",
@@ -164,17 +167,17 @@ const dropdownUI = {
     active: "bg-gray-600 text-gray-100",
     inactive: "text-gray-100 hover:bg-gray-600 dark:text-gray-200",
   },
-};
+}
 
-const dropdownItemMouseOver = () => {
-  console.log('dropdownItemMouseOver')
-  dropdownHovered.value = true;
-};
+const _dropdownItemMouseOver = () => {
+  console.log("dropdownItemMouseOver")
+  dropdownHovered.value = true
+}
 
-const dropdownItemMouseOut = () => {
-  console.log('dropdownItemMouseOut')
+const _dropdownItemMouseOut = () => {
+  console.log("dropdownItemMouseOut")
   dropdownHovered.value = false
-};
+}
 </script>
 
 <style>

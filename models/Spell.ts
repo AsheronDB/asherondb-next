@@ -1,13 +1,13 @@
 export class Spell {
-	spellId: number
+  spellId: number
 
-	constructor(spellId: number) {
-		this.spellId = spellId;
-	}
+  constructor(spellId: number) {
+    this.spellId = spellId
+  }
 
-	json() {
-		return {
-			spellId: this.spellId
-		}
-	}
+  json() {
+    return {
+      spellId: this.spellId,
+    }
+  }
 }

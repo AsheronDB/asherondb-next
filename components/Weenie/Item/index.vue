@@ -16,31 +16,29 @@
 </template>
 
 <script setup lang="ts">
-
 import WeenieWeaponMelee from "~/components/Weenie/Item/Weapon/Melee.vue"
 import WeenieWeaponMissile from "~/components/Weenie/Item/Weapon/Missile.vue"
 import WeenieWeaponCaster from "~/components/Weenie/Item/Weapon/Caster.vue"
 
-import { WeenieType } from '~/util/mappings';
+import { WeenieType } from "~/util/mappings"
 
-const props = defineProps(['data']);
-const { data } = toRefs(props);
+const props = defineProps(["data"])
+const { data } = toRefs(props)
 
-
-
-
-const weenieType = ref(null);
+const weenieType = ref(null)
 
 let view: Component
 
 if (data.value?.type == WeenieType.MeleeWeapon) {
   view = WeenieWeaponMelee
-} else if (data.value?.type == WeenieType.MissileLauncher) {
-  view = WeenieWeaponMissile
-} else if (data.value?.type == WeenieType.Caster) {
-  view = WeenieWeaponCaster
-} else {
-  throw new Error("Unsupported component");
 }
-
+else if (data.value?.type == WeenieType.MissileLauncher) {
+  view = WeenieWeaponMissile
+}
+else if (data.value?.type == WeenieType.Caster) {
+  view = WeenieWeaponCaster
+}
+else {
+  throw new Error("Unsupported component")
+}
 </script>

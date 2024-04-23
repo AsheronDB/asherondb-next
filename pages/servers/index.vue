@@ -29,11 +29,11 @@
 </template>
 
 <script setup lang="ts">
-import { orderBy } from "lodash-es";
-import { formatDistanceStrict } from "date-fns";
+import { orderBy } from "lodash-es"
+import { formatDistanceStrict } from "date-fns"
 
-const store = useStore();
-const { now } = storeToRefs(store);
+const store = useStore()
+const { now } = storeToRefs(store)
 
 const columns = [
   {
@@ -50,22 +50,22 @@ const columns = [
     key: "address",
     label: "Address",
   },
-];
+]
 const { data } = await useFetch("https://servers.treestats.net/api/servers/", {
   key: "servers",
-});
+})
 
 const servers = computed(() =>
-  data.value ? orderBy(data.value.servers, ["name"], ["asc"]) : []
-);
+  data.value ? orderBy(data.value.servers, ["name"], ["asc"]) : [],
+)
 
 const lastUpdated = computed(() =>
   data.value && data.value.last_checked
     ? formatDistanceStrict(data.value.last_checked, new Date(now.value))
-    : "unknown"
-);
+    : "unknown",
+)
 
 definePageMeta({
   title: "Server Tracker",
-});
+})
 </script>

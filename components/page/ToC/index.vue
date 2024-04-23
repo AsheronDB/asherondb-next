@@ -24,21 +24,21 @@
 </template>
 
 <script setup>
-import { forEach, get, set } from "lodash-es";
+import { forEach, get } from "lodash-es"
 
-console.log('ToC');
+console.log("ToC")
 
-const props = defineProps(["target"]);
-const activeTocId = ref(null);
-const activeTocIds = ref([]);
-const headingsData = ref([]);
+const props = defineProps(["target"])
+const activeTocId = ref(null)
+const activeTocIds = ref([])
+const headingsData = ref([])
 
-const observer = ref(null);
+const observer = ref(null)
 
 const observerOptions = reactive({
   root: props.target,
   threshold: 1.0,
-});
+})
 
 function createNestedJsonStructureWithLodash(headings) {
   // const parentElement = document.getElementById(parentId);
@@ -47,39 +47,38 @@ function createNestedJsonStructureWithLodash(headings) {
   //     return;
   // }
 
-
-  const structure = [];
-  const currentLevelNodes = [structure];
+  const structure = []
+  const currentLevelNodes = [structure]
 
   forEach(headings, (heading) => {
-    const level = parseInt(heading.tagName.substring(1));
+    const level = parseInt(heading.tagName.substring(1))
     const node = {
       tag: heading.tagName,
       text: heading.textContent,
       id: heading.id,
       children: [],
-    };
+    }
 
-    console.log(`Processing: ${node.tag}, Level: ${level}`); // Debug log
+    console.log(`Processing: ${node.tag}, Level: ${level}`) // Debug log
 
-    let parentArray = get(currentLevelNodes, level - 2);
+    let parentArray = get(currentLevelNodes, level - 2)
     if (!parentArray) {
       console.log(
-        `No parent array found for level ${level}, resetting to root`
-      );
-      parentArray = structure;
+        `No parent array found for level ${level}, resetting to root`,
+      )
+      parentArray = structure
     }
 
-    parentArray.push(node);
+    parentArray.push(node)
 
     if (level < 6) {
-      currentLevelNodes[level - 1] = node.children;
+      currentLevelNodes[level - 1] = node.children
     }
 
-    console.log(`Current Structure:`, JSON.stringify(structure, null, 2)); // Debug log
-  });
+    console.log(`Current Structure:`, JSON.stringify(structure, null, 2)) // Debug log
+  })
 
-  return structure;
+  return structure
 }
 
 // await nextTick();
@@ -87,46 +86,43 @@ function createNestedJsonStructureWithLodash(headings) {
 // headings.value = tocData;
 
 onMounted(async () => {
-  console.log('ToC Mounted');
-  await nextTick();
+  console.log("ToC Mounted")
+  await nextTick()
 
   observer.value = new IntersectionObserver((entries) => {
-
-    console.log(entries);
-
+    console.log(entries)
 
     entries.forEach((entry) => {
-
-
-      const id = entry.target.getAttribute("id");
+      const id = entry.target.getAttribute("id")
 
       if (entry.isIntersecting) {
-        activeTocId.value = id;
-        activeTocIds.value.push(id);
-      } else {
-        activeTocIds.value.splice(activeTocIds.value.indexOf(id), 1);
+        activeTocId.value = id
+        activeTocIds.value.push(id)
       }
-    });
-  }, observerOptions);
+      else {
+        activeTocIds.value.splice(activeTocIds.value.indexOf(id), 1)
+      }
+    })
+  }, observerOptions)
 
-  const headings = props.target.querySelectorAll("h1, h2, h3, h4, h5, h6");
+  const headings = props.target.querySelectorAll("h1, h2, h3, h4, h5, h6")
 
-  headings.forEach(heading => observer.value?.observe(heading));
+  headings.forEach(heading => observer.value?.observe(heading))
 
-  const tocData = createNestedJsonStructureWithLodash(headings);
-  console.log("tocData");
-  console.log(tocData);
+  const tocData = createNestedJsonStructureWithLodash(headings)
+  console.log("tocData")
+  console.log(tocData)
 
-  headingsData.value = tocData;
+  headingsData.value = tocData
   // document.querySelectorAll("h3").forEach((heading) => {
 
   //   console.log(heading);
   // });
-});
+})
 
 onUnmounted(() => {
-  observer.value?.disconnect();
-});
+  observer.value?.disconnect()
+})
 
 // onUpdated(async () => {
 

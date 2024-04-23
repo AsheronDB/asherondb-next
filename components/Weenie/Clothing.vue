@@ -32,12 +32,14 @@
               <div>Armor Level: {{ props.data.armorLevel }}</div>
               <div>Slashing: {{ props.data.armorLevelVsSlashPhrase }} ({{ props.data.armorLevelVsSlash }})</div>
               <div>Piercing: {{ props.data.armorLevelVsPiercePhrase }} ({{ props.data.armorLevelVsPierce }})</div>
-              <div>Bludgeoning: {{ props.data.armorLevelVsBludgeonPhrase }} ({{ props.data.armorLevelVsBludgeon }})
+              <div>
+                Bludgeoning: {{ props.data.armorLevelVsBludgeonPhrase }} ({{ props.data.armorLevelVsBludgeon }})
               </div>
               <div>Fire: {{ props.data.armorLevelVsFirePhrase }} ({{ props.data.armorLevelVsFire }})</div>
               <div>Cold: {{ props.data.armorLevelVsColdPhrase }} ({{ props.data.armorLevelVsCold }})</div>
               <div>Acid: {{ props.data.armorLevelVsAcidPhrase }} ({{ props.data.armorLevelVsAcid }})</div>
-              <div>Electric: {{ props.data.armorLevelVsElectricPhrase }} ({{ props.data.armorLevelVsElectric }})
+              <div>
+                Electric: {{ props.data.armorLevelVsElectricPhrase }} ({{ props.data.armorLevelVsElectric }})
               </div>
               <div>Nether: {{ props.data.armorLevelVsNetherPhrase }} ({{ props.data.armorLevelVsNether }})</div>
             </div>
@@ -46,7 +48,9 @@
               Properties: {{ props.data.propertyString }}
             </div>
             <div>
-              <div v-if="props.data.wieldDifficulty">Wield requires level {{ props.data.wieldDifficulty }}</div>
+              <div v-if="props.data.wieldDifficulty">
+                Wield requires level {{ props.data.wieldDifficulty }}
+              </div>
               <div>Activation requires Arcane Lore: {{ props.data.itemDifficulty }}</div>
               <WeenieItemPropertiesExtended :data="props.data" />
             </div>
@@ -61,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ClothingData } from "../../models/Clothing";
+import type { ClothingData } from "../../models/Clothing"
 
-const props = defineProps<{ data: ClothingData }>();
+const props = defineProps<{ data: ClothingData }>()
 </script>

@@ -3,10 +3,8 @@
 </template>
 
 <script setup lang="ts">
-
 definePageMeta({
-  title: 'MacOS',
-  breadcrumbLabel: 'MacOS'
+  title: "MacOS",
+  breadcrumbLabel: "MacOS",
 })
-
 </script>

@@ -24,21 +24,18 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
-
-
+import { defineProps } from "vue"
 
 const props = defineProps({
   activeIds: Array,
   text: String,
   id: String,
-  children: Array
-});
+  children: Array,
+})
 
-const { activeIds, id } = toRefs(props);
+const { activeIds, id } = toRefs(props)
 
-const isActive = computed(() => activeIds.value.includes(id.value));
-
+const isActive = computed(() => activeIds.value.includes(id.value))
 </script>
 
 <style>

@@ -11,6 +11,7 @@
     <!-- <p class="text-gray-500 italic text-xs">Last updated April, 2024</p> -->
   </header>
 </template>
+
 <script setup lang="ts">
-const route = useRoute();
+const route = useRoute()
 </script>

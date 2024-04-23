@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import type { WeenieSearchListingRow } from "~/util/queries/new";
+import type { WeenieSearchListingRow } from "~/util/queries/new"
 import { weenieTypeURLMapThing } from "~/util/search"
 
-const props = defineProps<{filter: string, results: WeenieSearchListingRow[]}>();
+const props = defineProps<{ filter: string, results: WeenieSearchListingRow[] }>()
 </script>

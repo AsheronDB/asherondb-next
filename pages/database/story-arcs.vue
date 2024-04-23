@@ -16,46 +16,44 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute();
-console.log(route);
+const route = useRoute()
+console.log(route)
 
 const data = [{
-    "name": "The Fire in the Sky"
-},{
-    "name": "The Fourth Sending of Darkness"
+  name: "The Fire in the Sky",
 }, {
-    "name": "The Rise of the New Singularity"
+  name: "The Fourth Sending of Darkness",
 }, {
-    "name": "Elements of Revenge"
+  name: "The Rise of the New Singularity",
 }, {
-    "name": "A Time of Chaos"
+  name: "Elements of Revenge",
 }, {
-    "name": "The Shattered Coil"
+  name: "A Time of Chaos",
 }, {
-    "name": "The War of Blood and Shadow"
+  name: "The Shattered Coil",
 }, {
-    "name": "Favored Sons"
+  name: "The War of Blood and Shadow",
 }, {
-    "name": "The Blighted Dreamer"
+  name: "Favored Sons",
 }, {
-    "name": "The Crystalline Crag"
+  name: "The Blighted Dreamer",
 }, {
-    "name": "Return of the Gear Knights"
+  name: "The Crystalline Crag",
 }, {
-    "name": "The Apostates"
+  name: "Return of the Gear Knights",
 }, {
-    "name": "His Eternal Splendor"
+  name: "The Apostates",
 }, {
-    "name": "The Shadow Invasion"
+  name: "His Eternal Splendor",
 }, {
-    "name": "Rynthid"
+  name: "The Shadow Invasion",
 }, {
-    "name": "Viridian Rise"
+  name: "Rynthid",
+}, {
+  name: "Viridian Rise",
 }]
 
-
 definePageMeta({
-title: "Story Arcs",
-});
-
+  title: "Story Arcs",
+})
 </script>

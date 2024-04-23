@@ -1,32 +1,33 @@
+import type {
+  WeenieSearchListingRow } from "~/util/queries/new"
 import {
-  WeenieSearchListingRow,
   getWeeniesByName,
-} from "~/util/queries/new";
-import { weenieTypeToSearchResultCategory, weenieTypeToSearchResultSubCategory, weenieTypeURLMapThing } from "~/util/search";
+} from "~/util/queries/new"
+import { weenieTypeToSearchResultCategory, weenieTypeToSearchResultSubCategory, weenieTypeURLMapThing } from "~/util/search"
 
 interface SearchResponseItem {
-  source: string;
-  category: string;
-  subcategory: string;
-  name: string;
-  url: string;
+  source: string
+  category: string
+  subcategory: string
+  name: string
+  url: string
 }
 
 interface SearchResponse {
-  count: number;
-  items: SearchResponseItem[];
-  truncated: boolean;
-  query_ms: number;
+  count: number
+  items: SearchResponseItem[]
+  truncated: boolean
+  query_ms: number
 }
 
 // For right now, we're just searching the ACE DB so this needs one more
 // level of abstraction
 export default defineEventHandler(async (event) => {
-  const start = performance.now();
+  const start = performance.now()
 
-  const query = getQuery(event);
-  const limit = 100; // Using the n+1 trick below to populate 'truncated'
-  const querySQL = getWeeniesByName(0, limit + 1);
+  const query = getQuery(event)
+  const limit = 100 // Using the n+1 trick below to populate 'truncated'
+  const querySQL = getWeeniesByName(0, limit + 1)
 
   let initial_results: WeenieSearchListingRow[] = []
 
@@ -39,14 +40,15 @@ export default defineEventHandler(async (event) => {
         key: "search",
         query: {
           sql: querySQL,
-          name: `%${query.q}%`
+          name: `%${query.q}%`,
         },
       },
-    );
-  } catch (e) {
+    )
+  }
+  catch (e) {
     throw createError({
       statusCode: e.statusCode,
-      statusMessage: `${e.name}: ${e.statusMessage}`
+      statusMessage: `${e.name}: ${e.statusMessage}`,
     })
   }
 
@@ -58,22 +60,22 @@ export default defineEventHandler(async (event) => {
       subcategory: weenieTypeToSearchResultSubCategory[i.type],
       name: i.name,
       url: "/database/" + weenieTypeURLMapThing[i.type] + "/" + i.wcid,
-    };
-  });
+    }
+  })
 
   // If we got limit + 1 results, truncate to just limit
   if (results.length > limit) {
-    results = results.slice(0, limit);
+    results = results.slice(0, limit)
   }
 
-  const diff = performance.now() - start;
+  const diff = performance.now() - start
 
   const response: SearchResponse = {
     count: results.length,
     items: results,
     truncated: initial_results.length > limit,
     query_ms: diff,
-  };
+  }
 
-  return response;
-});
+  return response
+})

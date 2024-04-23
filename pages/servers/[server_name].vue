@@ -20,9 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { format as dateFormat } from 'date-fns';
-const route = useRoute();
-const pageTitle = ref(null);
+import { format as dateFormat } from "date-fns"
+
+const route = useRoute()
+const pageTitle = ref(null)
 
 const columns = [
   {
@@ -44,37 +45,35 @@ const columns = [
     key: "message",
     label: "Message",
   },
-];
+]
 
 const { data } = await useFetch(
   `https://servers.treestats.net/api/statuses/${route.params.server_name}`,
   {
     key: `server-${route.params.server_name}`,
-  }
-);
+  },
+)
 
 // Handle error state
 
 if (data.value) {
-  console.log("");
-  pageTitle.value = data.value.server;
-  route.meta.title = data.value.server;
-  route.matched[route.matched.length - 1].meta.title = data.value.server;
+  console.log("")
+  pageTitle.value = data.value.server
+  route.meta.title = data.value.server
+  route.matched[route.matched.length - 1].meta.title = data.value.server
 }
 
 useHead({
   title: () => pageTitle.value,
-});
+})
 
 onMounted(() => {
-  console.log("on mounted");
-  console.log(pageTitle.value);
+  console.log("on mounted")
+  console.log(pageTitle.value)
   if (data.value) {
-    pageTitle.value = data.value.server;
-    route.meta.title = data.value.server;
-    route.matched[route.matched.length - 1].meta.title = data.value.server;
-
+    pageTitle.value = data.value.server
+    route.meta.title = data.value.server
+    route.matched[route.matched.length - 1].meta.title = data.value.server
   }
-});
-
+})
 </script>

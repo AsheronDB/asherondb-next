@@ -1,40 +1,40 @@
 // WIP: I'm factoring out queries I need for pages in here
 
-import { PropertyString } from "../mappings";
+import { PropertyString } from "../mappings"
 
 // TODO: Rename this once I get a sense of what is needed
 export interface CountResponse {
-   total: number
+  total: number
 }
 
 export interface WeenieListingRow {
-   wcid: string,
-   name: string
+  wcid: string
+  name: string
 }
 
 export interface WeenieSearchListingRow {
-   wcid: string,
-   type: number,
-   name: string,
+  wcid: string
+  type: number
+  name: string
 }
 
 // getCountOfWeenieByClassId
 export const getCountOfWeenieByClassId = (classIds: number[]) => {
-   const where = classIds.map((x) => `type = ${x}`).join(" OR ")
+  const where = classIds.map(x => `type = ${x}`).join(" OR ")
 
-   return `SELECT
+  return `SELECT
       COUNT(1) as total
       FROM weenie
       WHERE
          ${where}
-    `;
+    `
 }
 
 // getCountOfWeenieByClassId
 export const getWeenies = (classIds: number[], page: number, page_size: number) => {
-   const where = classIds.map((x) => `w.type = ${x}`).join(" OR ")
+  const where = classIds.map(x => `w.type = ${x}`).join(" OR ")
 
-   return `
+  return `
    SELECT
       w.class_Id as wcid,
       w_string_name.value as name
@@ -52,7 +52,7 @@ export const getWeenies = (classIds: number[], page: number, page_size: number) 
 
 // getCountOfWeenieByName
 export const getCountOfWeenieByName = () => {
-   return `SELECT
+  return `SELECT
       COUNT(1) as total
       FROM weenie
       LEFT JOIN weenie_properties_string ON weenie.class_Id = weenie_properties_string.object_Id
@@ -60,12 +60,12 @@ export const getCountOfWeenieByName = () => {
          weenie_properties_string.type = ${PropertyString.Name}
          AND
          weenie_properties_string.value LIKE :name
-    `;
+    `
 }
 
 // getWeeniesByName
 export const getWeeniesByName = (offset: number, offset_size: number) => {
-   return `
+  return `
       SELECT
          weenie_properties_string.object_Id as wcid,
          weenie.type as type,

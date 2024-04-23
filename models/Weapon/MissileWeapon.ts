@@ -1,5 +1,5 @@
-import { AmmoTypePhrase, PropertyInt } from "~/util/mappings";
-import { Weapon, type WeaponData } from "./Weapon";
+import { Weapon, type WeaponData } from "./Weapon"
+import { AmmoTypePhrase, PropertyInt } from "~/util/mappings"
 
 export interface MissileWeaponData extends WeaponData {
   ammoTypeString: string
@@ -12,7 +12,7 @@ export class MissileWeapon extends Weapon {
   }
 
   async load(fetch: any) {
-    await super.load(fetch);
+    await super.load(fetch)
   }
 
   get ammoTypeString(): string {
@@ -31,7 +31,7 @@ export class MissileWeapon extends Weapon {
     return {
       ...super.json(),
       ammoTypeString: this.ammoTypeString,
-      range: this.range
+      range: this.range,
     }
   }
 }

@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute();
-console.log(route);
+const route = useRoute()
+console.log(route)
 
 definePageMeta({
   title: "Database",
-});
+})
 </script>

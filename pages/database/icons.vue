@@ -2,11 +2,11 @@
   <div>Icons</div>
 </template>
 
-  <script setup lang="ts">
-  const route = useRoute();
-  console.log(route);
+<script setup lang="ts">
+const route = useRoute()
+console.log(route)
 
-  definePageMeta({
-    title: "Icons",
-  });
-  </script>
+definePageMeta({
+  title: "Icons",
+})
+</script>

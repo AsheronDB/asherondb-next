@@ -1,11 +1,10 @@
 // store/filters.js
-import { defineStore } from "pinia";
+import { defineStore } from "pinia"
 
 export const useStore = defineStore("store", () => {
-
-  const now = ref(Date.now());
-  const titlePhrase = ref(null);
-  const siteSearchFilter = ref('');
+  const now = ref(Date.now())
+  const titlePhrase = ref(null)
+  const siteSearchFilter = ref("")
 
   const primaryNav = ref([
     {
@@ -53,11 +52,11 @@ export const useStore = defineStore("store", () => {
             children: [
               {
                 label: "Icons",
-                to: "/database/icons"
+                to: "/database/icons",
               },
               {
                 label: "Sounds",
-                to: "/database/sounds"
+                to: "/database/sounds",
               },
             ],
           },
@@ -193,7 +192,7 @@ export const useStore = defineStore("store", () => {
               },
             ],
           },
-        ]
+        ],
       ],
     },
     {
@@ -207,8 +206,8 @@ export const useStore = defineStore("store", () => {
         [
           {
             label: "How to Play",
-            to: "/guides/how-to-play"
-          }
+            to: "/guides/how-to-play",
+          },
         ],
       ],
     },
@@ -222,17 +221,17 @@ export const useStore = defineStore("store", () => {
             label: "Character Planner",
             to: "https://planner.treestats.net/",
             external: true,
-            target: "_blank"
-          }
+            target: "_blank",
+          },
         ],
       ],
     },
-  ]);
+  ])
 
   return {
     primaryNav,
     titlePhrase,
     siteSearchFilter,
-    now
-  };
-});
+    now,
+  }
+})
