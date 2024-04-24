@@ -1,3 +1,5 @@
+import type { $fetch } from "ofetch"
+
 import { Item } from "../Item"
 import type { ItemData } from "../Item"
 import { PropertyInt, PropertyFloat, DamageTypePhrase, SkillName, WeaponTypeName, PropertyBool, SpeedCategoryName } from "~/util/mappings"
@@ -22,12 +24,14 @@ export interface WeaponData extends ItemData {
   elementalDamageBonus: number
 }
 
+type FetchFunction = typeof $fetch
+
 export class Weapon extends Item {
   get ClassName() {
     return "Weapon"
   }
 
-  async load(fetch: any) {
+  async load(fetch: FetchFunction) {
     await super.load(fetch)
   }
 

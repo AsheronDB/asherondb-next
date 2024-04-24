@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 const offsetFirst = ref(0)
-const props = defineProps(["offsetSize", "total"])
+const props = defineProps<{ offsetSize: number, total: number }>()
 
 const { offsetSize, total } = toRefs(props)
 

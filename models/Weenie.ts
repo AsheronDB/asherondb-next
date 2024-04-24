@@ -1,7 +1,11 @@
+import type { $fetch } from "ofetch"
+
 import { getColumnIndex } from "~/util/datasette"
 import { PropertyString, WeenieType } from "~/util/mappings"
 import { getWeenieTypeQueryURL, getWeeniePropertiesIntQueryURL, getWeeniePropertiesStringQueryURL, getWeeniePropertiesAttributeQueryURL, getWeeniePropertiesAttribute2ndQueryURL, getWeeniePropertiesFloatsQueryURL, getWeeniePropertiesBookQueryURL, getWeeniePropertiesBookPageDataQueryURL, getWeeniePropertiesAnimPartQueryURL, getWeeniePropertiesBodyPartQueryURL, getWeeniePropertiesBoolQueryURL, getWeeniePropertiesCreateListQueryURL, getWeeniePropertiesDataIdQueryURL, getWeeniePropertiesEmoteQueryURL, getWeeniePropertiesEventFilterQueryURL, getWeeniePropertiesGeneratorQueryURL, getWeeniePropertiesInstanceIdQueryURL, getWeeniePropertiesSInt64QueryURL, getWeeniePropertiesPaletteQueryURL, getWeeniePropertiesPositionQueryURL, getWeeniePropertiesSkillQueryURL, getWeeniePropertiesSpellBookQueryURL, getWeeniePropertiesTextureMapQueryURL } from "~/util/queries"
 import type { WeeeniePropertyEmote, WeenieClassId, WeeniePropertyBodyPart, WeeniePropertyBook, WeeniePropertyBookPageData, WeeniePropertyCreateList, WeeniePropertyGenerator, WeeniePropertyPalette, WeeniePropertyPosition, WeeniePropertySkill, WeeniePropertySpellBook, WeeniePropertyTextureMap } from "~/util/types"
+
+type FetchFunction = typeof $fetch
 
 // Note: undefined signals that we haven't loaded the data from the db yet
 export class WeenieProperties {
@@ -96,14 +100,14 @@ export class Weenie {
       || this.type === WeenieType.ManaStone
   }
 
-  async load(fetch: any) {
+  async load(fetch: FetchFunction) {
     // TODO: Maybe delegate loading to the sub-class so what we load is narrow
     // enough to limit the number of queries we send
     await this.loadWeenieType(fetch)
     await this.loadPropertiesStrings(fetch)
   }
 
-  async loadAll(fetch: any) {
+  async loadAll(fetch: FetchFunction) {
     await this.loadWeenieType(fetch)
     await this.loadPropertiesInts(fetch)
     await this.loadPropertiesStrings(fetch)
@@ -131,7 +135,7 @@ export class Weenie {
     await this.loadWeeniePropertyTextureMap(fetch)
   }
 
-  async loadWeenieType(fetch: any) {
+  async loadWeenieType(fetch: FetchFunction) {
     const url = getWeenieTypeQueryURL(this.classId)
     const res = await fetch(url)
     const result = await res.json()
@@ -140,7 +144,7 @@ export class Weenie {
     this.type = result.rows[0][type_idx]
   }
 
-  async loadPropertiesInts(fetch: any) {
+  async loadPropertiesInts(fetch: FetchFunction) {
     this.properties.ints = new Map<number, number>()
 
     const url = getWeeniePropertiesIntQueryURL(this.classId)
@@ -155,7 +159,7 @@ export class Weenie {
     }
   }
 
-  async loadPropertiesStrings(fetch: any) {
+  async loadPropertiesStrings(fetch: FetchFunction) {
     this.properties.strings = new Map<number, string>()
 
     const url = getWeeniePropertiesStringQueryURL(this.classId)
@@ -170,7 +174,7 @@ export class Weenie {
     }
   }
 
-  async loadPropertiesAttributes(fetch: any) {
+  async loadPropertiesAttributes(fetch: FetchFunction) {
     this.properties.attributes = new Map<number, number>()
 
     const url = getWeeniePropertiesAttributeQueryURL(this.classId)
@@ -185,7 +189,7 @@ export class Weenie {
     }
   }
 
-  async loadPropertiesAttributes2nd(fetch: any) {
+  async loadPropertiesAttributes2nd(fetch: FetchFunction) {
     this.properties.attributes_2nd = new Map<number, number>()
 
     const url = getWeeniePropertiesAttribute2ndQueryURL(this.classId)
@@ -200,7 +204,7 @@ export class Weenie {
     }
   }
 
-  async loadPropertiesFloats(fetch: any) {
+  async loadPropertiesFloats(fetch: FetchFunction) {
     this.properties.floats = new Map<number, number>()
 
     const url = getWeeniePropertiesFloatsQueryURL(this.classId)
@@ -215,7 +219,7 @@ export class Weenie {
     }
   }
 
-  async loadPropertiesBook(fetch: any) {
+  async loadPropertiesBook(fetch: FetchFunction) {
     const url = getWeeniePropertiesBookQueryURL(this.classId)
     const res = await fetch(url)
     const result = await res.json()
@@ -233,7 +237,7 @@ export class Weenie {
     }
   }
 
-  async loadPropertiesBookPageData(fetch: any) {
+  async loadPropertiesBookPageData(fetch: FetchFunction) {
     this.properties.book_page_data = new Map<number, WeeniePropertyBookPageData>()
 
     const url = getWeeniePropertiesBookPageDataQueryURL(this.classId)
@@ -258,7 +262,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyAnimPart(fetch: any) {
+  async loadWeeniePropertyAnimPart(fetch: FetchFunction) {
     this.properties.anim_part = new Map<number, number>()
 
     const url = getWeeniePropertiesAnimPartQueryURL(this.classId)
@@ -273,7 +277,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyBodyPart(fetch: any) {
+  async loadWeeniePropertyBodyPart(fetch: FetchFunction) {
     this.properties.body_part = new Map<number, WeeniePropertyBodyPart>()
 
     const url = getWeeniePropertiesBodyPartQueryURL(this.classId)
@@ -313,7 +317,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyBool(fetch: any) {
+  async loadWeeniePropertyBool(fetch: FetchFunction) {
     this.properties.bool = new Map<number, boolean>()
 
     const url = getWeeniePropertiesBoolQueryURL(this.classId)
@@ -328,7 +332,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyCreateList(fetch: any) {
+  async loadWeeniePropertyCreateList(fetch: FetchFunction) {
     this.properties.create_list = new Map<number, WeeniePropertyCreateList>()
 
     const url = getWeeniePropertiesCreateListQueryURL(this.classId)
@@ -348,7 +352,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyDataId(fetch: any) {
+  async loadWeeniePropertyDataId(fetch: FetchFunction) {
     this.properties.d_i_d = new Map<number, number>()
 
     const url = getWeeniePropertiesDataIdQueryURL(this.classId)
@@ -363,7 +367,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyEmote(fetch: any) {
+  async loadWeeniePropertyEmote(fetch: FetchFunction) {
     this.properties.emote = new Map<number, WeeeniePropertyEmote>()
 
     const url = getWeeniePropertiesEmoteQueryURL(this.classId)
@@ -400,7 +404,7 @@ export class Weenie {
   //   }
   // }
 
-  async loadWeeniePropertyEventFilter(fetch: any) {
+  async loadWeeniePropertyEventFilter(fetch: FetchFunction) {
     this.properties.event_filter = []
 
     const url = getWeeniePropertiesEventFilterQueryURL(this.classId)
@@ -414,7 +418,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyGenerator(fetch: any) {
+  async loadWeeniePropertyGenerator(fetch: FetchFunction) {
     this.properties.generator = []
 
     const url = getWeeniePropertiesGeneratorQueryURL(this.classId)
@@ -445,7 +449,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyInstanceId(fetch: any) {
+  async loadWeeniePropertyInstanceId(fetch: FetchFunction) {
     this.properties.i_i_d = new Map<number, number>()
 
     const url = getWeeniePropertiesInstanceIdQueryURL(this.classId)
@@ -460,7 +464,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyInt64(fetch: any) {
+  async loadWeeniePropertyInt64(fetch: FetchFunction) {
     this.properties.int64 = new Map<number, number>()
 
     const url = getWeeniePropertiesSInt64QueryURL(this.classId)
@@ -475,7 +479,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyPalette(fetch: any) {
+  async loadWeeniePropertyPalette(fetch: FetchFunction) {
     this.properties.palette = new Map<number, WeeniePropertyPalette>()
 
     const url = getWeeniePropertiesPaletteQueryURL(this.classId)
@@ -492,7 +496,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyPosition(fetch: any) {
+  async loadWeeniePropertyPosition(fetch: FetchFunction) {
     this.properties.position = new Map<number, WeeniePropertyPosition>()
 
     const url = getWeeniePropertiesPositionQueryURL(this.classId)
@@ -515,7 +519,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertySkill(fetch: any) {
+  async loadWeeniePropertySkill(fetch: FetchFunction) {
     this.properties.skill = new Map<number, WeeniePropertySkill>()
 
     const url = getWeeniePropertiesSkillQueryURL(this.classId)
@@ -536,7 +540,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertySpellBook(fetch: any) {
+  async loadWeeniePropertySpellBook(fetch: FetchFunction) {
     this.properties.spell_book = new Map<number, WeeniePropertySpellBook>()
 
     const url = getWeeniePropertiesSpellBookQueryURL(this.classId)
@@ -551,7 +555,7 @@ export class Weenie {
     }
   }
 
-  async loadWeeniePropertyTextureMap(fetch: any) {
+  async loadWeeniePropertyTextureMap(fetch: FetchFunction) {
     this.properties.texture_map = new Map<number, WeeniePropertyTextureMap>()
 
     const url = getWeeniePropertiesTextureMapQueryURL(this.classId)

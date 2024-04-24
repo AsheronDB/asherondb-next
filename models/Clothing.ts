@@ -1,5 +1,9 @@
+import type { $fetch } from "ofetch"
+
 import { Item, type ItemData } from "./Item"
 import { PropertyInt, PropertyFloat, ArmorModPhrase, CoveragePhrase, PropertyBool } from "~/util/mappings"
+
+type FetchFunction = typeof $fetch
 
 export interface ClothingData extends ItemData {
   armorLevel: number
@@ -28,7 +32,7 @@ export class Clothing extends Item {
     return "Clothing"
   }
 
-  async load(fetch: any) {
+  async load(fetch: FetchFunction) {
     await super.load(fetch)
     await this.loadPropertiesFloats(fetch)
   }

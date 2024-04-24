@@ -1,11 +1,14 @@
+import type { $fetch } from "ofetch"
 import { Item } from "./Item"
+
+type FetchFunction = typeof $fetch
 
 export class Book extends Item {
   get ClassName() {
     return "Book"
   }
 
-  async load(fetch: any) {
+  async load(fetch: FetchFunction) {
     await super.load(fetch)
     await this.loadPropertiesBook(fetch)
     await this.loadPropertiesBookPageData(fetch)

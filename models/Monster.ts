@@ -1,5 +1,9 @@
+import type { $fetch } from "ofetch"
+
 import { Weenie, type WeenieData } from "./Weenie"
 import { PropertyInt, CreatureTypeName, PropertyAttribute, PropertyAttribute2nd } from "~/util/mappings"
+
+type FetchFunction = typeof $fetch
 
 // Type for return type of json() methods
 interface AttributesData {

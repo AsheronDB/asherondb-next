@@ -1,5 +1,9 @@
+import type { $fetch } from "ofetch"
+
 import { Weenie, type WeenieData } from "./Weenie"
 import { PropertyString, PropertyInt, PropertyFloat, PropertyBool } from "~/util/mappings"
+
+type FetchFunction = typeof $fetch
 
 export interface SpellData {
   index: number
@@ -25,7 +29,7 @@ export class Item extends Weenie {
     return "Item"
   }
 
-  async load(fetch: any) {
+  async load(fetch: FetchFunction) {
     await super.load(fetch)
     await this.loadPropertiesInts(fetch)
     await this.loadPropertiesFloats(fetch)

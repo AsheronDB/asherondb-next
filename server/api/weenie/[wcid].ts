@@ -1,3 +1,5 @@
+import type { $fetch } from "ofetch"
+
 import { Book } from "~/models/Book"
 import { Clothing } from "~/models/Clothing"
 import { Item } from "~/models/Item"
@@ -7,6 +9,8 @@ import { MeleeWeapon } from "~/models/Weapon/MeleeWeapon"
 import { MissileWeapon } from "~/models/Weapon/MissileWeapon"
 import { Weenie } from "~/models/Weenie"
 import type { WeenieClassId } from "~/util/types"
+
+type FetchFunction = typeof $fetch
 
 // This determines what weenies get their specialized view and which get a
 // fallback (Generic) view.
@@ -25,7 +29,7 @@ enum WeenieModelType {
   Vendor,
 }
 
-const getWeenieModelType = async (fetch: any, classId: WeenieClassId): Promise<WeenieModelType> => {
+const getWeenieModelType = async (fetch: FetchFunction, classId: WeenieClassId): Promise<WeenieModelType> => {
   const w = new Weenie(classId)
   await w.loadWeenieType(fetch)
 
@@ -71,7 +75,7 @@ interface GetWeenieReturnType {
   weenie: Weenie
 }
 
-export const getWeenie = async (fetch: any, classId: WeenieClassId): Promise<GetWeenieReturnType> => {
+export const getWeenie = async (fetch: FetchFunction, classId: WeenieClassId): Promise<GetWeenieReturnType> => {
   // Get Weenie type so we know what kind of model to return
   const model_type = await getWeenieModelType(fetch, classId)
 

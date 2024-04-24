@@ -21,11 +21,12 @@ import WeenieWeaponMissile from "~/components/Weenie/Item/Weapon/Missile.vue"
 import WeenieWeaponCaster from "~/components/Weenie/Item/Weapon/Caster.vue"
 
 import { WeenieType } from "~/util/mappings"
+import type { WeenieData } from "~/models/Weenie"
 
-const props = defineProps(["data"])
+const props = defineProps<{ data: WeenieData }>()
 const { data } = toRefs(props)
 
-const weenieType = ref(null)
+const _weenieType = ref(null)
 
 let view: Component
 

@@ -12,7 +12,7 @@ console.log("APP.vue setup")
 const store = useStore()
 const { titlePhrase, now } = storeToRefs(store)
 const { isCrawler } = useDevice()
-const route = useRoute()
+const _route = useRoute()
 
 const titlePhrases = ref([
   "Portal 2 Teth?",

@@ -217,6 +217,7 @@
                     },
                   }"
                 >
+                  // eslint-disable-next-line vue/no-unused-vars
                   <template #discord-data="{ row }">
                     <UButton icon="i-heroicons-ellipsis-horizontal-20-solid" />
                   </template>
