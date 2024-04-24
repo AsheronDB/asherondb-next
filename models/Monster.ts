@@ -82,7 +82,7 @@ export class Monster extends Weenie {
     return "Monster"
   }
 
-  async load(fetch: any) {
+  async load(fetch: FetchFunction) {
     await super.load(fetch)
     await this.loadPropertiesInts(fetch)
     await this.loadPropertiesAttributes(fetch)
