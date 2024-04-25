@@ -12,17 +12,17 @@
             href="/how-to-play#step1"
             class="group"
           ><div
-            class="-ml-6 pr-2 py-2 inline-flex opacity-0 group-hover:lg:opacity-100 transition-opacity absolute"
+            class="absolute -ml-6 inline-flex py-2 pr-2 opacity-0 transition-opacity group-hover:lg:opacity-100"
           >
             <span
-              class="i-heroicons-hashtag-20-solid w-4 h-4 text-primary"
+              class="i-heroicons-hashtag-20-solid text-primary size-4"
             />
           </div>
             Step 1:
             <span class="text-black dark:text-white">Asheron's Call Installer</span></a>
         </h3>
 
-        <ol class="ml-4 list-disc marker:text-lg space-y-6">
+        <ol class="ml-4 list-disc space-y-6 marker:text-lg">
           <li class="space-y-4">
             <p class="text-lg">
               Download the official Asheron's Call installer from Turbine.
@@ -66,13 +66,13 @@
         <h3
           id="step-2"
           ref="heading"
-          class="text-3xl font-bold text-gray-900 tracking-tight leading-none mb-3"
+          class="mb-3 text-3xl font-bold leading-none tracking-tight text-gray-900"
         >
           <span class="text-primary">Step 2:</span> Update to May 2015 client
           files
         </h3>
 
-        <ol class="ml-4 list-disc marker:text-lg space-y-6">
+        <ol class="ml-4 list-disc space-y-6 marker:text-lg">
           <li class="space-y-4">
             <p class="text-lg">
               Since the official Asheron's Call installer does not update the

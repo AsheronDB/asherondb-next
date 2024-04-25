@@ -1,6 +1,6 @@
 <template>
   <div
-    class=" rounded-none border-2 border-t-primary-400 border-r-primary-800 border-b-primary-700 border-l-primary-500 bg-acred-700"
+    class="border-t-primary-400 border-r-primary-800 border-b-primary-700 border-l-primary-500 rounded-none border-2 bg-acred-700"
     :class="[classes]"
   >
     <!-- has-[input:focus]:ring-primary-500 rounded-lg p-1 ring-2 ring-inset -->

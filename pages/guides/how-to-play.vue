@@ -27,12 +27,12 @@
           class="space-y-12"
         >
           <ul
-            class="flex flex-wrap font-bold text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 text-lg"
+            class="flex flex-wrap border-b border-gray-200 text-center text-lg font-bold text-gray-500 dark:border-gray-700 dark:text-gray-400"
           >
             <li class="me-2">
               <nuxt-link
                 to="/guides/how-to-play"
-                class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500"
+                class="active inline-block rounded-t-lg bg-gray-100 p-4 text-blue-600 dark:bg-gray-800 dark:text-blue-500"
               >
                 Windows
               </nuxt-link>
@@ -40,7 +40,7 @@
             <li class="me-2">
               <nuxt-link
                 to="/guides/how-to-play/macos"
-                class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+                class="inline-block rounded-t-lg p-4 hover:bg-gray-50 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
               >
                 macOS
               </nuxt-link>
@@ -48,7 +48,7 @@
             <li class="me-2">
               <nuxt-link
                 to="/guides/how-to-play/linux"
-                class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+                class="inline-block rounded-t-lg p-4 hover:bg-gray-50 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
               >
                 Linux
               </nuxt-link>
@@ -61,7 +61,7 @@
           <section class="space-y-6">
             <h3
               id="decal"
-              class="text-3xl font-bold text-gray-900 tracking-tight leading-none"
+              class="text-3xl font-bold leading-none tracking-tight text-gray-900"
             >
               <span class="text-gray-400 dark:text-gray-500">Optional:</span>
               Download and install Decal
@@ -80,7 +80,7 @@
               Installation
             </h4>
 
-            <ul class="list-decimal list-inside text-lg">
+            <ul class="list-inside list-decimal text-lg">
               <li>Right click the installer and run as admin.</li>
               <li><strong>Do not change the default install path!</strong></li>
               <li>
@@ -111,7 +111,7 @@
               ThwargFilter
             </h4>
 
-            <ul class="list-decimal list-inside text-lg">
+            <ul class="list-inside list-decimal text-lg">
               <li>
                 Click add &gt; browse &gt; Program Files (x86) &gt; Thwargle
                 Games
@@ -151,7 +151,7 @@
           <section class="space-y-6">
             <h3
               id="4k-monitor"
-              class="text-3xl font-bold text-gray-900 tracking-tight leading-none"
+              class="text-3xl font-bold leading-none tracking-tight text-gray-900"
             >
               <span class="text-gray-400 dark:text-gray-500">Optional:</span>
               4K Monitor Setup
@@ -195,7 +195,7 @@
               reporting mechanisms, and other differences.
             </p>
 
-            <div class="grid gap-8 grid-cols-2">
+            <div class="grid grid-cols-2 gap-8">
               <div class="space-y-6">
                 <h4 id="ace">
                   AC Emulator
@@ -250,7 +250,7 @@
           <section class="space-y-6">
             <h3
               id="issues"
-              class="text-3xl font-bold text-gray-900 tracking-tight leading-none mb-3"
+              class="mb-3 text-3xl font-bold leading-none tracking-tight text-gray-900"
             >
               Common Issues
             </h3>
@@ -272,7 +272,7 @@
                   <template #trailing>
                     <UIcon
                       name="i-heroicons-chevron-right-20-solid"
-                      class="w-5 h-5 ms-auto transform transition-transform duration-200"
+                      class="ms-auto size-5 transition-transform duration-200"
                       :class="[open && 'rotate-90']"
                     />
                   </template>

@@ -16,7 +16,7 @@
           </nuxt-link>
         </template>
         <template #status-data="{ row }">
-          <p class="text-xl text-center">
+          <p class="text-center text-xl">
             {{ row.status.online ? "✅" : "❌" }}
           </p>
         </template>

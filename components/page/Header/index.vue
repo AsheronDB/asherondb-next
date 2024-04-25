@@ -1,11 +1,11 @@
 <template>
-  <header class="bg-gray-800 px-6 py-6 space-y-3 border-b border-gray-950">
+  <header class="space-y-3 border-b border-gray-950 bg-gray-800 p-6">
     <div
       class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto"
     >
       <p
         v-if="$slots.kicker"
-        class="text-md font-serif leading-none text-gray-400 mb-3"
+        class="text-md mb-3 font-serif leading-none text-gray-400"
       >
         <slot name="kicker" />
       </p>
@@ -16,12 +16,12 @@
 
       <!-- <PageBreadcrumb class="opacity-50 "/> -->
 
-      <h2 class="text-2xl font-serif leading-none text-primary-400 mb-1">
+      <h2 class="text-primary-400 mb-1 font-serif text-2xl leading-none">
         {{ route.meta.title }}
       </h2>
       <p
         v-if="$slots?.deck"
-        class="text-sm font-serif text-gray-400"
+        class="font-serif text-sm text-gray-400"
       >
         <slot name="deck" />
       </p>

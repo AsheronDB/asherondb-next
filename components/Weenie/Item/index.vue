@@ -1,15 +1,15 @@
 <template>
   <div class="max-w-96">
-    <h3 class="border-2 border-primary-800 p-2 font-serif text-center">
+    <h3 class="border-primary-800 border-2 p-2 text-center font-serif">
       {{ data.name }}
     </h3>
-    <div class="p-2 border-2 border-t-0 border-b-0 border-primary-800 font-serif">
+    <div class="border-primary-800 border-2 border-y-0 p-2 font-serif">
       <component
         :is="view"
         :data="data"
       />
     </div>
-    <div class="bg-primary-600 text-gray-950 p-4 border-2 border-primary-800 font-serif">
+    <div class="bg-primary-600 border-primary-800 border-2 p-4 font-serif text-gray-950">
       Inscription
     </div>
   </div>

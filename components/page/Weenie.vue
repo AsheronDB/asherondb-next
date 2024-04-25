@@ -9,7 +9,7 @@
       </PageHeader>
     </header>
 
-    <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto py-6">
+    <div class="py-6 group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
       <slot />
     </div>
   </div>

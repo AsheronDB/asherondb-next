@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-950 text-white min-h-screen flex flex-col">
+  <div class="flex min-h-screen flex-col bg-gray-950 text-white">
     <NuxtLoadingIndicator />
     <NuxtLayout>
       <NuxtPage />

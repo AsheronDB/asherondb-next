@@ -8,17 +8,17 @@
       ref="el"
       v-model="text"
       type="text"
-      class="px-2 py-1 w-100"
+      class="w-100 px-2 py-1"
       aria-label="Search"
       placeholder="Start typing to search..."
       @click="openDropdown"
       @focus="openDropdown"
       @keyup="onKeyUp"
     >
-    <div class="absolute top-10 left-0 p-2">
+    <div class="absolute left-0 top-10 p-2">
       <div
         ref="dropdown"
-        class="bg-gray-800 border border-gray-600 rounded p-2"
+        class="rounded border border-gray-600 bg-gray-800 p-2"
         :class="isShowingClass"
       >
         <div
@@ -106,7 +106,7 @@
         </div>
         <div
           v-if="results"
-          class="text-right p-2"
+          class="p-2 text-right"
         >
           <NuxtLink
             class="text-actan-500 hover:text-actan-500"

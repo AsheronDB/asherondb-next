@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="py-4 space-y-4">
-      <div class="border-2 border-primary-800 bg-primary-950 mb-6">
-        <div class="border-b-2 border-primary-800 p-6">
+    <div class="space-y-4 py-4">
+      <div class="border-primary-800 bg-primary-950 mb-6 border-2">
+        <div class="border-primary-800 border-b-2 p-6">
           <h2
-            class="text-3xl font-serif text-primary-400 font-normal text-center"
+            class="text-primary-400 text-center font-serif text-3xl font-normal"
           >
             {{ props.data.name }}
           </h2>
@@ -16,19 +16,19 @@
             </p>
           </div>
           <nav
-            class="flex-0 hidden items-center lg:flex text-center p-3 font-serif font-normal text-gray-400"
+            class="flex-0 hidden items-center p-3 text-center font-serif font-normal text-gray-400 lg:flex"
           >
             {{ props.data.creatureTypeName }}<br>Title<br>Attackable
           </nav>
-          <div class="ml-auto flex flex-1 justify-end items-stretch">
+          <div class="ml-auto flex flex-1 items-stretch justify-end">
             <div
-              class="border-l-2 border-primary-800 px-6 py-3 text-center leading-none flex flex-col items-center justify-center"
+              class="border-primary-800 flex flex-col items-center justify-center border-l-2 px-6 py-3 text-center leading-none"
             >
-              <p class="text-gray-400 text-sm font-serif leading-none">
+              <p class="font-serif text-sm leading-none text-gray-400">
                 Level
               </p>
               <p
-                class="text-primary-400 text-4xl font-normal font-serif leading-none"
+                class="text-primary-400 font-serif text-4xl font-normal leading-none"
               >
                 {{ props.data.level }}
               </p>
@@ -36,9 +36,9 @@
           </div>
         </div>
       </div>
-      <div class="grid gap-8 grid-cols-2 font-serif">
-        <div class="border-2 border-primary-800">
-          <h3 class="bg-primary-800 p-3 font-serif font-bold text-lg">
+      <div class="grid grid-cols-2 gap-8 font-serif">
+        <div class="border-primary-800 border-2">
+          <h3 class="bg-primary-800 p-3 font-serif text-lg font-bold">
             Attributes
           </h3>
           <table class="w-full">
@@ -46,10 +46,10 @@
               v-for="(attribute, name) in props.data.attributes"
               :key="name"
             >
-              <th class="text-left font-serif capitalize pl-3 py-1">
+              <th class="py-1 pl-3 text-left font-serif capitalize">
                 {{ name }}
               </th>
-              <td class="text-right font-serif pr-3 py-1">
+              <td class="py-1 pr-3 text-right font-serif">
                 {{ attribute }}
               </td>
             </tr>
@@ -58,18 +58,18 @@
               v-for="(vital, name) in props.data.vitals"
               :key="name"
             >
-              <th class="text-left capitalize pl-3 py-1">
+              <th class="py-1 pl-3 text-left capitalize">
                 {{ name }}
               </th>
-              <td class="text-right pr-3 py-1">
+              <td class="py-1 pr-3 text-right">
                 {{ vital }}
               </td>
             </tr>
           </table>
         </div>
 
-        <div class="border-2 border-primary-800">
-          <h3 class="bg-primary-800 p-3 font-serif font-bold text-lg">
+        <div class="border-primary-800 border-2">
+          <h3 class="bg-primary-800 p-3 font-serif text-lg font-bold">
             Skills
           </h3>
         </div>

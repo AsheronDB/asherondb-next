@@ -1,6 +1,6 @@
 <template>
   <Page>
-    <div class="py-4 space-y-4">
+    <div class="space-y-4 py-4">
       <UTable
         :columns
         :rows="races"

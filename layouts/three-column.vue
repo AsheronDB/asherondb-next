@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-900 h-full flex-1 flex flex-col relative group/layout three-column narrow">
+  <div class="group/layout three-column narrow relative flex h-full flex-1 flex-col bg-gray-900">
     <SiteHeader />
     <main class="flex-1">
       <slot />
