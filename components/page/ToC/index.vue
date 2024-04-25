@@ -1,15 +1,15 @@
 <template>
-  <nav class="sticky top-[--header-height] bg-background/75 backdrop-blur group overflow-y-auto">
-    <div class="py-3 lg:py-8 border-b border-dashed border-gray-200 dark:border-gray-800 lg:border-0 space-y-3">
+  <nav class="bg-background/75 group sticky top-[--header-height] overflow-y-auto backdrop-blur">
+    <div class="space-y-3 border-b border-dashed border-gray-200 py-3 lg:border-0 lg:py-8 dark:border-gray-800">
       <button
-        class="flex items-center gap-1.5 lg:cursor-text lg:select-text w-full"
+        class="flex w-full items-center gap-1.5 lg:cursor-text lg:select-text"
         tabindex="-1"
       >
-        <span class="font-semibold text-sm/6 truncate">Table of Contents</span><span
-          class="i-heroicons-chevron-down-20-solid lg:hidden w-5 h-5 ms-auto transform transition-transform duration-200 flex-shrink-0 mr-1.5 text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-200 -rotate-90"
+        <span class="truncate text-sm/6 font-semibold">Table of Contents</span><span
+          class="i-heroicons-chevron-down-20-solid mr-1.5 ms-auto size-5 shrink-0 -rotate-90 text-gray-500 transition-transform duration-200 group-hover:text-gray-700 lg:hidden dark:text-gray-400 dark:group-hover:text-gray-200"
         />
       </button>
-      <ul class="space-y-1 hidden lg:block">
+      <ul class="hidden space-y-1 lg:block">
         <PageToCNavItem
           v-for="(item, index) in headingsData"
           :id="item.id"

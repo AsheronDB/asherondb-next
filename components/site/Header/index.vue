@@ -1,19 +1,19 @@
 <template>
   <header
-    class="flex-0 sticky top-0 px-6 py-4 pt-8 z-50 border-b shadow-lg border-[#131313] bg-[#642625] text-white bg-repeat-x bg-[url('~/assets/img/header-bg.png')]"
+    class="flex-0 sticky top-0 z-50 border-b border-[#131313] bg-[#642625] bg-[url('~/assets/img/header-bg.png')] bg-repeat-x px-6 py-4 pt-8 text-white shadow-lg"
   >
-    <div class="flex w-full rounded-lg space-x-6">
-      <div class="flex flex-0 items-center">
-        <h1 class="font-bold h-full hidden lg:block">
+    <div class="flex w-full space-x-6 rounded-lg">
+      <div class="flex-0 flex items-center">
+        <h1 class="hidden h-full font-bold lg:block">
           <nuxt-link
             to="/"
-            class="block bg-center bg-no-repeat bg-contain bg-[url('~/assets/img/acdb-logo.png')] h-full w-36"
+            class="block h-full w-36 bg-[url('~/assets/img/acdb-logo.png')] bg-contain bg-center bg-no-repeat"
           />
         </h1>
-        <h1 class="font-bold h-full block lg:hidden">
+        <h1 class="block h-full font-bold lg:hidden">
           <nuxt-link
             to="/"
-            class="block bg-center bg-no-repeat bg-contain bg-[url('~/assets/img/asherondb-seal-3d.png')] h-full w-10"
+            class="block h-full w-10 bg-[url('~/assets/img/asherondb-seal-3d.png')] bg-contain bg-center bg-no-repeat"
           />
         </h1>
       </div>

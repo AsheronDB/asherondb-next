@@ -4,8 +4,8 @@
       {{ resultsRange }}
     </template> -->
     <div class="py-6">
-      <div class="border border-gray-950 rounded-lg">
-        <div class="p-4 bg-gray-800 border-b-2 border-gray-700 rounded-t-lg flex justify-end">
+      <div class="rounded-lg border border-gray-950">
+        <div class="flex justify-end rounded-t-lg border-b-2 border-gray-700 bg-gray-800 p-4">
           <PagePagination
             v-model="offset"
             :offset-size="offsetSize"
@@ -13,7 +13,7 @@
           />
         </div>
 
-        <div class="bg-gray-800/40 rounded-b-lg">
+        <div class="rounded-b-lg bg-gray-800/40">
           <UTable
             :columns
             :rows="results"

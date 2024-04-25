@@ -14,7 +14,7 @@
 
     <template #panel="{ close }">
       <div
-        class="py-4 px-6"
+        class="px-6 py-4"
         :class="[dropdownHovered ? 'bg-red-500' : '']"
       >
         <div class="grid grid-cols-3 gap-10 text-gray-100">
@@ -28,7 +28,7 @@
               :key="section.label"
             >
               <p
-                class="font-bold text-sm border-b border-gray-600 pb-1 text-gray-400"
+                class="border-b border-gray-600 pb-1 text-sm font-bold text-gray-400"
               >
                 {{ section.label }}
               </p>
@@ -56,12 +56,12 @@
                     :ui="dropdownUI"
                   >
                     <div
-                      class="flex-1 flex justify-between items-center relative truncate block py-1.5 px-2 text-gray-200 rounded hover:bg-gray-600"
+                      class="relative block flex flex-1 items-center justify-between truncate rounded px-2 py-1.5 text-gray-200 hover:bg-gray-600"
                     >
-                      <div class="text-sm flex flex-col justify-center font-bold">
+                      <div class="flex flex-col justify-center text-sm font-bold">
                         {{ child.label }}
                       </div>
-                      <div class="text-lg flex flex-col justify-center">
+                      <div class="flex flex-col justify-center text-lg">
                         <UIcon name="i-heroicons-chevron-right-20-solid" />
                       </div>
                     </div>
@@ -70,7 +70,7 @@
                   <nuxt-link
                     v-else
                     :to="child.to"
-                    class="text-sm block py-1.5 px-2 rounded font-bold text-gray-200 [&.router-link-active]:bg-gray-600 hover:bg-gray-600"
+                    class="block rounded px-2 py-1.5 text-sm font-bold text-gray-200 hover:bg-gray-600 [&.router-link-active]:bg-gray-600"
                   >
                     {{ child.label }}
                   </nuxt-link>

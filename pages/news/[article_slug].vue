@@ -17,17 +17,17 @@
 
       <ContentDoc
         :path="'news/' + route.params.article_slug"
-        class="mx-auto max-w-none prose prose-a:text-primary dark:prose-hr:border-primary-950 dark:prose-invert"
+        class="prose prose-a:text-primary dark:prose-hr:border-primary-950 dark:prose-invert mx-auto max-w-none"
       />
     </div>
     <hr>
     <footer>
-      <div class="grid gap-6 grid-cols-2 pt-12">
+      <div class="grid grid-cols-2 gap-6 pt-12">
         <div class="">
           <nuxt-link
             v-if="prev"
             :to="prev._path"
-            class="block h-full transition-colors hover:border-primary-400 dark:hover:border-primary-400 p-6 border dark:border-primary-950 rounded-lg"
+            class="hover:border-primary-400 dark:hover:border-primary-400 dark:border-primary-950 block h-full rounded-lg border p-6 transition-colors"
             v-html="prev.title"
           />
         </div>
@@ -35,7 +35,7 @@
           <nuxt-link
             v-if="next"
             :to="next._path"
-            class="block h-full  p-6 border rounded-lg"
+            class="block h-full  rounded-lg border p-6"
             v-html="next.title"
           />
         </div>

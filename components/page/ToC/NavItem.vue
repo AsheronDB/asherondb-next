@@ -3,13 +3,13 @@
     <a
       :href="'#' + id"
       :class="{ 'text-primary': isActive }"
-      class="block text-sm truncate text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+      class="block truncate text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
     >
       {{ text }}
     </a>
     <ul
       v-if="children.length"
-      class="space-y-1 nested-nav"
+      class="nested-nav space-y-1"
     >
       <NavItem
         v-for="(child, index) in children"

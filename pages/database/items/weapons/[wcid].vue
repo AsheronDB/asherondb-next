@@ -12,10 +12,10 @@
     <div class="pb-6">
       <UHorizontalNavigation
         :links="links"
-        class="border-b border-gray-700 bg-gray-800/40 px-2 rounded-t"
+        class="rounded-t border-b border-gray-700 bg-gray-800/40 px-2"
       />
 
-      <div class="bg-gray-800 py-6 px-4 rounded-b">
+      <div class="rounded-b bg-gray-800 px-4 py-6">
         <div
           v-for="section in sections"
           v-show="route.hash === '#' + section.key"

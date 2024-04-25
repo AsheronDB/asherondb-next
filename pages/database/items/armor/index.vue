@@ -16,7 +16,7 @@
     </div>
 
     <template #footer>
-      <div class="bg-gray-800/50 py-6 border-t border-gray-950">
+      <div class="border-t border-gray-950 bg-gray-800/50 py-6">
         <div class="group-[.narrow]/layout:container group-[.narrow]/layout:mx-auto">
           <UPagination
             v-model="page"

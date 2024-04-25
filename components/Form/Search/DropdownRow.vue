@@ -6,12 +6,12 @@
     <div class="p-2">
       <NuxtLink
         :to="props.url"
-        class="text-actan-500 hover:text-actan-500 hover:underline font-bold"
+        class="font-bold text-actan-500 hover:text-actan-500 hover:underline"
       >
         {{ props.name }}
       </NuxtLink>
     </div>
-    <div class="grid text-right p-2 text-gray-200 text-opacity-50">
+    <div class="grid p-2 text-right text-gray-200 text-opacity-50">
       {{ SearchResultSubCategoryLabel[props.subcategory] }}
     </div>
   </div>
