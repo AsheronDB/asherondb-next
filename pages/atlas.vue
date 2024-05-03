@@ -1,3 +1,8 @@
 <template>
-  <div class="flex-1 flex-col">Atlas, full height div</div>
+  <Landscape />
 </template>
+
+
+<script setup lang="ts">
+  import Landscape from "~/components/Maps/Landscape.vue"
+</script>

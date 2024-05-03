@@ -23,7 +23,9 @@
     "nuxt": "^3.11.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "@math.gl/core": "^4.0.1",
+    "lil-gui": "^0.19.2"
   },
   "devDependencies": {
     "@nuxtjs/device": "^3.1.1",
