@@ -1,14 +1,14 @@
 const labels = {
-  minZoom: 'minZoom',
-  maxZoom: 'maxZoom',
-  minZoomForTextures: 'minZoomForTextures',
-  showLandcellLines: 'showLandcellLines',
-  showLandblockLines: 'showLandblockLines',
-  badWireframe: 'badWireframe',
-  renderQuality: 'renderQuality'
+  minZoom: "minZoom",
+  maxZoom: "maxZoom",
+  minZoomForTextures: "minZoomForTextures",
+  showLandcellLines: "showLandcellLines",
+  showLandblockLines: "showLandblockLines",
+  badWireframe: "badWireframe",
+  renderQuality: "renderQuality",
 }
 
-const data =  {
+const data = {
   minZoom: 0.002,
   maxZoom: 1000,
   minZoomForTextures: 0.02,
@@ -19,11 +19,11 @@ const data =  {
   minRenderQuality: 1,
   renderQuality: 10,
   get renderScale() {
-    return data.maxRenderQuality + 1 - data.renderQuality;
+    return data.maxRenderQuality + 1 - data.renderQuality
   },
 }
 
 export {
   data,
   labels,
-};
+}

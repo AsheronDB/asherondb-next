@@ -1,17 +1,14 @@
-import * as glhelpers from './glhelpers'
-import { Vector3, Vector2 } from '@math.gl/core'
+import { Vector3, Vector2 } from "@math.gl/core"
 
-import { TextureArray } from './texturearray'
-import { TerrainVertSource } from '../shaders/terrain.vert'
-import { TerrainFragSource } from '../shaders/terrain.frag'
+import { TerrainVertSource } from "../shaders/terrain.vert"
+import { TerrainFragSource } from "../shaders/terrain.frag"
 
-import * as settings from '../settings'
-import { terrainTextures, alphaTextures, terrainColors, assetsPaths } from '../data/terrain'
-import { camera2d } from './cameras/camera2d'
-//import gui from './gui'
-import { updateFrameRate } from '../tools/fpscounter'
-import * as codes from '../tools/codes'
-import { Texture } from './texture'
+import * as settings from "../settings"
+import { terrainTextures, alphaTextures, terrainColors, assetsPaths } from "../data/terrain"
+import { camera2d } from "./cameras/camera2d"
+import { TextureArray } from "./texturearray"
+import * as glhelpers from "./glhelpers"
+import { Texture } from "./texture"
 
 export class TerrainRenderer {
   canvas!: HTMLCanvasElement
@@ -22,12 +19,10 @@ export class TerrainRenderer {
   fragmentShader: WebGLShader | null = null
   program: WebGLProgram | null = null
 
-  #fps = 0
-
   // uniform locations
-  #xWorldLoc : WebGLUniformLocation | null = null
-  #scaleLoc : WebGLUniformLocation | null = null
-  #renderViewLoc : WebGLUniformLocation | null = null
+  #xWorldLoc: WebGLUniformLocation | null = null
+  #scaleLoc: WebGLUniformLocation | null = null
+  #renderViewLoc: WebGLUniformLocation | null = null
   #terrainDataLoc: WebGLUniformLocation | null = null
   #terrainAtlasLoc: WebGLUniformLocation | null = null
   #alphaAtlasLoc: WebGLUniformLocation | null = null
@@ -87,26 +82,26 @@ export class TerrainRenderer {
 
     const run = (dt: number) => {
       if (!this.isRunning) {
-        return;
+        return
       }
-  
-      this.update(dt);
-      this.draw(dt);
-  
-      //const centerPos = new Vector3(this.canvas.width / 2.0, this.canvas.height / 2.0, 0);
-      //updateRoute(this.camera!.ScreenToCoords(centerPos), this.camera.Zoom);
-  
-      window.requestAnimationFrame(run);
+
+      this.update(dt)
+      this.draw()
+
+      // const centerPos = new Vector3(this.canvas.width / 2.0, this.canvas.height / 2.0, 0);
+      // updateRoute(this.camera!.ScreenToCoords(centerPos), this.camera.Zoom);
+
+      window.requestAnimationFrame(run)
     }
 
-    window.requestAnimationFrame(run);
+    window.requestAnimationFrame(run)
   }
 
   destroy() {
     this.isRunning = false
-    //this.#dataTexture.destroy()
-    //this.#alphaTextureArray.destroy()
-    //this.#terrainTextureArray.destroy()
+    // this.#dataTexture.destroy()
+    // this.#alphaTextureArray.destroy()
+    // this.#terrainTextureArray.destroy()
   }
 
   #addSettings() {
@@ -123,7 +118,7 @@ export class TerrainRenderer {
   }
 
   #setupInputs() {
-    this.mousePos = new Vector2(0, 0);
+    this.mousePos = new Vector2(0, 0)
     /*
     codes.setupCodes()
     codes.addCode('idkfa', () => {
@@ -135,50 +130,50 @@ export class TerrainRenderer {
   #setupGL() {
     if (!this.#createShaders()) {
       this.throwError("Unable to create shaders!")
-      return false;
+      return false
     }
-    
+
     if (!this.#createProgram()) {
       this.throwError("Unable to program!")
-      return false;
+      return false
     }
 
-    this.#buildData();
-    
+    this.#buildData()
+
     // Tell WebGL how to convert from clip space to pixels
-    this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
+    this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height)
 
     // Tell it to use our program (pair of shaders)
-    this.gl.useProgram(this.program);
+    this.gl.useProgram(this.program)
 
-    this.gl.enable(this.gl.BLEND);
-    this.gl.blendFunc(this.gl.ONE, this.gl.ONE_MINUS_SRC_ALPHA);
+    this.gl.enable(this.gl.BLEND)
+    this.gl.blendFunc(this.gl.ONE, this.gl.ONE_MINUS_SRC_ALPHA)
 
-    this.#xWorldLoc = this.gl.getUniformLocation(this.program!, 'xWorld');
-    this.#scaleLoc = this.gl.getUniformLocation(this.program!, 'scale');
-    this.#renderViewLoc = this.gl.getUniformLocation(this.program!, 'renderView');
-    this.#terrainDataLoc = this.gl.getUniformLocation(this.program!, "terrainData");
-    this.#terrainAtlasLoc = this.gl.getUniformLocation(this.program!, "terrainAtlas");
-    this.#alphaAtlasLoc = this.gl.getUniformLocation(this.program!, "alphaAtlas");
-    this.#minZoomForTexturesLoc = this.gl.getUniformLocation(this.program!, 'minZoomForTextures');
-    this.#showLandcellLinesLoc = this.gl.getUniformLocation(this.program!, 'showLandcellLines');
-    this.#showLandblockLinesLoc = this.gl.getUniformLocation(this.program!, 'showLandblockLines');
-    this.#pixelSizeLoc = this.gl.getUniformLocation(this.program!, 'pixelSize');
+    this.#xWorldLoc = this.gl.getUniformLocation(this.program!, "xWorld")
+    this.#scaleLoc = this.gl.getUniformLocation(this.program!, "scale")
+    this.#renderViewLoc = this.gl.getUniformLocation(this.program!, "renderView")
+    this.#terrainDataLoc = this.gl.getUniformLocation(this.program!, "terrainData")
+    this.#terrainAtlasLoc = this.gl.getUniformLocation(this.program!, "terrainAtlas")
+    this.#alphaAtlasLoc = this.gl.getUniformLocation(this.program!, "alphaAtlas")
+    this.#minZoomForTexturesLoc = this.gl.getUniformLocation(this.program!, "minZoomForTextures")
+    this.#showLandcellLinesLoc = this.gl.getUniformLocation(this.program!, "showLandcellLines")
+    this.#showLandblockLinesLoc = this.gl.getUniformLocation(this.program!, "showLandblockLines")
+    this.#pixelSizeLoc = this.gl.getUniformLocation(this.program!, "pixelSize")
   }
 
   #setConstantUniforms() {
-    for (var i = 0; i < this.heightTable.length; i++) {
-      const heightTableLoc = this.gl.getUniformLocation(this.program!, `heightTable[${i}]`);
-      this.gl.uniform1f(heightTableLoc, this.heightTable[i]);
+    for (let i = 0; i < this.heightTable.length; i++) {
+      const heightTableLoc = this.gl.getUniformLocation(this.program!, `heightTable[${i}]`)
+      this.gl.uniform1f(heightTableLoc, this.heightTable[i])
     }
-    for (var i = 0; i < terrainColors.length; i++) {
-      const terrainColorLoc = this.gl.getUniformLocation(this.program!, `terrainColors[${i}]`);
-      this.gl.uniform3f(terrainColorLoc, terrainColors[i].x, terrainColors[i].y, terrainColors[i].z);
+    for (let i = 0; i < terrainColors.length; i++) {
+      const terrainColorLoc = this.gl.getUniformLocation(this.program!, `terrainColors[${i}]`)
+      this.gl.uniform3f(terrainColorLoc, terrainColors[i].x, terrainColors[i].y, terrainColors[i].z)
     }
 
-    this.gl.uniform1i(this.#terrainDataLoc, this.#dataTexture.textureUnit);
-    this.gl.uniform1i(this.#terrainAtlasLoc, this.#terrainTextureArray.textureUnit);
-    this.gl.uniform1i(this.#alphaAtlasLoc, this.#alphaTextureArray.textureUnit);
+    this.gl.uniform1i(this.#terrainDataLoc, this.#dataTexture.textureUnit)
+    this.gl.uniform1i(this.#terrainAtlasLoc, this.#terrainTextureArray.textureUnit)
+    this.gl.uniform1i(this.#alphaAtlasLoc, this.#alphaTextureArray.textureUnit)
   }
 
   #makeTextures() {
@@ -193,17 +188,17 @@ export class TerrainRenderer {
 
   #onready() {
     this.handleResize()
-    document.body.classList.add('loaded')
+    document.body.classList.add("loaded")
 
     this.#alphaTextureArray.load((idx) => {
       if (idx < 0) {
         this.#terrainTextureArray.load((idx) => {
           if (idx >= 0) {
-            this.hasTerrainTexture[idx] = 1;
+            this.hasTerrainTexture[idx] = 1
           }
         })
       }
-    });
+    })
   }
 
   handleResize() {
@@ -216,74 +211,72 @@ export class TerrainRenderer {
   }
 
   #buildData() {
-    for (var i = 0; i < 255; i++) {
-      this.heightTable[i] = i * 2;
+    for (let i = 0; i < 255; i++) {
+      this.heightTable[i] = i * 2
     }
-    for (var i = 0; i < 32; i++) {
+    for (let i = 0; i < 32; i++) {
       this.hasTerrainTexture[i] = 0
     }
   }
 
   #createShaders() {
-    this.vertexShader = glhelpers.createShader(this.gl, this.gl.VERTEX_SHADER, TerrainVertSource);
-    this.fragmentShader = glhelpers.createShader(this.gl, this.gl.FRAGMENT_SHADER, TerrainFragSource);
+    this.vertexShader = glhelpers.createShader(this.gl, this.gl.VERTEX_SHADER, TerrainVertSource)
+    this.fragmentShader = glhelpers.createShader(this.gl, this.gl.FRAGMENT_SHADER, TerrainFragSource)
 
-    return (this.vertexShader && this.fragmentShader);
+    return (this.vertexShader && this.fragmentShader)
   }
 
   #createProgram() {
-    this.program = glhelpers.createProgram(this.gl, this.vertexShader!, this.fragmentShader!);
-    return !!this.program;
+    this.program = glhelpers.createProgram(this.gl, this.vertexShader!, this.fragmentShader!)
+    return !!this.program
   }
 
   update(dt: number) {
+    this.camera.ViewportSize.x = this.canvas.width
+    this.camera.ViewportSize.y = this.canvas.height
 
-    this.#fps = updateFrameRate()
-    this.camera.ViewportSize.x = this.canvas.width;
-    this.camera.ViewportSize.y = this.canvas.height;
+    this.camera.update(dt)
 
-    this.camera.update(dt);
-
-    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height)
 
     // Clear the canvas
-    this.gl.clearColor(0, 0, 0, 1);
-    this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+    this.gl.clearColor(0, 0, 0, 1)
+    this.gl.clear(this.gl.COLOR_BUFFER_BIT)
 
-    this.gl.uniform1f(this.#scaleLoc!, this.camera.Zoom);
-    this.gl.uniformMatrix4fv(this.#xWorldLoc!, false, this.camera.Transform);
-    this.gl.uniform4f(this.#renderViewLoc!, 0, 0, 255, 255);
-    this.gl.uniform1f(this.#minZoomForTexturesLoc!, settings.data.minZoomForTextures);
+    this.gl.uniform1f(this.#scaleLoc!, this.camera.Zoom)
+    this.gl.uniformMatrix4fv(this.#xWorldLoc!, false, this.camera.Transform)
+    this.gl.uniform4f(this.#renderViewLoc!, 0, 0, 255, 255)
+    this.gl.uniform1f(this.#minZoomForTexturesLoc!, settings.data.minZoomForTextures)
     this.gl.uniform1f(this.#showLandcellLinesLoc, settings.data.showLandcellLines ? 1.0 : 0.0)
     this.gl.uniform1f(this.#showLandblockLinesLoc, settings.data.showLandblockLines ? 1.0 : 0.0)
 
-    const pixelSize = ((this.canvas.width > this.canvas.height ? this.canvas.width : this.canvas.height) / this.camera.MapSize.x) /  this.camera.Zoom;
-    this.gl.uniform1f(this.#pixelSizeLoc, pixelSize);
+    const pixelSize = ((this.canvas.width > this.canvas.height ? this.canvas.width : this.canvas.height) / this.camera.MapSize.x) / this.camera.Zoom
+    this.gl.uniform1f(this.#pixelSizeLoc, pixelSize)
 
-    for (var i = 0; i < this.hasTerrainTexture.length; i++) {
-      const hasTerrainTextureLoc = this.gl.getUniformLocation(this.program!, `hasTerrainTexture[${i}]`);
-      this.gl.uniform1f(hasTerrainTextureLoc, this.hasTerrainTexture[i]);
+    for (let i = 0; i < this.hasTerrainTexture.length; i++) {
+      const hasTerrainTextureLoc = this.gl.getUniformLocation(this.program!, `hasTerrainTexture[${i}]`)
+      this.gl.uniform1f(hasTerrainTextureLoc, this.hasTerrainTexture[i])
     }
 
-    //this.overlay.innerHTML = `
-    //Coords: ${this.camera.ScreenToCoords(new Vector3(this.mousePos.x / settings.data.renderScale, this.mousePos.y / settings.data.renderScale, 1))}<br />
-    //FPS: ${this.#fps}<br />
-    //`;
+    // this.overlay.innerHTML = `
+    // Coords: ${this.camera.ScreenToCoords(new Vector3(this.mousePos.x / settings.data.renderScale, this.mousePos.y / settings.data.renderScale, 1))}<br />
+    // FPS: ${this.#fps}<br />
+    // `;
   }
 
-  draw(dt: number) {
-    const numVerts = 8 * 8 * 2 * 3; // 8 cells per lb, 2 tris per cell
-    const numInstances = 255 * 255; // one for each landblock
+  draw() {
+    const numVerts = 8 * 8 * 2 * 3 // 8 cells per lb, 2 tris per cell
+    const numInstances = 255 * 255 // one for each landblock
 
     if (settings.data.badWireframe) {
-      this.gl.drawArraysInstanced(this.gl.LINE_STRIP, 0, numVerts, numInstances);
+      this.gl.drawArraysInstanced(this.gl.LINE_STRIP, 0, numVerts, numInstances)
     }
     else {
-      this.gl.drawArraysInstanced(this.gl.TRIANGLES, 0, numVerts, numInstances);
+      this.gl.drawArraysInstanced(this.gl.TRIANGLES, 0, numVerts, numInstances)
     }
   }
 
   throwError(message: string) {
-    console.error(`Error: ${message}\n\nCheck console output for more details`);
+    console.error(`Error: ${message}\n\nCheck console output for more details`)
   }
 }

@@ -2,7 +2,6 @@
   <Landscape />
 </template>
 
-
 <script setup lang="ts">
-  import Landscape from "~/components/Maps/Landscape.vue"
+import Landscape from "~/components/Maps/Landscape.vue"
 </script>
