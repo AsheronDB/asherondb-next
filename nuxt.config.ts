@@ -27,6 +27,14 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "light",
   },
+  runtimeConfig: {
+    // expects there to be subfolders of different dat sets, so a structure might look like:
+    // datDirectory/eor/client_portal.dat
+    // datDirectory/megadat/client_portal.dat
+    // override with NUXT_DAT_DIRECTORY env variable
+    datDirectory: './../dats/',
+    public: {}
+  },
   vite: {
     build: {
       minify: "terser",
