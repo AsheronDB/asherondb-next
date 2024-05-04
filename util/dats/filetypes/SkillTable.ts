@@ -21,6 +21,7 @@ export default class SkillTable extends DatFile {
         this.skills[key] = item
       }
     }
-    return false
+
+    return true
   }
 }

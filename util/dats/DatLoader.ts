@@ -11,7 +11,11 @@ export async function getOrCreateDatLoader(datDirectory: string) {
   }
 
   loaders[datDirectory] = new DatLoader(datDirectory)
+  const t0 = performance.now()
   await loaders[datDirectory].init()
+  const t1 = performance.now()
+  console.log(`Took ${((t1 - t0) / 1000).toFixed(3)}s to load dats from ${datDirectory}`)
+
   return loaders[datDirectory]
 }
 
@@ -31,7 +35,11 @@ export class DatLoader {
   }
 
   async init() {
-    return await this.Cell.init() && await this.Portal.init() && await this.Language.init()
+    const didCellInit = await this.Cell.init()
+    const didPortalInit = await this.Portal.init()
+    const didLanguageInit = await this.Language.init()
+
+    return didCellInit && didPortalInit && didLanguageInit
   }
 
   async getPortalFile<T extends DatFile>(id: number, fileCtor: new () => T): Promise<T | null> {

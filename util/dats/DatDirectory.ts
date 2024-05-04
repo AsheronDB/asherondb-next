@@ -30,17 +30,21 @@ export class DatDirectory {
 
     const block = new DataView(new ArrayBuffer(this.dat.blockSize))
     await dat.fileHandle?.read(block, 0, this.dat.blockSize, blk_offset)
+      .catch((err) => { console.error(`Error reading DatDirectory block: offset: ${blk_offset} size: ${this.dat.blockSize}: ${err}`) })
 
     const folderData = new DataView(new ArrayBuffer(62 * 4))
     await dat.fileHandle?.read(folderData, 0, 62 * 4, blk_offset + data_offset)
+      .catch((err) => { console.error(`Error reading DatDirectory folder data: offset: ${blk_offset + data_offset} size: ${62 * 4}: ${err}`) })
 
     this.folders = new Uint32Array(folderData.buffer, 0, 62)
     data_offset += 248 // 62 * 4;
 
     this.isLeaf = !this.folders[0]
     this.fileCount = block.getInt32(data_offset, true)
-    if (this.fileCount > 61)
-      console.log("node entry count", this.offset, data_offset, this.fileCount)
+    // if (this.fileCount > 61) {
+    //  console.log("node entry count", this.offset, data_offset, this.fileCount)
+    //  return
+    // }
     data_offset += 4
 
     const getEntryChunk = async function () {
@@ -54,6 +58,7 @@ export class DatDirectory {
         if (cnt > 0) {
           const tmpView = new DataView(new ArrayBuffer(cnt * 4))
           await dat.fileHandle?.read(tmpView, 0, cnt * 4, blk_offset + data_offset)
+            .catch((err) => { console.error(`Error reading DatDirectory chunk: offset: ${blk_offset + data_offset} size: ${cnt * 4}: ${err}`) })
           const tmp = new Uint32Array(tmpView.buffer, 0, cnt)
           chunk.set(tmp, idx)
           need -= cnt
@@ -65,10 +70,11 @@ export class DatDirectory {
           }
         }
 
-        blk_offset = block.getInt32(0, true)
+        blk_offset = block.getUint32(0, true)
         data_offset = 4
 
         await dat.fileHandle?.read(block, 0, dat.blockSize, blk_offset)
+          .catch((err) => { console.error(`Error reading DatDirectory block (left): offset: ${blk_offset} size: ${dat.blockSize}: ${err}`) })
 
         left = Math.min(dat.blockSize - data_offset, need * 4)
       }

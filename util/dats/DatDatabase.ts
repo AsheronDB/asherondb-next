@@ -14,6 +14,7 @@ export class DatDatabase {
   reader: DatReader | undefined
 
   fileCache: Record<number, DatFileEntry> = {}
+  directoryCache: Record<number, DatDirectory> = {}
 
   magic: number = 0
   blockSize: number = 0
@@ -48,6 +49,8 @@ export class DatDatabase {
       if (this.fileHandle) {
         await this.#readHeader()
       }
+
+      // await this.loadFileCache()
 
       return true
     }
@@ -103,13 +106,49 @@ export class DatDatabase {
     return null
   }
 
+  async getFileEntries(min: number, max: number, parent: number = 0) {
+    let entries: DatFileEntry[] = []
+    parent = parent == 0 ? this.root : parent
+
+    const entry = await this.#getDirectory(parent)
+    const cachedFiles = this.#cacheFiles(entry)
+
+    for (const file of cachedFiles) {
+      if (file.id >= min && file.id <= max) {
+        entries.push(file)
+      }
+    }
+
+    for (let i = 0; i < 62; i++) {
+      const offset = entry.folders![i]
+      if (offset != 0 && offset != 0xcdcdcd && offset < this.fileSize) {
+        const newEntries = await this.getFileEntries(min, max, offset)
+        entries = entries.concat(newEntries)
+      }
+      else {
+        break
+      }
+    }
+
+    return entries
+  }
+
+  async #getDirectory(id: number) {
+    if (!this.directoryCache[id]) {
+      const entry = new DatDirectory(this, id)
+      await entry.load()
+      this.directoryCache[id] = entry
+      return entry
+    }
+    return this.directoryCache[id]
+  }
+
   async #findFile(id: number) {
     let current = this.root
     // console.log("find file", id.toHexStr(), current.toHexStr());
     let lastCurrent = 0
     while (current !== 0 && current !== 0xcdcdcdcd) {
-      const entry = new DatDirectory(this, current)
-      await entry.load()
+      const entry = await this.#getDirectory(current)
 
       this.#cacheFiles(entry)
 
@@ -158,33 +197,39 @@ export class DatDatabase {
   }
 
   #cacheFiles(node: DatDirectory) {
+    const cached: DatFileEntry[] = []
     for (let i = 0; i < node.fileCount; i++) {
       const f = node.files[i]
       if (!f) {
-        // console.log('bad file', node.offset.toHexStr(), i);
-        continue
+        break
       }
       this.fileCache[f.id] = f
+      cached.push(f)
     }
+
+    return cached
   }
 
   async loadFileCache() {
-    await this.#loadDirectoryFiles(new DatDirectory(this, this.root))
+    const dir = await this.#getDirectory(this.root)
+    await this.#loadDirectoryFiles(dir)
   }
 
   async #loadDirectoryFiles(node: DatDirectory) {
-    this.#cacheFiles(node)
-    if (!node.isLeaf) {
-      for (let i = 0; i < 62; i++) {
-        const offset = node.folders![i]
-        // if (offset > this.fileSize) console.log('node offset', offset.toHexStr());
-        if (offset != 0 && offset != 0xcdcdcd && offset < this.fileSize) {
-          const dir = new DatDirectory(this, offset)
-          await dir.load()
-          this.#loadDirectoryFiles(dir)
+    try {
+      this.#cacheFiles(node)
+      if (!node.isLeaf) {
+        for (let i = 0; i < 62; i++) {
+          const offset = node.folders![i]
+          // if (offset > this.fileSize) console.log('node offset', offset.toHexStr());
+          if (offset != 0 && offset != 0xcdcdcd && offset < this.fileSize) {
+            const dir = await this.#getDirectory(offset)
+            this.#loadDirectoryFiles(dir)
+          }
         }
       }
     }
+    catch (e) { console.error(e) }
   }
 
   close() {
