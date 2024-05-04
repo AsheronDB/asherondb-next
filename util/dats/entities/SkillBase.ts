@@ -28,7 +28,7 @@ export class SkillBase implements IDatPackable {
     this.chargenUse = reader.getUint32()
     this.minLevel = reader.getUint32()
     this.formula = new SkillFormula()
-    this.formula.unpack(reader)
+    await this.formula.unpack(reader)
     this.upperBound = reader.getDouble()
     this.lowerBound = reader.getDouble()
     this.learnMod = reader.getDouble()
