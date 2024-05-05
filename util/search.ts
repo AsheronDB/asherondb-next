@@ -35,7 +35,7 @@ export const weenieTypeURLMapThing: StringIndexedDict<string> = {
   [WeenieType.SpellComponent]: "items",
   [WeenieType.ProjectileSpell]: "items",
   [WeenieType.Scroll]: "items",
-  [WeenieType.Caster]: "items",
+  [WeenieType.Caster]: "items/weapons",
   [WeenieType.Channel]: "items",
   [WeenieType.ManaStone]: "items",
   [WeenieType.Gem]: "items",
