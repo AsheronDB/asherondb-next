@@ -22,6 +22,7 @@ export interface ItemData extends WeenieData {
   spellcraft: number
   isSellable: boolean
   spells: SpellData[]
+  propertyString: string
 }
 
 export class Item extends Weenie {
@@ -83,6 +84,28 @@ export class Item extends Weenie {
     })
   }
 
+  get propertyString(): string {
+    const props = []
+
+    if (this.properties.ints.get(PropertyInt.Attuned)) {
+      props.push("Attuned")
+    }
+
+    if (this.properties.ints.get(PropertyInt.Bonded)) {
+      props.push("Bonded")
+    }
+
+    if (this.properties.bool.get(PropertyBool.Ivoryable)) {
+      props.push("Ivoryable")
+    }
+
+    if (this.properties.bool.get(PropertyBool.Dyable)) {
+      props.push("Dyable")
+    }
+
+    return props.join(", ")
+  }
+
   json(): ItemData {
     return {
       ...super.json(),
@@ -96,6 +119,7 @@ export class Item extends Weenie {
       spellcraft: this.spellcraft,
       isSellable: this.isSellable,
       spells: this.spells,
+      propertyString: this.propertyString,
     }
   }
 }

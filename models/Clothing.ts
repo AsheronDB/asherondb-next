@@ -24,7 +24,6 @@ export interface ClothingData extends ItemData {
   armorLevelVsElectricPhrase: number
   armorLevelVsNetherPhrase: number
   coverageString: string
-  propertyString: string
 }
 
 export class Clothing extends Item {
@@ -109,28 +108,6 @@ export class Clothing extends Item {
     return CoveragePhrase(this.properties.ints?.get(PropertyInt.ClothingPriority))
   }
 
-  get propertyString(): string {
-    const props = []
-
-    if (this.properties.ints.get(PropertyInt.Attuned)) {
-      props.push("Attuned")
-    }
-
-    if (this.properties.ints.get(PropertyInt.Bonded)) {
-      props.push("Bonded")
-    }
-
-    if (this.properties.bool.get(PropertyBool.Ivoryable)) {
-      props.push("Ivoryable")
-    }
-
-    if (this.properties.bool.get(PropertyBool.Dyable)) {
-      props.push("Dyable")
-    }
-
-    return props.join(", ")
-  }
-
   json() {
     return {
       ...super.json(),
@@ -152,7 +129,6 @@ export class Clothing extends Item {
       armorLevelVsElectricPhrase: this.armorLevelVsElectricPhrase,
       armorLevelVsNetherPhrase: this.armorLevelVsNetherPhrase,
       coverageString: this.coverageString,
-      propertyString: this.propertyString,
     }
   }
 }
