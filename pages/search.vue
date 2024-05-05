@@ -118,15 +118,22 @@ watch(offset, async () => {
   })
 })
 
-watch(filter, async () => {
+const updateTitle = () => {
   route.meta.title = `Search: "${filter.value}"`
+
+  // route.matched can be null :(
+  if (!route.matched) {
+    return
+  }
+
   route.matched[
     route.matched.length - 1
   ].meta.title = `Search: "${filter.value}"`
+}
+
+watch(filter, async () => {
+  updateTitle()
 })
 
-route.meta.title = `Search: "${filter.value}"`
-route.matched[
-  route.matched.length - 1
-].meta.title = `Search: "${filter.value}"`
+updateTitle()
 </script>
