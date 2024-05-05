@@ -5,7 +5,9 @@
     </template> -->
     <div class="py-6">
       <div class="rounded-lg border border-gray-950">
-        <div class="flex justify-end rounded-t-lg border-b-2 border-gray-700 bg-gray-800 p-4">
+        <div
+          class="flex justify-end rounded-t-lg border-b-2 border-gray-700 bg-gray-800 p-4"
+        >
           <PagePagination
             v-model="offset"
             :offset-size="offsetSize"
@@ -19,7 +21,9 @@
             :rows="results"
           >
             <template #name-data="{ row }">
-              <nuxt-link :to="`/database/${weenieTypeURLMapThing[row.type]}/${row.wcid}`">
+              <nuxt-link
+                :to="`/database/${weenieTypeURLMapThing[row.type]}/${row.wcid}`"
+              >
                 <p class="font-bold">
                   {{ row.name }}
                 </p>
@@ -36,7 +40,12 @@
 // TODO: Pagination
 
 import type { AsyncData } from "#app"
-import { type WeenieSearchListingRow, getWeeniesByName, type getCountOfWeenieByName, type CountResponse } from "~/util/queries/new"
+import {
+  getCountOfWeenieByName,
+  type WeenieSearchListingRow,
+  getWeeniesByName,
+  type CountResponse,
+} from "~/util/queries/new"
 import { weenieTypeURLMapThing } from "~/util/search"
 
 const route = useRoute()
@@ -56,16 +65,16 @@ const countQueryParams = computed(() => {
     name: `%${filter.value}%`,
   }
 })
-const { data: count } = await useFetch(
+const { data: count } = (await useFetch(
   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
   {
     key: "search-total",
     query: countQueryParams,
   },
-) as AsyncData<CountResponse[], Error>
+)) as AsyncData<CountResponse[], Error>
 
 // if (count.value) totalPages.value = Math.round(Number(count.value[0].total) / offsetSize.value)
-const total = computed(() => count.value ? count.value[0].total : 0)
+const total = computed(() => (count.value ? count.value[0].total : 0))
 
 const queryParams = computed(() => {
   return {
@@ -74,13 +83,13 @@ const queryParams = computed(() => {
   }
 })
 
-const { data: results, error: _error } = await useFetch(
+const { data: results, error: _error } = (await useFetch(
   `https://acedb.treestats.net/ace_world_patches.json?_shape=array`,
   {
     key: "search",
     query: queryParams,
   },
-) as AsyncData<WeenieSearchListingRow[], Error>
+)) as AsyncData<WeenieSearchListingRow[], Error>
 
 // const resultsRange = computed(() => {
 //   const startIndex = (page.value - 1) * perPage.value + 1;
@@ -88,10 +97,12 @@ const { data: results, error: _error } = await useFetch(
 //     return `Showing results ${startIndex}-${endIndex} of ${total.value}`;
 // });
 
-const columns = [{
-  key: "name",
-  label: "Name",
-}]
+const columns = [
+  {
+    key: "name",
+    label: "Name",
+  },
+]
 
 watch(offset, async () => {
   window.scrollTo(0, 0)
@@ -109,9 +120,13 @@ watch(offset, async () => {
 
 watch(filter, async () => {
   route.meta.title = `Search: "${filter.value}"`
-  route.matched[route.matched.length - 1].meta.title = `Search: "${filter.value}"`
+  route.matched[
+    route.matched.length - 1
+  ].meta.title = `Search: "${filter.value}"`
 })
 
 route.meta.title = `Search: "${filter.value}"`
-route.matched[route.matched.length - 1].meta.title = `Search: "${filter.value}"`
+route.matched[
+  route.matched.length - 1
+].meta.title = `Search: "${filter.value}"`
 </script>
