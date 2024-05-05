@@ -91,6 +91,8 @@ export class Weenie {
     return this.type === WeenieType.Clothing
   }
 
+  // WIP: This is probably going to either grow into a huge comparison
+  //      or have to get refactored
   get IsItem() {
     return this.type === WeenieType.CraftTool
       || this.type === WeenieType.SpellComponent
@@ -98,6 +100,7 @@ export class Weenie {
       || this.type === WeenieType.SkillAlterationDevice
       || this.type === WeenieType.AttributeTransferDevice
       || this.type === WeenieType.ManaStone
+      || this.type === WeenieType.Generic
   }
 
   async load(fetch: FetchFunction) {

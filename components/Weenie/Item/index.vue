@@ -19,6 +19,7 @@
 import WeenieWeaponMelee from "~/components/Weenie/Item/Weapon/Melee.vue"
 import WeenieWeaponMissile from "~/components/Weenie/Item/Weapon/Missile.vue"
 import WeenieWeaponCaster from "~/components/Weenie/Item/Weapon/Caster.vue"
+import WeenieItemItem from "~/components/Weenie/Item/Item.vue"
 
 import { WeenieType } from "~/util/mappings"
 import type { WeenieData } from "~/models/Weenie"
@@ -40,6 +41,6 @@ else if (data.value?.type == WeenieType.Caster) {
   view = WeenieWeaponCaster
 }
 else {
-  throw new Error("Unsupported component")
+  view = WeenieItemItem
 }
 </script>
