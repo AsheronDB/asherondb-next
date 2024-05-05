@@ -32,8 +32,8 @@ export default defineNuxtConfig({
     // datDirectory/eor/client_portal.dat
     // datDirectory/megadat/client_portal.dat
     // override with NUXT_DAT_DIRECTORY env variable
-    datDirectory: './../dats/',
-    public: {}
+    datDirectory: "./../dats/",
+    public: {},
   },
   vite: {
     build: {
