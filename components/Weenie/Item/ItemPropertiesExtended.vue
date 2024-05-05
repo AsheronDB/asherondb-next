@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p v-if="props.data.use">
-      Wield requires level {{ props.data.use }}
+    <p v-if="props.data.wieldDifficulty">
+      Wield requires level {{ props.data.wieldDifficulty }}
     </p>
     <p v-if="!props.data.isSellable">
       This item cannot be sold.
