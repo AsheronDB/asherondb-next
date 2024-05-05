@@ -36,7 +36,7 @@
 // TODO: Pagination
 
 import type { AsyncData } from "#app"
-import type { WeenieSearchListingRow, getWeeniesByName, getCountOfWeenieByName, CountResponse } from "~/util/queries/new"
+import { type WeenieSearchListingRow, getWeeniesByName, type getCountOfWeenieByName, type CountResponse } from "~/util/queries/new"
 import { weenieTypeURLMapThing } from "~/util/search"
 
 const route = useRoute()
