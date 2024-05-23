@@ -1,10 +1,10 @@
 // store/filters.js
-import { defineStore } from "pinia"
+import { defineStore } from "pinia";
 
 export const useStore = defineStore("store", () => {
-  const now = ref(Date.now())
-  const titlePhrase = ref(null)
-  const siteSearchFilter = ref("")
+  const now = ref(Date.now());
+  const titlePhrase = ref(null);
+  const siteSearchFilter = ref("");
 
   const primaryNav = ref([
     {
@@ -230,12 +230,16 @@ export const useStore = defineStore("store", () => {
         ],
       ],
     },
-  ])
+    {
+      label: "Support",
+      to: "/support",
+    },
+  ]);
 
   return {
     primaryNav,
     titlePhrase,
     siteSearchFilter,
     now,
-  }
-})
+  };
+});
